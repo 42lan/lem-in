@@ -6,7 +6,7 @@
 #    By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/12 08:39:15 by amalsago          #+#    #+#              #
-#    Updated: 2020/03/12 09:57:03 by amalsago         ###   ########.fr        #
+#    Updated: 2020/03/12 11:23:28 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,8 @@ INCDIR         = ./includes
 # **************************************************************************** #
 # List of source files
 
-SRCNAME        = main.c
+SRCNAME        = main.c\
+                print_help.c
 
 # **************************************************************************** #
 # Automatic variables where are listed the names of sources and objects files
@@ -83,14 +84,15 @@ $(OBJDIR)/%.o: $(SRCDIR)/%.c
 
 clean:
 	@if [ -d $(OBJDIR) ]; then \
-		$(RM) $(OBJDIR) \
-		&& printf $(CR)$(RED)"✗ The objects files of $(PROJECT_NAME) are cleaned"$(EOC)\
-		&& $(MAKE) $(LIBDIR) clean; \
+		$(MAKE) $(LIBDIR) clean \
+		&& $(RM) $(OBJDIR) \
+		&& printf $(CR)$(RED)"✗ The objects files of $(PROJECT_NAME) are cleaned\n"$(EOC); \
 	fi
 
 fclean: clean
 	@if [ -e $(PROJECT_NAME) ]; then \
-		$(RM) $(PROJECT_NAME) \
+		$(MAKE) $(LIBDIR) fclean \
+		&& $(RM) $(PROJECT_NAME) \
 		&& printf $(CR)$(RED)"✗ $(PROJECT_NAME) is cleaned\n"$(EOC); \
 	fi
 
