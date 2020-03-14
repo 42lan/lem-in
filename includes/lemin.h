@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/14 22:21:00 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/14 22:21:56 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,24 @@ typedef struct		s_farm
 	t_room			*rooms;
 	t_link			*links;
 }					t_farm;
+
+void		initialize_farm(t_farm *farm);
+int			parse_hashtag(t_farm *farm, const char *line);
+int			parse_input(t_farm *farm);
+void		print_help(void);
+
+/*
+** PREDICATES
+*/
+int			is_number(const char *str);
+int			is_command(const char *str);
+int			is_comment(const char *str);
+
+/*
+** TOOLS
+*/
+
+void	print_farm(t_farm *farm);
 
 /*
 ** LEMIN_H
