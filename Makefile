@@ -6,7 +6,7 @@
 #    By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/12 08:39:15 by amalsago          #+#    #+#              #
-#    Updated: 2020/03/12 11:23:28 by amalsago         ###   ########.fr        #
+#    Updated: 2020/03/14 22:16:11 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,11 @@ INCDIR         = ./includes
 # List of source files
 
 SRCNAME        = main.c\
-                print_help.c
+                print_help.c\
+                parse_input.c\
+                initialize_farm.c\
+                tools.c\
+                predicates.c
 
 # **************************************************************************** #
 # Automatic variables where are listed the names of sources and objects files
