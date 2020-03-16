@@ -6,7 +6,7 @@
 #    By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/12 08:39:15 by amalsago          #+#    #+#              #
-#    Updated: 2020/03/14 22:16:11 by amalsago         ###   ########.fr        #
+#    Updated: 2020/03/16 21:48:37 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,9 @@ LIBNAME        = libft.a
 # GNU Compiler Collection
 
 GCC            = gcc
-WOPT           = -Wall -Wextra -Werror# -g3 -fsanitize=address
+WOPT           = -Wall -Wextra -Werror# -fsanitize=address# -g3
 OOPT           = -O2
-IOPT           = -I $(INCDIR) -I $(LIBDIR)/$(INCDIR)
+IOPT           = -I $(INCDIR) -I $(LIBDIR)/include
 
 # **************************************************************************** #
 # System commands
@@ -45,12 +45,15 @@ INCDIR         = ./includes
 # **************************************************************************** #
 # List of source files
 
+PARSING        = parsing/save_raw_input.c\
+                 parsing/parse_input.c
+
 SRCNAME        = main.c\
                 print_help.c\
-                parse_input.c\
                 initialize_farm.c\
                 tools.c\
-                predicates.c
+				predicates.c\
+                $(PARSING)
 
 # **************************************************************************** #
 # Automatic variables where are listed the names of sources and objects files
