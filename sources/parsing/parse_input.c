@@ -6,32 +6,24 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 09:32:10 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/14 22:19:38 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/16 21:37:08 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int			parse_input(t_farm *farm)
+int			print_line(void *content, size_t size, unsigned pos)
 {
-	ft_printf("_________START PARSING_________\n");
-	char	*line;
+	(void)pos;
+	return (ft_printf("[%s] %d\n", (char *)content, size));
+}
 
-	while (get_next_line(0, &line) > 0)
-	{
-		if (is_comment(line) == SUCCESS)
-		{
-			ft_printf("Skipping: [%s]\n", line);
-			continue ;
-		}
-		if (farm->number_of_ants == -1)
-		{
-			if (is_number(line) == SUCCESS)
-				farm->number_of_ants = ft_atoi(line);
-		}
-		ft_strdel(&line);
-	}
-	print_farm(farm);
-	ft_printf("_________END PARSING_________\n");
+
+int			parse_input(t_data *data, t_farm *farm)
+{
+	(void)farm;
+
+	data->raw_input = save_raw_input();
+	ft_list_print(data->raw_input, print_line);
 	return (SUCCESS);
 }
