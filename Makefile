@@ -6,7 +6,7 @@
 #    By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/12 08:39:15 by amalsago          #+#    #+#              #
-#    Updated: 2020/03/17 14:27:14 by amalsago         ###   ########.fr        #
+#    Updated: 2020/03/17 17:57:29 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,9 @@ INCDIR         = ./includes
 PARSE_SRC      = save_raw_input.c\
                  parse_input.c\
                  uncomment_raw_input.c\
-                 save_rooms.c
+                 save_rooms.c\
+                 save_links.c\
+                 save_ants.c
 
 TOOLS_SRC      = tools.c\
                  predicates.c\
