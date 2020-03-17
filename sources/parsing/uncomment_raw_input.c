@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 11:27:17 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/17 11:34:36 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/17 11:52:10 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_list				*uncomment_raw_input(t_list *raw_input)
 	if (!(uncommented_input = ft_list_init()))
 	{
 		if (EMF)
-			ft_dprintf(2, "ft_list_init() failed in uncomment_raw_input()\n");
+			ft_printerr("ft_list_init() failed in uncomment_raw_input()\n");
 		return (NULL);
 	}
 	while (size--)
@@ -38,6 +38,13 @@ t_list				*uncomment_raw_input(t_list *raw_input)
 		if (is_invalid_line((char *)(tmp->content)) == FAILURE)
 		{
 			line = ft_list_link_new(tmp->content, tmp->content_size);
+			if (!line)
+			{
+				if (EMF)
+					ft_printerr("ft_list_link_new() failed in uncomment_raw_input()\n");
+				// Need to free uncomment_raw_input?
+				return (NULL);
+			}
 			ft_list_push(uncommented_input, line);
 		}
 		tmp = tmp->next;

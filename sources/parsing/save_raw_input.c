@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 21:37:29 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/17 11:40:45 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/17 11:51:36 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,18 @@ t_list				*save_raw_input(void)
 	if (!(raw_input = ft_list_init()))
 	{
 		if (EMF)
-			ft_dprintf(2, "ft_list_init() failed in save_raw_input()\n");
+			ft_printerr("ft_list_init() failed in save_raw_input()\n");
 		return (NULL);
 	}
 	while (get_next_line(0, &line) > 0)
 	{
 		if (!(raw_line = ft_list_link_new(line, ft_strlen(line) + 1)))
 		{
-			// Need to free raw_input and line?
 			if (EMF)
-				ft_dprintf(2, "ft_list_link_new() failed in save_raw_input()");
+				ft_printerr("ft_list_link_new() failed in save_raw_input()");
+			// Need to free raw_input and line?
+			//ft_list_del
+			//ft_strdel(&line);
 			return (NULL);
 		}
 		ft_list_push(raw_input, raw_line);
