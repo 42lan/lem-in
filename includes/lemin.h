@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/17 17:49:23 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/17 19:13:01 by abosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ struct			s_data
 	unsigned int	number_of_ants;
 	t_list			*rooms;
 	t_list			*links;
-	t_farm			*farm;
 };
 
 struct			s_farm
