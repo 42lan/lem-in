@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/17 11:27:45 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/17 16:20:23 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,12 @@ typedef struct	s_link t_link;
 
 struct			s_data
 {
-	t_list		*raw_input;
-	t_list		*uncommented_input;
-	t_farm		*farm;
+	t_list			*raw_input;
+	t_list			*uncommented_input;
+	unsigned int	number_of_ants;
+	t_list			*rooms;
+	t_list			*links;
+	t_farm			*farm;
 };
 
 struct			s_farm
@@ -67,6 +70,7 @@ void	initialization(t_data *data);
 int				parse_input(t_data *data);
 t_list			*save_raw_input(void);
 t_list			*uncomment_raw_input(t_list *raw_input);
+t_list			*save_rooms(t_list *uncommented_input, int size);
 int				parse_hashtag(t_farm *farm, const char *line);
 
 /*
@@ -75,6 +79,8 @@ int				parse_hashtag(t_farm *farm, const char *line);
 int			is_invalid_line(const char *str);
 int			is_number(const char *str);
 int			is_command(const char *str);
+int			is_room(char *line);
+int			is_link(char *line);
 
 /*
 ** TOOLS
