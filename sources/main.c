@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:44:44 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/14 22:19:13 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/17 11:46:59 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 int		main(int ac, char **av)
 {
 	(void)ac;(void)av;
-	t_farm	farm;
+	t_data	data;
 
-	/*
-	if (--ac == 0)
-		print_help();
-	*/
-	initialize_farm(&farm);
-	if (parse_input(&farm) == FAILURE)
-		ft_perror_exit("ERROR");
+	initialization(&data);
+	if (parse_input(&data) == FAILURE)
+	{
+		if (EMF)
+			ft_printerr("parsing() failed in main()\n");
+		exit(EXIT_FAILURE);
+	}
 	return (SUCCESS);
 }
