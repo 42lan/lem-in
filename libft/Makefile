@@ -6,7 +6,7 @@
 #    By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/13 11:54:38 by abaisago          #+#    #+#              #
-#    Updated: 2020/03/17 12:52:31 by amalsago         ###   ########.fr        #
+#    Updated: 2020/03/17 19:54:21 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -182,9 +182,10 @@ FT_PRINTF  := ft_printf.c          integers.c         \
               $(PF_CURLY)          $(PF_PERC)
 FT_PRINTF  := $(addprefix programs/ft_printf/,$(FT_PRINTF))
 
-FT_ASLAN   := ft_arraysize.c	ft_count_words.c      \
-              ft_silen.c		ft_uilen.c            \
-              ft_isseparator.c
+FT_ASLAN   := ft_arraysize.c    ft_count_words.c      \
+              ft_silen.c        ft_uilen.c            \
+              ft_isseparator.c  ft_strtok.c           \
+              ft_strspn.c       ft_strcspn.c
 FT_ASLAN   := $(addprefix aslan/,$(FT_ASLAN))
 
 
