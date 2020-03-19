@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/17 14:24:54 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/17 16:22:48 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/17 19:49:41 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ t_list				*save_rooms(t_list *uncommented_input, int size)
 	t_list_link		*tmp;
 	t_list_link		*room;
 	t_list			*rooms;
+	char			*name;
 
 	tmp = uncommented_input->head;
 	if (!(rooms = ft_list_init()))
@@ -41,7 +42,8 @@ t_list				*save_rooms(t_list *uncommented_input, int size)
 	{
 		if ((is_command(tmp->content) == FAILURE) && is_room(tmp->content) == FAILURE)
 			break ;
-		room = ft_list_link_new(tmp->content, tmp->content_size);
+		name = ft_strtok(tmp->content, " ");
+		room = ft_list_link_new(name, ft_strlen(name));
 		if (!room)
 		{
 			// rooms needs to be freed
