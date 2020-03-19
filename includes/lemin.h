@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/19 23:03:17 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/19 23:52:21 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,35 +33,29 @@ typedef struct	s_link t_link;
 
 struct			s_data
 {
-	t_list			*raw_input;
-	t_list			*uncommented_input;
-	unsigned int	number_of_ants;
-	t_list			*rooms;
-	t_list			*links;
+	t_list		*raw_input;
+	t_list		*uncommented_input;
 };
 
 struct			s_farm
 {
-	int			number_of_ants;
-	t_room		*rooms;
-	t_link		*links;
+	unsigned	ants;
+	t_list		*rooms;
 };
 
 struct			s_room
 {
 	char		*name;
-	int			coord_x;
-	int			coord_y;
-	t_room		*prev;
-	t_room		*next;
+	t_ivec2		coord;
+	t_byte		flags;
 };
 
-struct		s_link
+struct			s_link
 {
 };
 
 
-void	initialization(t_data *data);
+void			initialization(t_data *data);
 
 /*
 ** LIB
@@ -103,7 +97,6 @@ int			is_link(char *line);
 void	print_farm(t_farm *farm);
 void	print_help(void);
 
-int		get_next_line(const int fd, char **line);
 /*
 ** LEMIN_H
 */

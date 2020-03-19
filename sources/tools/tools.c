@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 21:53:28 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/14 21:54:25 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/19 23:31:34 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 void	print_farm(t_farm *farm)
 {
-	ft_printf("Number of ants: %d\n", farm->number_of_ants);
+	ft_printf("Number of ants: %d\n", farm->ants);
 }

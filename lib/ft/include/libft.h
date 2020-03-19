@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 16:46:22 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/19 21:58:38 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/19 23:38:45 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define FT_STRING_SIZE 512
 # define FT_STRING_INC	512
 
+typedef	unsigned char	t_byte;
 typedef	float_t	t_float;
 
 typedef struct	s_array2 t_array2;
@@ -33,7 +34,7 @@ typedef struct	s_list_link t_list_link;
 typedef struct	s_list t_list;
 typedef struct	s_string t_string;
 
-struct s_array2
+struct			s_array2
 {
 	void		**arr;
 	size_t		len;
