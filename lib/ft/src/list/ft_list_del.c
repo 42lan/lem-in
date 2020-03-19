@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 15:49:20 by abaisago          #+#    #+#             */
-/*   Updated: 2020/02/29 16:43:33 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/18 02:18:18 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,18 @@ void	ft_list_del(t_list **alist, void (*del)(void *, size_t))
 	t_list_link	*next;
 
 	list = *alist;
-	link = list->head;
-	next = link->next;
-	while (next != list->head)
+	if (list->size > 0)
 	{
-		ft_list_delone(list, link, del);
-		link = next;
+		link = list->head;
 		next = link->next;
+		while (list->size > 1)
+		{
+			ft_list_delone(list, link, del);
+			link = next;
+			next = link->next;
+		}
+		ft_list_delone(list, link, del);
 	}
-	ft_list_delone(list, link, del);
 	list->head = NULL;
 	free(list);
 	*alist = NULL;

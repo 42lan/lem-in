@@ -6,7 +6,7 @@
 #    By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/13 11:54:38 by abaisago          #+#    #+#              #
-#    Updated: 2020/03/17 19:54:21 by amalsago         ###   ########.fr        #
+#    Updated: 2020/03/18 00:04:41 by abaisago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,6 +102,7 @@ SRC_LIST   := ft_list_at.c                 \
 SRC_LIST   := $(addprefix list/,$(SRC_LIST))
 
 SRC_MATH   := ft_abs_is.c                                            \
+              ft_imaxabs.c                                           \
               ft_power.c                                             \
               ft_sqrt.c                                              \
               ft_sqrt_floor.c
@@ -182,13 +183,6 @@ FT_PRINTF  := ft_printf.c          integers.c         \
               $(PF_CURLY)          $(PF_PERC)
 FT_PRINTF  := $(addprefix programs/ft_printf/,$(FT_PRINTF))
 
-FT_ASLAN   := ft_arraysize.c    ft_count_words.c      \
-              ft_silen.c        ft_uilen.c            \
-              ft_isseparator.c  ft_strtok.c           \
-              ft_strspn.c       ft_strcspn.c
-FT_ASLAN   := $(addprefix aslan/,$(FT_ASLAN))
-
-
 ### ALL SOURCES
 SRC_NAME   := $(SRC_ARRAY2)   \
               $(SRC_CHAR)     \
@@ -201,9 +195,7 @@ SRC_NAME   := $(SRC_ARRAY2)   \
               $(SRC_STRING)   \
               \
               $(GNL)          \
-              $(FT_PRINTF)    \
-			  \
-			  $(FT_ASLAN)
+              $(FT_PRINTF)
 SRC_PATH   := src
 SRC        := $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 

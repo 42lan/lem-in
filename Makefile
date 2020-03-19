@@ -3,121 +3,266 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+         #
+#    By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/03/12 08:39:15 by amalsago          #+#    #+#              #
-#    Updated: 2020/03/19 15:47:46 by amalsago         ###   ########.fr        #
+#    Created: 2018/12/13 11:54:38 by abaisago          #+#    #+#              #
+#    Updated: 2020/03/19 23:05:55 by abaisago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# **************************************************************************** #
-# General
+######################################################################
+#                            DEFINITIONS                             #
+######################################################################
 
-PROJECT_NAME   = lem-in
-LIBNAME        = libft.a
+#------------------------------------------------#
+#                     PROJECT                    |
+#------------------------------------------------#
 
-# **************************************************************************** #
-# GNU Compiler Collection
+NAME           := lem-in
+PROJECT        := lem-in
 
-GCC            = gcc
-WOPT           = -Wall -Wextra -Werror -g3 # -fsanitize=address
-OOPT           = -O2
-IOPT           = -I $(INCDIR) -I $(LIBDIR)/include
+#------------------------------------------------#
+#                   LIBRARIES                    |
+#------------------------------------------------#
 
-# **************************************************************************** #
-# System commands
+LIB_PATH       := lib
 
-AR             = ar -rc
-MAKE           = make -sC
-RANLIB         = ranlib
-NORMINETTE     = norminette
-MKDIR          = mkdir -p
-RM             = rm -rf
+LIB_FT_DIR     := $(LIB_PATH)/ft
+LIB_FT_NAME    := libft.a
+LIB_FT         := $(LIB_FT_DIR)/$(LIB_FT_NAME)
+LIB_FT_FLAGS   := -lft
 
-# **************************************************************************** #
-# Directories of source and object files
+LIB            := $(LIB_FT)
 
-LIBDIR         = libft
-SRCDIR         = ./sources
-OBJDIR         = ./objects
-INCDIR         = ./includes
+LDFLAGS        := -L$(LIB_FT_DIR)
+LDLIBS         := $(LIB_FT_FLAGS)
 
-# **************************************************************************** #
-# List of source files
+#------------------------------------------------#
+#                   BINARIES                     |
+#------------------------------------------------#
 
-PARSE_SRC      = save_raw_input.c\
-                 parse_input.c\
-                 uncomment_raw_input.c\
-                 save_rooms.c\
-                 save_links.c\
-                 save_ants.c\
-                 is_valid_room_name.c
+CC             := gcc
+CFLAGS         := -Wall -Wextra -Werror          \
+                  -Wno-unused-parameter          \
+                  -Wno-unused-but-set-variable
+CPPFLAGS       := -Iincludes                     \
+                  -Ilib/ft/include
 
-TOOLS_SRC      = tools.c\
-                 predicates.c\
-                 print_help.c
+AR             := /usr/bin/ar
+ARFLAGS        := rc
+MAKE           := /usr/bin/make
+RANLIB         := /usr/bin/ranlib
 
-PARSE          = $(addprefix parsing/, $(PARSE_SRC))
-TOOLS          = $(addprefix tools/, $(TOOLS_SRC))
+CP             := /bin/cp
+NORMINETTE     := /usr/bin/norminette
+MKDIR          := /bin/mkdir
+PRINTF         := /usr/bin/printf
+RM             := /bin/rm
 
-SRCNAME        = main.c\
-                initialization.c\
-                $(PARSE)\
-                $(TOOLS)
+#------------------------------------------------#
+#                    SOURCES                     |
+#------------------------------------------------#
 
-# **************************************************************************** #
-# Automatic variables where are listed the names of sources and objects files
+SRC_PATH       := sources
 
-SRC            = $(addprefix $(SRCDIR)/, $(SRCNAME))
-OBJ            = $(addprefix $(OBJDIR)/, $(SRCNAME:.c=.o))
-LFT            = $(addprefix $(LIBDIR)/, $(LIBNAME))
+SRC_LIB        := ft_arraysize.c \
+	              ft_count_words.c \
+	              ft_isseparator.c \
+				  ft_silen.c \
+				  ft_strcspn.c \
+				  ft_strspn.c \
+				  ft_strtok.c \
+				  ft_uilen.c
+SRC_LIB        := $(addprefix lib/, $(SRC_LIB))
 
-# **************************************************************************** #
-# Extra
+SRC_PARSE      := save_raw_input.c \
+                  parse_input.c \
+                  uncomment_raw_input.c \
+                  save_rooms.c \
+                  save_links.c \
+                  save_ants.c \
+                  is_valid_room_name.c
+SRC_PARSE      := $(addprefix parsing/, $(SRC_PARSE))
 
-CR             = "\r"$(CLEAR)
-CLEAR          = "\\033[0K"
-EOC            = "\033[0;0m"
-RED            = "\033[0;31m"
-GREEN          = "\033[0;32m"
-BASENAME       = `basename $(PWD)`
+SRC_TOOLS      := tools.c \
+                  predicates.c \
+                  print_help.c
+SRC_TOOLS      := $(addprefix tools/, $(SRC_TOOLS))
 
-# **************************************************************************** #
-# Rules
+SRC_NAME       := main.c \
+                  initialization.c \
+                  $(SRC_LIB) \
+                  $(SRC_PARSE) \
+                  $(SRC_TOOLS)
+SRC            := $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 
-all: $(LFT) $(PROJECT_NAME)
+OBJ_PATH       := obj
+OBJ_NAME       := $(SRC_NAME:.c=.o)
+OBJ            := $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 
-$(LFT): FORCE
-	@$(MAKE) $(LIBDIR)
+#------------------------------------------------#
+#                    RELEASE                     |
+#------------------------------------------------#
 
-$(PROJECT_NAME): $(LFT) $(OBJ)
-	@$(GCC) $(EMF) $(WOPT) $(OBJ) $(LFT) -o $(PROJECT_NAME)
-	@printf $(CR)$(GREEN)"✓ $(PROJECT_NAME) is created\n"$(EOC)
+REL_PATH       := release
+NAME           := $(NAME)
+REL_OBJ        := $(addprefix $(REL_PATH)/,$(OBJ))
+REL_CFLAGS     := $(CFLAGS)
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c
-	@$(MKDIR) $(dir $@)
-	@$(GCC) $(EMF) $(WOPT) $(OOPT) $(IOPT) -c $< -o $@
-	@printf $(CR)"[ $(BASENAME)/%s ]"$(CLEAR) $@
+#------------------------------------------------#
+#                     DEBUG                      |
+#------------------------------------------------#
 
-clean:
-	@if [ -d $(OBJDIR) ]; then \
-		$(MAKE) $(LIBDIR) clean \
-		&& $(RM) $(OBJDIR) \
-		&& printf $(CR)$(RED)"✗ The objects files of $(PROJECT_NAME) are cleaned\n"$(EOC); \
+DBG_PATH       := debug
+DBG  	       := $(DBG_PATH)/$(NAME)
+DBG_OBJ	       := $(addprefix $(DBG_PATH)/,$(OBJ))
+DBG_CFLAGS     := $(CFLAGS) -g -fsanitize=address,undefined
+
+#------------------------------------------------#
+#                     EXTRA                      |
+#------------------------------------------------#
+
+EOC         := "\033[0;0m"
+RED         := "\033[0;31m"
+GREEN       := "\033[0;32m"
+
+BASENAME    := `basename $(PWD)`
+CREAT       := $(CR)$(GREEN)
+DEL         := $(CR)$(RED)
+END         := $(EOC)"\033[0K\n"
+UP          := "\033[0F"
+
+
+
+######################################################################
+#                               RULES                                #
+######################################################################
+.PHONY: all, clean, fclean, re, release, dbg
+.SILENT:
+
+all: release
+
+#------------------------------------------------#
+#                 RELEASE-RULES                  |
+#------------------------------------------------#
+
+release: $(LIB) $(NAME)
+
+$(NAME): $(REL_OBJ)
+	@$(PRINTF) $(CREAT)"[ $(PROJECT): All object files created ]"$(END)
+	@$(CC) $(REL_CFLAGS) -o $@ $^ $(LDFLAGS) $(LDLIBS)
+	@$(PRINTF) $(CREAT)"[ $(PROJECT): $@ created ]"$(END)
+
+$(REL_PATH)/$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
+	@$(MKDIR) -p $(dir $@) 2>/dev/null || true
+	@$(PRINTF) "[ $(PROJECT): %s ]"$(END) $@
+	@$(CC) $(REL_CFLAGS) $(CPPFLAGS) -c $< -o $@
+	@$(PRINTF) $(UP)
+
+#------------------------------------------------#
+#                  DEBUG-RULES                   |
+#------------------------------------------------#
+
+dbg: $(LIB) $(DBG)
+
+$(DBG): $(DBG_OBJ)
+	@$(PRINTF) $(CREAT)"[ $(PROJECT): All debug object files created ]"$(END)
+	@$(CC) $(DBG_CFLAGS) -o $@ $^ $(LDFLAGS) $(LDLIBS)
+	@$(PRINTF) $(CREAT)"[ $(PROJECT): $@ created ]"$(END)
+
+$(DBG_PATH)/$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
+	@$(MKDIR) -p $(dir $@) 2>/dev/null || true
+	@$(PRINTF) "[ $(PROJECT): %s ]"$(END) $@
+	@$(CC) $(DBG_CFLAGS) $(CPPFLAGS) -c $< -o $@
+	@$(PRINTF) $(UP)
+
+#------------------------------------------------#
+#                 LIBRARY-RULES                  |
+#------------------------------------------------#
+
+### LIBFT
+
+libft: $(LIB_FT)
+$(LIB_FT): FORCE
+	make -sC $(LIB_FT_DIR)
+
+libft_clean:
+	make -sC $(LIB_FT_DIR) clean
+
+libft_dbgclean:
+	make -sC $(LIB_FT_DIR) dbgclean
+
+libft_fclean:
+	make -sC $(LIB_FT_DIR) fclean
+
+### Library Clean Rules
+
+libclean: libft_clean
+libdbgclean: libft_dbgclean
+libfclean: libft_fclean
+
+#------------------------------------------------#
+#                  CLEAN-RULES                   |
+#------------------------------------------------#
+
+thisclean:
+	@if [ -d $(REL_PATH)/$(OBJ_PATH) ]; then \
+		$(RM) -f $(REL_OBJ) \
+		&& $(RM) -rf $(REL_PATH)/$(OBJ_PATH) \
+		&& $(PRINTF) $(DEL)"[ $(PROJECT): All object files cleaned ]"$(END); \
 	fi
 
-fclean: clean
-	@if [ -e $(PROJECT_NAME) ]; then \
-		$(MAKE) $(LIBDIR) fclean \
-		&& $(RM) $(PROJECT_NAME) \
-		&& printf $(CR)$(RED)"✗ $(PROJECT_NAME) is cleaned\n"$(EOC); \
+thisdbgclean:
+	@if [ -d $(DBG_PATH)/$(OBJ_PATH) ]; then \
+		$(RM) -f $(DBG_OBJ) \
+		&& $(RM) -rf $(DBG_PATH)/$(OBJ_PATH) \
+		&& $(PRINTF) $(DEL)"[ $(PROJECT): All debug object files cleaned ]"$(END); \
 	fi
 
+clean: libclean thisclean
+dbgclean: libclean thisdbgclean
+
+fclean: libfclean thisclean thisdbgclean
+	@for TARGET in $(NAME) $(DBG); do \
+		if [ -e "$$TARGET" ]; then \
+			$(RM) -f $$TARGET \
+			&& $(PRINTF) $(DEL)"[ $(PROJECT): $$TARGET cleaned ]"$(END); \
+		fi; \
+	done
+ifneq '$(REL_PATH)' '.'
+	@$(RM) -rf $(REL_PATH)
+endif
+ifneq '$(DBG_PATH)' '.'
+	@$(RM) -rf $(DBG_PATH)
+endif
+
+#------------------------------------------------#
+#                  OTHER-RULES                   |
+#------------------------------------------------#
+
+soft: thisclean all
+softdbg: thisdbgclean dbg
+shallow: soft softdbg
 re: fclean all
+redbg: fclean dbg
+full: fclean all dbg
 
-norm:
-	@$(NORMINETTE) $(SRCDIR) $(INCDIR) $(LIBDIR)/sources $(LIBDIR)/includes
-
-.PHONY: all clean fclean re norm
+clear: all clean
+cleardbg: dbg dbgclean
+pure: clear cleardbg
+whole: all dbg
 
 FORCE:
+
+norme:
+	$(NORMINETTE) $(SRC) includes/*.h
+
+update_libft:
+	$(RM) -rf $(LIB_FT_DIR)
+	git clone http://gitlab.com/abaisago/42_libft $(LIB_FT_DIR)
+	$(RM) -rf $(LIB_FT_DIR)/.git* $(LIB_FT_DIR)/tags
+
+update_libht:
+	$(RM) -rf $(LIB_HT_DIR)
+	git clone http://gitlab.com/abaisago/libht $(LIB_HT_DIR)
+	$(RM) -rf $(LIB_HT_DIR)/.git* $(LIB_HT_DIR)/tags

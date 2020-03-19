@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/19 16:55:33 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/19 23:03:17 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,18 @@ struct		s_link
 
 
 void	initialization(t_data *data);
+
+/*
+** LIB
+*/
+size_t			ft_arraysize(char **array);
+int				ft_count_words(char const *s, char c);
+size_t			ft_silen(intmax_t number, int base);
+size_t			ft_uilen(uintmax_t number, int base);
+int				ft_isseparator(char c, char separator);
+char			*ft_strtok(char *str, const char *sep);
+size_t			ft_strspn(const char *s, const char *charset);
+size_t			ft_strcspn(const char *s, const char *charset);
 
 /*
 ** PARSING

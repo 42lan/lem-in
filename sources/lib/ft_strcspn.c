@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_uilen.c                                         :+:      :+:    :+:   */
+/*   ft_strcspn.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/05 12:38:21 by amalsago          #+#    #+#             */
-/*   Updated: 2019/10/20 09:45:02 by amalsago         ###   ########.fr       */
+/*   Created: 2019/10/26 16:50:13 by amalsago          #+#    #+#             */
+/*   Updated: 2020/03/19 23:11:11 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lemin.h"
 
 /*
-** Counts and returns the number of digits in a given base of unsigned integer.
+** Returns the number of charactes found in the string s that not contains
+** characters from the charset.
 */
 
-size_t		ft_uilen(uintmax_t number, int base)
+size_t			ft_strcspn(const char *s, const char *charset)
 {
-	size_t	length;
+	size_t		i;
 
-	length = 0;
-	if (number == 0)
-		return (1);
-	while (number != 0)
+	i = 0;
+	while (s[i])
 	{
-		number /= base;
-		++length;
+		while (ft_strchr(charset, s[i]) == NULL)
+			++i;
+		if (ft_strchr(charset, s[i]))
+			break ;
+		++i;
 	}
-	return (length);
+	return (i);
 }

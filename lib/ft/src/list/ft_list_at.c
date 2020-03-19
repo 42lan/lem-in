@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 15:36:35 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/13 17:21:32 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/17 17:54:57 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_list_link	*ft_list_at(t_list *list, unsigned pos)
 	else
 	{
 		i = list->size;
-		while (i >= pos)
+		while (i > pos)
 		{
 			link = link->prev;
 			--i;
