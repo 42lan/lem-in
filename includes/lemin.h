@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/17 19:13:01 by abosch           ###   ########.fr       */
+/*   Updated: 2020/03/19 16:55:33 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ unsigned int	save_ants(t_list *uncommented_input);
 t_list			*save_rooms(t_list *uncommented_input, int size);
 t_list			*save_links(t_list *uncommented_input, int size);
 int				parse_hashtag(t_farm *farm, const char *line);
+void			check_room_names(t_list *rooms);
 
 /*
 ** PREDICATES
