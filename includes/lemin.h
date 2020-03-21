@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/19 23:52:21 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/21 16:25:46 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct	s_data t_data;
 typedef struct	s_farm t_farm;
 typedef struct	s_room t_room;
 typedef struct	s_link t_link;
+typedef struct	s_hmap t_hmap;
 
 struct			s_data
 {
@@ -50,10 +51,20 @@ struct			s_room
 	t_byte		flags;
 };
 
-struct			s_link
+# define HMAP_SIZE 10
+struct			s_hmap
 {
+	t_room		*room;
+	t_hmap		*next;
 };
 
+/*
+** HASHTABLE
+*/
+
+void			hmap_init(t_hmap *hmap);
+int				hmap_index(char *key);
+void			hmap_add(t_hmap *hmap, t_room *room);
 
 void			initialization(t_data *data);
 
