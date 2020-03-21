@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 16:46:22 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/19 23:38:45 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/21 11:27:10 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,11 +246,12 @@ char			*ft_strnew(size_t size);
 char			*ft_strnstr(const char *haystack, const char *needle,
 					size_t len);
 char			*ft_strrchr(const char *s, int c);
+size_t			ft_strskip(const char *s, int (*f)(int));
+size_t			ft_strskip_set(const char *s, char *set);
 char			**ft_strsplit(char const *s, char c);
 char			*ft_strstr(const char *haystack, const char *needle);
 char			*ft_strsub(char const *s, unsigned int start, size_t len);
 char			*ft_strtrim(char const *s);
-size_t			ft_strskip(const char *s, int (*f)(int));
 void			ft_utfecut(char *str, size_t len);
 size_t			ft_utfecut_index(char *str, size_t len);
 char			*ft_wchar_utfe(wchar_t c);

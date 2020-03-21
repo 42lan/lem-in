@@ -6,7 +6,7 @@
 #    By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/13 11:54:38 by abaisago          #+#    #+#              #
-#    Updated: 2020/03/19 23:05:55 by abaisago         ###   ########.fr        #
+#    Updated: 2020/03/21 16:23:44 by abaisago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,13 +75,7 @@ SRC_LIB        := ft_arraysize.c \
 				  ft_uilen.c
 SRC_LIB        := $(addprefix lib/, $(SRC_LIB))
 
-SRC_PARSE      := save_raw_input.c \
-                  parse_input.c \
-                  uncomment_raw_input.c \
-                  save_rooms.c \
-                  save_links.c \
-                  save_ants.c \
-                  is_valid_room_name.c
+SRC_PARSE      := parse_input.c
 SRC_PARSE      := $(addprefix parsing/, $(SRC_PARSE))
 
 SRC_TOOLS      := tools.c \

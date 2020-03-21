@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/19 23:52:21 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/21 16:30:21 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # include "ft_printf/ft_printf.h"
 # include "system_libraries.h"
 
+#define ERROR "ERROR\n"
+#define F_START 0x00000001
+#define F_END 0x00000002
+
 // Error Management Flag - activable on make EMF="-D EMF=1"
 # ifndef EMF
 #  define EMF 0
@@ -26,16 +30,9 @@
 # define SUCCESS 0
 # define FAILURE 1
 
-typedef struct	s_data t_data;
 typedef struct	s_farm t_farm;
 typedef struct	s_room t_room;
 typedef struct	s_link t_link;
-
-struct			s_data
-{
-	t_list		*raw_input;
-	t_list		*uncommented_input;
-};
 
 struct			s_farm
 {
@@ -52,14 +49,15 @@ struct			s_room
 
 struct			s_link
 {
-};
+}; // TODO: delete ?
 
 
-void			initialization(t_data *data);
+void			initialization(t_farm *farm); // TODO: delete ?
 
 /*
 ** LIB
 */
+
 size_t			ft_arraysize(char **array);
 int				ft_count_words(char const *s, char c);
 size_t			ft_silen(intmax_t number, int base);
@@ -72,18 +70,13 @@ size_t			ft_strcspn(const char *s, const char *charset);
 /*
 ** PARSING
 */
-int				parse_input(t_data *data);
-t_list			*save_raw_input(void);
-t_list			*uncomment_raw_input(t_list *raw_input);
-unsigned int	save_ants(t_list *uncommented_input);
-t_list			*save_rooms(t_list *uncommented_input, int size);
-t_list			*save_links(t_list *uncommented_input, int size);
-int				parse_hashtag(t_farm *farm, const char *line);
-void			check_room_names(t_list *rooms);
+
+int				parse_input(t_farm *farm);
 
 /*
 ** PREDICATES
 */
+
 int			is_invalid_line(const char *str);
 int			is_number(const char *str);
 int			is_command(const char *str);

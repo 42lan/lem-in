@@ -6,7 +6,7 @@
 #    By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/13 11:54:38 by abaisago          #+#    #+#              #
-#    Updated: 2020/03/18 00:04:41 by abaisago         ###   ########.fr        #
+#    Updated: 2020/03/21 11:31:03 by abaisago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -125,18 +125,18 @@ SRC_PRINT  := ft_printerr.c        ft_puterr.c                       \
 			  ft_putendl_fd.c      ft_putunbr_base.c
 SRC_PRINT  := $(addprefix print/,$(SRC_PRINT))
 
-SRC_STR    := ft_make_printable.c  ft_strncmp.c                      \
-              ft_strdup.c          ft_strncat.c                      \
-              ft_strcapitalize.c   ft_strncpy.c                      \
-              ft_strcat.c          ft_strnequ.c                      \
-              ft_strchr.c          ft_strnew.c                       \
-              ft_strclen.c         ft_strnstr.c                      \
-              ft_strclr.c          ft_strrchr.c                      \
-              ft_strcmp.c          ft_strsplit.c                     \
-              ft_strcpy.c          ft_strstr.c                       \
-              ft_strdel.c          ft_strsub.c                       \
-              ft_strequ.c          ft_strtrim.c                      \
-              ft_striter.c         ft_strskip.c                      \
+SRC_STR    := ft_make_printable.c  ft_strncat.c                      \
+              ft_strdup.c          ft_strncpy.c                      \
+              ft_strcapitalize.c   ft_strnequ.c                      \
+              ft_strcat.c          ft_strnew.c                       \
+              ft_strchr.c          ft_strnstr.c                      \
+              ft_strclen.c         ft_strrchr.c                      \
+              ft_strclr.c          ft_strsplit.c                     \
+              ft_strcmp.c          ft_strstr.c                       \
+              ft_strcpy.c          ft_strsub.c                       \
+              ft_strdel.c          ft_strtrim.c                      \
+              ft_strequ.c          ft_strskip.c                      \
+              ft_striter.c         ft_strskip_set.c                  \
               ft_striteri.c        ft_utfecut.c                      \
               ft_strjoin.c         ft_utfecut_index.c                \
               ft_strjoin_free.c    ft_wchar_utfe.c                   \
@@ -145,7 +145,8 @@ SRC_STR    := ft_make_printable.c  ft_strncmp.c                      \
               ft_strlen.c          ft_wputstr.c                      \
               ft_strmatch.c        ft_wstr_utfe.c                    \
               ft_strmap.c          ft_wstr_utfelen.c                 \
-              ft_strmapi.c         ft_wstrlen.c
+              ft_strmapi.c         ft_wstrlen.c                      \
+              ft_strncmp.c
 SRC_STR    := $(addprefix str/,$(SRC_STR))
 
 SRC_STRING := ft_string_append.c                                     \
