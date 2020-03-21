@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/21 16:30:21 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/21 17:04:03 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,12 @@
 
 # define SUCCESS 0
 # define FAILURE 1
+# define HMAP_SIZE 10
 
 typedef struct	s_farm t_farm;
 typedef struct	s_room t_room;
 typedef struct	s_link t_link;
+typedef struct	s_hmap t_hmap;
 
 struct			s_farm
 {
@@ -47,10 +49,20 @@ struct			s_room
 	t_byte		flags;
 };
 
-struct			s_link
-{
-}; // TODO: delete ?
 
+struct			s_hmap
+{
+	t_room		*room;
+	t_hmap		*next;
+};
+
+/*
+** HASHTABLE
+*/
+
+void			hmap_init(t_hmap *hmap);
+int				hmap_index(char *key);
+void			hmap_add(t_hmap *hmap, t_room *room);
 
 void			initialization(t_farm *farm); // TODO: delete ?
 
