@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   tools.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/12 09:44:44 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/21 17:23:27 by abaisago         ###   ########.fr       */
+/*   Created: 2020/03/21 17:16:30 by abaisago          #+#    #+#             */
+/*   Updated: 2020/03/21 17:18:48 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lemin.h"
+#ifndef TOOLS_H
+# define TOOLS_H
 
-#include "parsing.h"
+# include "lemin.h"
 
-int		lemin(int ac, char **av)
-{
-	t_farm	farm;
+void	print_farm(t_farm *farm);
+void	print_help(void);
 
-	if (parse_input(&farm) == FAILURE)
-		exit(EXIT_FAILURE);
-	return (SUCCESS);
-}
-
-int		main(int ac, char **av)
-{
-	return (lemin(ac, av));
-}
+/*
+** TOOLS_H
+*/
+#endif

@@ -6,7 +6,7 @@
 #    By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/13 11:54:38 by abaisago          #+#    #+#              #
-#    Updated: 2020/03/21 17:02:52 by abaisago         ###   ########.fr        #
+#    Updated: 2020/03/21 17:22:48 by abaisago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,10 @@ SRC_LIB        := ft_arraysize.c \
 				  ft_uilen.c
 SRC_LIB        := $(addprefix lib/, $(SRC_LIB))
 
-SRC_PARSE      := parse_input.c
+SRC_PARSE      := hmap_add.c   \
+                  hmap_index.c \
+                  hmap_init.c  \
+                  parse_input.c
 SRC_PARSE      := $(addprefix parsing/, $(SRC_PARSE))
 
 SRC_TOOLS      := tools.c \
@@ -83,18 +86,10 @@ SRC_TOOLS      := tools.c \
                   print_help.c
 SRC_TOOLS      := $(addprefix tools/, $(SRC_TOOLS))
 
-SRC_HMAP       := hmap_add.c \
-                  hmap_index.c \
-                  hmap_init.c
-
-SRC_HMAP       := $(addprefix hmap/, $(SRC_HMAP))
-
 SRC_NAME       := main.c \
-                  initialization.c \
                   $(SRC_LIB) \
                   $(SRC_PARSE) \
-                  $(SRC_TOOLS) \
-				  $(SRC_HMAP)
+                  $(SRC_TOOLS)
 SRC            := $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 
 OBJ_PATH       := obj

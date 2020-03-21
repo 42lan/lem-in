@@ -6,11 +6,13 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/20 14:18:21 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/19 23:04:15 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/21 17:24:24 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+#include "lib.h"
 
 /*
 ** Computes and returns the number of words in a given string s separated by c.

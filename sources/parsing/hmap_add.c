@@ -6,10 +6,11 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 11:44:35 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/21 16:58:28 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/21 17:25:03 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "parsing.h"
 #include "lemin.h"
 
 static void		hmap_collision_handler(t_hmap *hmap, t_room *room)

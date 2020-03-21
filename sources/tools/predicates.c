@@ -6,11 +6,13 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 22:14:44 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/17 14:37:14 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/21 17:25:56 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+#include "lib.h"
 
 int					is_link(char *line)
 {

@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hmap_index.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/12 09:44:44 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/21 17:23:27 by abaisago         ###   ########.fr       */
+/*   Created: 2020/03/21 16:12:48 by amalsago          #+#    #+#             */
+/*   Updated: 2020/03/21 17:25:18 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lemin.h"
-
 #include "parsing.h"
 
-int		lemin(int ac, char **av)
-{
-	t_farm	farm;
+#include "lemin.h"
 
-	if (parse_input(&farm) == FAILURE)
-		exit(EXIT_FAILURE);
-	return (SUCCESS);
-}
-
-int		main(int ac, char **av)
+int			hmap_index(char *key)
 {
-	return (lemin(ac, av));
+	int		i;
+	int		hash;
+
+	i = -1;
+	hash = 0;
+	while (key[++i])
+		hash += key[i];
+	return (hash % HMAP_SIZE);
 }

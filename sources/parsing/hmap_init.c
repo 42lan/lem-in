@@ -6,9 +6,11 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 10:53:53 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/21 16:28:55 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/21 17:25:42 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "parsing.h"
 
 #include "lemin.h"
 

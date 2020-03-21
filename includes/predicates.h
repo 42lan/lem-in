@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hmap_index.c                                       :+:      :+:    :+:   */
+/*   predicates.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/21 16:12:48 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/21 16:29:15 by amalsago         ###   ########.fr       */
+/*   Created: 2020/03/21 17:15:38 by abaisago          #+#    #+#             */
+/*   Updated: 2020/03/21 17:16:05 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lemin.h"
+#ifndef PREDICATES_H
+# define PREDICATES_H
 
-int			hmap_index(char *key)
-{
-	int		i;
-	int		hash;
+int		is_invalid_line(const char *str);
+int		is_number(const char *str);
+int		is_command(const char *str);
+int		is_room(char *line);
+int		is_link(char *line);
 
-	i = -1;
-	hash = 0;
-	while (key[++i])
-		hash += key[i];
-	return (hash % HMAP_SIZE);
-}
+/*
+** PREDICATES_H
+*/
+#endif

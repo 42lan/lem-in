@@ -6,11 +6,13 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 11:00:36 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/19 23:04:34 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/21 17:24:38 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+
+#include "lib.h"
 
 /*
 ** Split the string str into tokens separated by characters in sep.
