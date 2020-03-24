@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 09:32:10 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/24 18:08:52 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/24 18:54:04 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ unsigned	get_ants()
 	return (ants);
 }
 
+//TODO Redo with strtoll
 int			read_room(t_room *room, char *line)
 {
 	room->name = ft_strsub(line, 0, ft_strclen(line, ' '));
@@ -75,6 +76,17 @@ int			read_room(t_room *room, char *line)
 	return (1);
 }
 
+int			handle_comments(t_room *room, char *line)
+{
+	if (ft_strcmp(line, "##start") == 0)
+		room->flags |= F_START;
+	else if (ft_strcmp(line, "##end") == 0)
+		room->flags |= F_END;
+	else if (line[0] != '#')
+		return (0);
+	return (1);
+}
+
 t_list		*get_rooms(t_hmap *hmap)
 {
 	t_list		*rooms;
@@ -82,21 +94,18 @@ t_list		*get_rooms(t_hmap *hmap)
 	char		*line;
 	int			ret;
 
+	ft_bzero(&room, sizeof(room));
 	rooms = ft_list_init();
 	while ((ret = get_next_line(0, &line)) > 0)
 	{
-		ft_bzero(&room, sizeof(room));
-		if (ft_strcmp(line, "##start") == 0)
-			room.flags &= F_START;
-		else if (ft_strcmp(line, "##end") == 0)
-			room.flags &= F_END;
-		if (line[0] == '#')
-			continue ;
-		else if (line[0] == 'L')
+		if (line[0] == 'L')
 			break ;
+		if (handle_comments(&room, line))
+			continue ;
 		if (read_room(&room, line) == 0)
-			break;
+			break ;
 		hmap_add(hmap, room);
+		ft_bzero(&room, sizeof(room));
 		ft_strdel(&line);
 	}
 	if (ret < 0)
@@ -109,5 +118,6 @@ int			parse_input(t_farm *farm, t_hmap *hmap)
 	hmap_init(hmap);
 	farm->ants = get_ants();
 	farm->rooms = get_rooms(hmap);
+	hmap_print(hmap);
 	return (SUCCESS);
 }
