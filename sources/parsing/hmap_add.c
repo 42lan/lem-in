@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 11:44:35 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/21 17:25:03 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/24 12:59:40 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,16 @@ static void		hmap_collision_handler(t_hmap *hmap, t_room *room)
 	tmp->next = new;
 }
 
-void			hmap_add(t_hmap *hmap, t_room *room)
+void			hmap_add(t_hmap *hmap, t_room room)
 {
 	int			index;
+	t_room		*room_alloc;
 
-	index = hmap_index(room->name);
+	room_alloc = (t_room *)ft_memalloc(sizeof(t_room));
+	ft_memcpy(room_alloc, &room, sizeof(t_room));
+	index = hmap_index(room_alloc->name);
 	if (hmap[index].room == NULL)
-		hmap[index].room = room;
+		hmap[index].room = room_alloc;
 	else
-		hmap_collision_handler(&hmap[index], room);
+		hmap_collision_handler(&hmap[index], room_alloc);
 }
