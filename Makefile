@@ -6,7 +6,7 @@
 #    By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/13 11:54:38 by abaisago          #+#    #+#              #
-#    Updated: 2020/03/24 18:09:57 by amalsago         ###   ########.fr        #
+#    Updated: 2020/03/24 20:57:35 by abaisago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,6 @@ SRC_LIB        := ft_arraysize.c \
 SRC_LIB        := $(addprefix lib/, $(SRC_LIB))
 
 SRC_PARSE      := hmap_add.c   \
-                  hmap_index.c \
                   hmap_init.c  \
 				  hmap_print.c \
                   parse_input.c

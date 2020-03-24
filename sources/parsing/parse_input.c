@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 09:32:10 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/24 18:54:04 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/24 22:01:09 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ unsigned	get_ants()
 int			read_room(t_room *room, char *line)
 {
 	room->name = ft_strsub(line, 0, ft_strclen(line, ' '));
-	while (ft_isalnum(*line))
+	while (ft_isprint(*line) &&  *line != ' ' && *line != '-')
 		++line;
 	if (*line != ' ')
 		return (0);
@@ -104,7 +104,7 @@ t_list		*get_rooms(t_hmap *hmap)
 			continue ;
 		if (read_room(&room, line) == 0)
 			break ;
-		hmap_add(hmap, room);
+		hmap_add(hmap, &room);
 		ft_bzero(&room, sizeof(room));
 		ft_strdel(&line);
 	}

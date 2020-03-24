@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:44:44 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/24 18:07:33 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/24 21:56:05 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 int		lemin(int ac, char **av)
 {
 	t_farm	farm;
-	t_hmap	hmap[HMAP_SIZE];
+	t_list	hmap[HMAP_SIZE];
 
 	if (parse_input(&farm, hmap) == FAILURE)
 		exit(EXIT_FAILURE);
