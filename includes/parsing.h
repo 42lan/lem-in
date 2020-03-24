@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 17:08:51 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/24 18:05:09 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/24 18:11:50 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ struct			s_hmap
 void			hmap_init(t_hmap *hmap);
 int				hmap_index(char *key);
 void			hmap_add(t_hmap *hmap, t_room room);
-int				parse_input(t_farm *farm);
+int				parse_input(t_farm *farm, t_hmap *hmap);
 
 /*
 **PARSING_H

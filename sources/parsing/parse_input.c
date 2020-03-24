@@ -6,11 +6,12 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 09:32:10 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/21 16:27:02 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/24 18:08:52 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
+#include "parsing.h"
 
 #include <errno.h>
 #include <stddef.h>
@@ -74,7 +75,7 @@ int			read_room(t_room *room, char *line)
 	return (1);
 }
 
-t_list		*get_rooms()
+t_list		*get_rooms(t_hmap *hmap)
 {
 	t_list		*rooms;
 	t_room		room;
@@ -89,13 +90,13 @@ t_list		*get_rooms()
 			room.flags &= F_START;
 		else if (ft_strcmp(line, "##end") == 0)
 			room.flags &= F_END;
-		else if (line[0] == '#')
+		if (line[0] == '#')
 			continue ;
 		else if (line[0] == 'L')
 			break ;
 		if (read_room(&room, line) == 0)
 			break;
-		//hashmap(rooms, ft_list_link_new(&room, sizeof room));
+		hmap_add(hmap, room);
 		ft_strdel(&line);
 	}
 	if (ret < 0)
@@ -103,9 +104,10 @@ t_list		*get_rooms()
 	return (rooms);
 }
 
-int			parse_input(t_farm *farm)
+int			parse_input(t_farm *farm, t_hmap *hmap)
 {
+	hmap_init(hmap);
 	farm->ants = get_ants();
-	farm->rooms = get_rooms(farm);
+	farm->rooms = get_rooms(hmap);
 	return (SUCCESS);
 }
