@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 16:46:22 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/21 11:27:10 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/25 17:43:03 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,9 +152,10 @@ t_list_link		*ft_list_map(t_list *list,
 void			ft_list_merge(t_list *a, t_list **b);
 t_list			*ft_list_new(t_list_link *link);
 int				ft_list_print(t_list *list,
-					int (*print)(void *, size_t, unsigned));
-int				ft_list_printone(t_list_link *link, unsigned pos,
-					int (*print)(void *, size_t, unsigned));
+					int (*print)(void *, size_t, unsigned, unsigned));
+int				ft_list_printone(t_list_link *link,
+					unsigned pos, unsigned list_size,
+					int (*print)(void *, size_t, unsigned, unsigned));
 t_list_link		*ft_list_pop(t_list *list);
 t_list_link		*ft_list_pop_front(t_list *list);
 void			ft_list_push(t_list *list, t_list_link *link);

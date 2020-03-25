@@ -6,7 +6,7 @@
 #    By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/13 11:54:38 by abaisago          #+#    #+#              #
-#    Updated: 2020/03/24 20:57:35 by abaisago         ###   ########.fr        #
+#    Updated: 2020/03/25 19:50:07 by abaisago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,9 @@ RM             := /bin/rm
 
 SRC_PATH       := sources
 
+SRC_DBG        := print.c
+SRC_DBG        := $(addprefix debug/, $(SRC_DBG))
+
 SRC_LIB        := ft_arraysize.c \
 	              ft_count_words.c \
 	              ft_isseparator.c \
@@ -87,6 +90,7 @@ SRC_TOOLS      := tools.c \
 SRC_TOOLS      := $(addprefix tools/, $(SRC_TOOLS))
 
 SRC_NAME       := main.c \
+                  $(SRC_DBG) \
                   $(SRC_LIB) \
                   $(SRC_PARSE) \
                   $(SRC_TOOLS)

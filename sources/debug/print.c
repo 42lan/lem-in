@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_list_printone.c                                 :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/29 16:58:45 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/25 17:44:22 by abaisago         ###   ########.fr       */
+/*   Created: 2020/03/25 16:10:47 by abaisago          #+#    #+#             */
+/*   Updated: 2020/03/25 19:45:46 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "debug.h"
 #include "libft.h"
 
-/*
-** The ft_list_printone() function applies the
-** __print__ function to the __link__ proveded
-** as an argument.
-**
-** Returns the integer output value of __print__.
-*/
+#include "lemin.h"
 
-int		ft_list_printone(t_list_link *link, unsigned pos,
-			unsigned list_size,
-			int (*print)(void *, size_t, unsigned, unsigned))
+int		dbg_print_room(void *content, size_t size, unsigned pos, unsigned max)
 {
-	return (print(link->content, link->content_size, pos, list_size));
+	t_room	*room;
+	int		ret;
+
+	room = content;
+	ret = ft_printf("[%s %d %d]\n", room->name, room->coord.x, room->coord.y);
+	if (pos == max)
+		ret += ft_printf("\n");
+	return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 17:05:22 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/01 08:58:17 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/25 17:51:26 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 ** the calls to __print__.
 */
 
-int		ft_list_print(t_list *list, int (*print)(void *, size_t, unsigned))
+int		ft_list_print(t_list *list,
+			int (*print)(void *, size_t, unsigned, unsigned))
 {
 	unsigned	pos;
 	int			ret;
@@ -33,10 +34,10 @@ int		ft_list_print(t_list *list, int (*print)(void *, size_t, unsigned))
 	link = list->head;
 	while (link->next != list->head)
 	{
-		ret += ft_list_printone(link, pos, print);
+		ret += ft_list_printone(link, pos, list->size, print);
 		link = link->next;
 		++pos;
 	}
-	ret += ft_list_printone(link, pos, print);
+	ret += ft_list_printone(link, pos, list->size, print);
 	return (ret);
 }
