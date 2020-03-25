@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 09:32:10 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/25 20:02:37 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/25 22:47:42 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ t_list		*get_rooms(t_list *hmap)
 		ft_bzero(&room, sizeof(room));
 		ft_strdel(&line);
 	}
+	get_links(hmap, line);
 	if (ret < 0)
 		ft_printerr("lem-in: get_rooms(read): %s\n", strerror(errno));
 	return (rooms);
