@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 11:44:35 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/24 21:49:27 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/25 11:01:06 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void			hmap_add(t_hmap *hmap, t_room *room)
 
 	room_alloc = (t_room *)malloc(sizeof(*room));
 	ft_memcpy(room_alloc, room, sizeof(t_room));
-	ft_printf("room: %s || %s\n", room->name, room_alloc->name);
 	index = hmap_index(room_alloc->name);
 	if (hmap[index].room == NULL)
 		hmap[index].room = room_alloc;
