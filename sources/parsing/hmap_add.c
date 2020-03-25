@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 11:44:35 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/25 11:01:06 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/25 14:20:48 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ int			hmap_index(const char *key)
 	size_t	i;
 	char	*byte;
 
-	byte = (char*)&hash;
 	i = -1;
+	hash = 0;
+	byte = (char*)&hash;
 	while (key[++i] != '\0')
 		byte[i % 4] ^= key[i];
 	return (hash % HMAP_SIZE);
