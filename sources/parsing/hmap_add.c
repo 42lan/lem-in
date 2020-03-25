@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 11:44:35 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/25 14:20:48 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/25 15:19:49 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,13 @@ static void		hmap_collision_handler(t_hmap *hmap, t_room *room)
 
 int			hmap_index(const char *key)
 {
-	int		hash;
-	size_t	i;
-	char	*byte;
+	size_t		i;
+	uint32_t	hash;
 
-	i = -1;
 	hash = 0;
-	byte = (char*)&hash;
+	i = -1;
 	while (key[++i] != '\0')
-		byte[i % 4] ^= key[i];
+		hash = 33 * (hash ^ key[i]);
 	return (hash % HMAP_SIZE);
 }
 

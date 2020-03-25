@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 17:08:51 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/24 21:59:54 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/25 15:08:12 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "lemin.h"
 
-# define HMAP_SIZE 64
+# define HMAP_SIZE 4096
 
 typedef struct	s_hmap t_hmap;
 
