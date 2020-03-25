@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 12:55:47 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/25 11:27:54 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/25 15:46:26 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 static void		room_print(t_room *room)
 {
 	ft_printf("[%s ", room->name);
-	ft_printf("%d %d] ", room->coord.x, room->coord.y);
+	ft_printf("%d,%d ", room->coord.x, room->coord.y);
+	ft_printf("%d] ", room->nb_links);
 }
 
 void			hmap_print(t_hmap *hmap)
@@ -26,9 +27,9 @@ void			hmap_print(t_hmap *hmap)
 	i = -1;
 	while (++i < HMAP_SIZE)
 	{
-		ft_printf("%d: ", i);
 		if (hmap[i].room != NULL)
 		{
+			ft_printf("%d: ", i);
 			room_print(hmap[i].room);
 			if (hmap[i].next != NULL)
 			{
@@ -39,7 +40,7 @@ void			hmap_print(t_hmap *hmap)
 					tmp = tmp->next;
 				}
 			}
+			ft_putchar('\n');
 		}
-		ft_putchar('\n');
 	}
 }
