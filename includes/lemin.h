@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/21 17:20:01 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/25 15:54:34 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ struct			s_room
 	char		*name;
 	t_ivec2		coord;
 	t_byte		flags;
+	t_list		*links;
 };
 
 /*
