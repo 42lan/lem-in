@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 09:32:10 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/25 16:09:35 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/25 20:02:37 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int			handle_comments(t_room *room, char *line)
 	return (1);
 }
 
-t_list		*get_rooms(t_hmap *hmap)
+t_list		*get_rooms(t_list *hmap)
 {
 	t_list		*rooms;
 	t_room		room;
@@ -114,7 +114,7 @@ t_list		*get_rooms(t_hmap *hmap)
 	return (rooms);
 }
 
-int			parse_input(t_farm *farm, t_hmap *hmap)
+int			parse_input(t_farm *farm, t_list *hmap)
 {
 	hmap_init(hmap);
 	farm->ants = get_ants();

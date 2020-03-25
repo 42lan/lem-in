@@ -6,26 +6,29 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 11:44:35 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/25 15:19:49 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/25 19:46:00 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include "lemin.h"
 
-static void		hmap_collision_handler(t_hmap *hmap, t_room *room)
-{
-	t_hmap		*new;
-	t_hmap		*tmp;
+#include <errno.h>
+#include <stddef.h>
+#include <string.h>
 
-	tmp = hmap;
-	new = (t_hmap *)ft_memalloc(sizeof(t_hmap));
-	new->room = room;
-	new->next = NULL;
-	while (tmp->next)
-		tmp = tmp->next;
+/*
+static void			hmap_collision_handler(t_list *hmap, t_room *room)
+{
+	t_list_link		*link;
+
+	while (link->next)
+		link = link->next;
 	tmp->next = new;
+	ft_list_push(&hmap[index], ft_list_link_new(room, sizeof(*room)));
+	//ft_list_push_front(&hmap[index], ft_list_link_new(room, sizeof(*room)));
 }
+*/
 
 int			hmap_index(const char *key)
 {
@@ -39,16 +42,15 @@ int			hmap_index(const char *key)
 	return (hash % HMAP_SIZE);
 }
 
-void			hmap_add(t_hmap *hmap, t_room *room)
+void			hmap_add(t_list *hmap, t_room *room)
 {
 	int			index;
-	t_room		*room_alloc;
 
-	room_alloc = (t_room *)malloc(sizeof(*room));
-	ft_memcpy(room_alloc, room, sizeof(t_room));
-	index = hmap_index(room_alloc->name);
-	if (hmap[index].room == NULL)
-		hmap[index].room = room_alloc;
+	index = hmap_index(room->name);
+	//if (hmap[index].head == NULL)
+		ft_list_push_front(&hmap[index], ft_list_link_new(room, sizeof(*room)));
+	/*
 	else
-		hmap_collision_handler(&hmap[index], room_alloc);
+		hmap_collision_handler(&hmap[index], room);
+	*/
 }

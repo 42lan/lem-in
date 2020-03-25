@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 17:08:51 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/25 15:08:12 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/25 20:00:30 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,12 @@
 
 # define HMAP_SIZE 4096
 
-typedef struct	s_hmap t_hmap;
-
-struct			s_hmap
-{
-	t_room		*room;
-	t_hmap		*next;
-};
-
-void			hmap_init(t_hmap *hmap);
+void			hmap_init(t_list *hmap);
 int				hmap_index(const char *key);
-void			hmap_add(t_hmap *hmap, t_room *room);
-void			hmap_print(t_hmap *hmap);
-int				parse_input(t_farm *farm, t_hmap *hmap);
+void			hmap_add(t_list *hmap, t_room *room);
+void			hmap_print(t_list *hmap);
+int				parse_input(t_farm *farm, t_list *hmap);
+void			get_links(t_list *hmap, char *line);
 
 /*
 **PARSING_H

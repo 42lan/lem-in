@@ -6,37 +6,38 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 12:55:47 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/25 15:46:26 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/25 19:57:51 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static void		room_print(t_room *room)
+static void			room_print(t_room *room)
 {
 	ft_printf("[%s ", room->name);
-	ft_printf("%d,%d ", room->coord.x, room->coord.y);
-	ft_printf("%d] ", room->nb_links);
+	ft_printf("%d,%d] ", room->coord.x, room->coord.y);
 }
 
-void			hmap_print(t_hmap *hmap)
+void				hmap_print(t_list *hmap)
 {
-	int			i;
-	t_hmap		*tmp;
+	int				i;
+	size_t			j;
+	t_list_link		*tmp;
 
 	i = -1;
 	while (++i < HMAP_SIZE)
 	{
-		if (hmap[i].room != NULL)
+		j = 0;
+		if (hmap[i].head != NULL)
 		{
 			ft_printf("%d: ", i);
-			room_print(hmap[i].room);
-			if (hmap[i].next != NULL)
+			room_print(hmap[i].head->content);
+			if (hmap[i].head->next != NULL)
 			{
-				tmp = hmap[i].next;
-				while (tmp)
+				tmp = hmap[i].head->next;
+				while (j++ < hmap[i].size - 1)
 				{
-					room_print(tmp->room);
+					room_print(tmp->content);
 					tmp = tmp->next;
 				}
 			}
