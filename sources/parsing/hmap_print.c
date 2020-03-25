@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 12:55:47 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/24 18:01:47 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/25 11:27:54 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void			hmap_print(t_hmap *hmap)
 			room_print(hmap[i].room);
 			if (hmap[i].next != NULL)
 			{
-				tmp = &hmap[i];
-				while (tmp->next)
+				tmp = hmap[i].next;
+				while (tmp)
 				{
-					room_print(hmap[i].room);
+					room_print(tmp->room);
 					tmp = tmp->next;
 				}
 			}
