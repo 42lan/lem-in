@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 09:32:10 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/26 19:29:03 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/26 19:53:33 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,6 @@ t_list		*get_rooms(t_list *hmap)
 
 int			parse_input(t_farm *farm, t_list *hmap)
 {
-	hmap_init(hmap);
 	farm->ants = get_ants();
 	farm->rooms = get_rooms(hmap);
 	hmap_print(hmap);
