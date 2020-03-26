@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 16:46:22 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/25 17:43:03 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/25 22:07:10 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,7 @@ void			ft_getnbr_base(size_t value, uint8_t base,
 					char *res, size_t *index);
 char			*ft_itoa(intmax_t n);
 char			*ft_itoa_base(int n, uint8_t base);
+void			**ft_list_to_arr(t_list *list, void (*f)());
 char			*ft_llitoa(int64_t n);
 char			*ft_llitoa_base(int64_t value, uint8_t base);
 char			*ft_llitosa_base(int64_t value, int8_t base, char *tab);

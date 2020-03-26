@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:54:45 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/26 14:14:40 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/26 19:36:21 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,10 @@ static void		set_room_links(t_list_link *room_link[2])
 
 	room1 = room_link[0]->content;
 	room2 = room_link[1]->content;
-	if (room1->links == NULL)
-		room1->links = ft_list_new(ft_list_link_new(room2, sizeof(t_room)));
-	else
-		ft_list_push(room1->links, ft_list_link_new(room2, sizeof(t_room)));
-	if (room2->links == NULL)
-		room2->links = ft_list_new(ft_list_link_new(room1, sizeof(t_room)));
-	else
-		ft_list_push(room2->links, ft_list_link_new(room1, sizeof(t_room)));
+	ft_list_push(room1->links,
+		ft_list_link_new(&room2->index, sizeof (unsigned)));
+	ft_list_push(room2->links,
+		ft_list_link_new(&room1->index, sizeof (unsigned)));
 }
 
 static void		add_links(t_list *hmap, char *line)

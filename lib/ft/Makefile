@@ -6,7 +6,7 @@
 #    By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/13 11:54:38 by abaisago          #+#    #+#              #
-#    Updated: 2020/03/21 11:31:03 by abaisago         ###   ########.fr        #
+#    Updated: 2020/03/26 18:06:21 by abaisago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,14 +60,14 @@ SRC_CHAR   := ft_isalnum.c         ft_isprint.c                      \
               ft_islower.c         ft_tolower.c
 SRC_CHAR   := $(addprefix char/,$(SRC_CHAR))
 
-SRC_CONV   := ft_atoi.c            ft_llitoa.c                       \
-              ft_atoi_base.c       ft_llitoa_base.c                  \
-              ft_atoll.c           ft_llitosa_base.c                 \
-              ft_count_digits.c    ft_lluitoa.c                      \
-              ft_count_udigits.c   ft_lluitoa_base.c                 \
-              ft_getnbr_base.c     ft_lluitosa_base.c                \
-              ft_itoa.c                                              \
-              ft_itoa_base.c       
+SRC_CONV   := ft_atoi.c            ft_list_to_arr.c                  \
+              ft_atoi_base.c       ft_llitoa.c                       \
+              ft_atoll.c           ft_llitoa_base.c                  \
+              ft_count_digits.c    ft_llitosa_base.c                 \
+              ft_count_udigits.c   ft_lluitoa.c                      \
+              ft_getnbr_base.c     ft_lluitoa_base.c                 \
+              ft_itoa.c            ft_lluitosa_base.c                \
+              ft_itoa_base.c
 SRC_CONV   := $(addprefix conversion/,$(SRC_CONV))
 
 SRC_LIST   := ft_list_at.c                 \
@@ -244,7 +244,7 @@ UP          := "\033[0F"
 ######################################################################
 #                               RULES                                #
 ######################################################################
-.PHONY: all, clean, fclean, re, debug, libs, libft
+.PHONY: all clean fclean re debug libs libft
 .SILENT:
 
 #------------------------------------------------#
@@ -290,7 +290,7 @@ $(DBG_PATH)/$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 ### Library Clean Rules
 
 libclean:
-libdbgclean:
+libcleandbg:
 libfclean:
 
 #------------------------------------------------#
@@ -304,7 +304,7 @@ thisclean:
 		&& $(PRINTF) $(DEL)"[ $(PROJECT): All object files cleaned ]"$(END); \
 	fi
 
-thisdbgclean:
+thiscleandbg:
 	@if [ -d $(DBG_PATH)/$(OBJ_PATH) ]; then \
 		$(RM) -f $(DBG_OBJ) \
 		&& $(RM) -rf $(DBG_PATH)/$(OBJ_PATH) \
@@ -312,9 +312,9 @@ thisdbgclean:
 	fi
 
 clean: libclean thisclean
-dbgclean: libdbgclean thisdbgclean
+cleandbg: libcleandbg thiscleandbg
 
-fclean: libfclean thisclean thisdbgclean
+fclean: libfclean thisclean thiscleandbg
 	@for TARGET in $(NAME) $(DBG); do \
 		if [ -e "$$TARGET" ]; then \
 			$(RM) -f $$TARGET \
@@ -333,14 +333,14 @@ endif
 #------------------------------------------------#
 
 soft: thisclean all
-softdbg: thisdbgclean dbg
+softdbg: thiscleandbg dbg
 shallow: soft softdbg
 re: fclean all
 redbg: fclean dbg
 full: fclean all dbg
 
 neat: all clean
-neatdbg: dbg dbgclean
+neatdbg: dbg cleandbg
 pure: clear cleardbg
 whole: all dbg
 
