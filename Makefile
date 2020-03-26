@@ -6,7 +6,7 @@
 #    By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/13 11:54:38 by abaisago          #+#    #+#              #
-#    Updated: 2020/03/26 18:20:02 by amalsago         ###   ########.fr        #
+#    Updated: 2020/03/26 18:54:15 by abaisago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -138,7 +138,7 @@ UP          := "\033[0F"
 ######################################################################
 #                               RULES                                #
 ######################################################################
-.PHONY: all, clean, fclean, re, release, dbg
+.PHONY: all clean fclean re release dbg
 .SILENT:
 
 all: release
@@ -147,9 +147,9 @@ all: release
 #                 RELEASE-RULES                  |
 #------------------------------------------------#
 
-release: $(LIB) $(NAME)
+release: $(NAME)
 
-$(NAME): $(REL_OBJ)
+$(NAME): $(LIB) $(REL_OBJ)
 	@$(PRINTF) $(CREAT)"[ $(PROJECT): All object files created ]"$(END)
 	@$(CC) $(REL_CFLAGS) -o $@ $^ $(LDFLAGS) $(LDLIBS)
 	@$(PRINTF) $(CREAT)"[ $(PROJECT): $@ created ]"$(END)
@@ -164,9 +164,9 @@ $(REL_PATH)/$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 #                  DEBUG-RULES                   |
 #------------------------------------------------#
 
-dbg: $(LIB) $(DBG)
+dbg: $(DBG)
 
-$(DBG): $(DBG_OBJ)
+$(DBG): $(LIB) $(DBG_OBJ)
 	@$(PRINTF) $(CREAT)"[ $(PROJECT): All debug object files created ]"$(END)
 	@$(CC) $(DBG_CFLAGS) -o $@ $^ $(LDFLAGS) $(LDLIBS)
 	@$(PRINTF) $(CREAT)"[ $(PROJECT): $@ created ]"$(END)
