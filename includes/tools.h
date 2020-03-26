@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 17:16:30 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/21 17:18:48 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/26 14:07:52 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 void	print_farm(t_farm *farm);
 void	print_help(void);
+int		room_namecmp(t_room *room1, char *room2);
 
 /*
 ** TOOLS_H
