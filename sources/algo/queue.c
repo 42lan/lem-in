@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/27 12:30:52 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/27 14:56:54 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/27 21:32:03 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,14 @@ void	queue_print(t_queue *queue)
 	while (++i < queue->capacity)
 		ft_printf("[%d]", queue->array[i]);
 	ft_printf("\n");
+}
+
+void		queue_destroy(t_queue *queue)
+{
+	queue->front = 0;
+	queue->rear = 0;
+	queue->size = 0;
+	queue->capacity = 0;
+	ft_memdel((void **)&queue->array);
+	ft_memdel((void **)&queue);
 }
