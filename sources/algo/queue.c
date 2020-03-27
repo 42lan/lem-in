@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   queue.h                                            :+:      :+:    :+:   */
+/*   queue.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/27 10:41:12 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/27 12:33:42 by amalsago         ###   ########.fr       */
+/*   Created: 2020/03/27 12:30:52 by amalsago          #+#    #+#             */
+/*   Updated: 2020/03/27 12:34:02 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef QUEUE_H
-# define QUEUE_H
+#include "libft.h"
+#include "queue.h"
 
-# define SUCCESS 0
-# define FAILURE 1
-
-typedef struct	s_queue t_queue;
-
-struct			s_queue
+t_queue			*queue_create(unsigned capacity)
 {
-	ssize_t		front;
-	ssize_t		rear;
-	ssize_t		size;
-	size_t		capacity;
-	int			*array;
-};
+	t_queue		*queue;
 
-t_queue		*queue_create(unsigned capacity);
-
-/*
-** QUEUE_H
-*/
-#endif
+	if (!(queue = (t_queue *)ft_memalloc(sizeof(t_queue))))
+		return (NULL);
+	queue->front = 0;
+	queue->rear = capacity - 1;
+	queue->size = 0;
+	queue->capacity = capacity;
+	if (!(queue->array = (int *)ft_memalloc(sizeof(int) * capacity)))
+		return (NULL); 
+	return (queue);
+}
