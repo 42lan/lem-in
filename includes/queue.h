@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/27 10:41:12 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/27 12:54:32 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/27 13:42:16 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_queue		*queue_create(unsigned capacity);
 
 int			queue_isfull(t_queue *queue);
 int			queue_isempty(t_queue *queue);
+void		queue_enqueue(t_queue *queue, int item);
 
 /*
 ** QUEUE_H

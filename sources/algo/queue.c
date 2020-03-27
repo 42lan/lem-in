@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/27 12:30:52 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/27 12:55:43 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/27 13:30:40 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,14 @@ int		queue_isempty(t_queue *queue)
 	if (queue->size == 0)
 		return (SUCCESS);
 	return (FAILURE);
+}
+
+void	queue_enqueue(t_queue *queue, int item)
+{
+	if (queue_isfull(queue) == SUCCESS)
+		return ;
+	queue->rear = (queue->rear + 1) % queue->capacity;
+	queue->array[queue->rear] = item;
+	queue->size += 1;
+	queue_print(queue);
 }
