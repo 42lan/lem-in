@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/27 12:30:52 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/27 21:32:03 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/27 21:37:13 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ t_queue			*queue_create(unsigned capacity)
 	queue->size = 0;
 	queue->capacity = capacity;
 	if (!(queue->array = (int *)ft_memalloc(sizeof(int) * capacity)))
+	{
+		ft_memdel((void **)&queue);
 		return (NULL); 
+	}
 	return (queue);
 }
 
