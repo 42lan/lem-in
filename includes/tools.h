@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 17:16:30 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/26 14:07:52 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/28 18:12:59 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include "lemin.h"
 
-void	print_farm(t_farm *farm);
 void	print_help(void);
+void	room_index(t_room *room, size_t size, unsigned pos, unsigned max);
 int		room_namecmp(t_room *room1, char *room2);
 
 /*

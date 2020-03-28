@@ -6,13 +6,14 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 16:10:47 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/26 11:35:52 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/28 16:23:19 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "debug.h"
 #include "libft.h"
 
+#include "parsing.h"
 #include "lemin.h"
 
 int		dbg_print_room(void *content, size_t size, unsigned pos, unsigned max)
@@ -27,4 +28,17 @@ int		dbg_print_room(void *content, size_t size, unsigned pos, unsigned max)
 	if (pos == max)
 		ret += ft_printf("\n");
 	return (ret);
+}
+
+void				hmap_print(t_list *hmap)
+{
+	int				i;
+
+	i = -1;
+	while (++i < HMAP_SIZE)
+		if (hmap[i].head != NULL)
+		{
+			ft_printf("%d: ", i);
+			ft_list_print(&hmap[i], dbg_print_room);
+		}
 }

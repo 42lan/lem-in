@@ -6,13 +6,15 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:44:44 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/26 19:56:41 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/03/28 18:12:01 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
 #include "parsing.h"
+
+#include <stdlib.h>
 
 static int		lemin(int ac, char **av)
 {

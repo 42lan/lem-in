@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_links.c                                        :+:      :+:    :+:   */
+/*   link.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:54:45 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/26 19:36:21 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/28 18:11:24 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
 #include "lib.h"
 #include "debug.h"
 #include "tools.h"
@@ -19,15 +20,10 @@
 #include <stddef.h>
 #include <string.h>
 
-
-static void		get_room_names(char *line, char *room_name[2])
+static void		get_room_names_index(char *line, char *room_name[2], int *room_index)
 {
 	room_name[0] = ft_strtok(line, "-");
 	room_name[1] = ft_strtok(NULL, "-");
-}
-
-static void		get_room_index(char *room_name[2], int *room_index)
-{
 	room_index[0] = hmap_index(room_name[0]);
 	room_index[1] = hmap_index(room_name[1]);
 }
@@ -46,7 +42,6 @@ static void		set_room_links(t_list_link *room_link[2])
 {
 	t_room		*room1;
 	t_room		*room2;
-
 	room1 = room_link[0]->content;
 	room2 = room_link[1]->content;
 	ft_list_push(room1->links,
@@ -63,10 +58,9 @@ static void		add_links(t_list *hmap, char *line)
 
 	if (ft_strchr(line, '-'))
 	{
-		get_room_names(line, room_name);
+		get_room_names_index(line, room_name, room_index);
 		if (ft_strequ(room_name[0], room_name[1]))
 			return ;
-		get_room_index(room_name, room_index);
 		if (get_room_link(hmap, room_link, room_index, room_name) == FAILURE)
 			return ;
 		set_room_links(room_link);

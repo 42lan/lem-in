@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 22:14:44 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/21 17:25:56 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/28 16:14:17 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "lib.h"
 
-int					is_link(char *line)
+int		is_link(char *line)
 {
 	int				words;
 
@@ -24,7 +24,7 @@ int					is_link(char *line)
 	return (FAILURE);
 }
 
-int					is_room(char *line)
+int		is_room(char *line)
 {
 	int				words;
 
@@ -34,7 +34,7 @@ int					is_room(char *line)
 	return (FAILURE);
 }
 
-int			is_number(const char *str)
+int		is_number(const char *str)
 {
 	int		i;
 
@@ -45,16 +45,24 @@ int			is_number(const char *str)
 	return (SUCCESS);
 }
 
-int			is_command(const char *str)
+int		is_command(const char *str)
 {
 	if (ft_strequ(str, "##start") || ft_strequ(str, "##end"))
 		return (SUCCESS);
 	return (FAILURE);
 }
 
-int			is_invalid_line(const char *str)
+int		overflowed(char *str, long long num)
 {
-	if (str[0] == '#' && is_command(str) == FAILURE)
-		return (SUCCESS);
-	return (FAILURE);
+	size_t				zeros;
+	size_t				digits;
+
+	zeros = ft_strskip_set(str, "0");
+	digits = zeros + ft_strskip(str, ft_isdigit);
+	if (digits - zeros > 10)
+		return (1);
+	else if (!ft_isdigit(str[0]) || num > 4294967295)
+		return (1);
+	else
+		return (0);
 }

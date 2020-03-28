@@ -6,13 +6,14 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 17:12:56 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/21 17:13:37 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/28 17:43:41 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIB_H
 # define LIB_H
 
+# include <stddef.h>
 # include <stdint.h>
 
 size_t	ft_arraysize(char **array);

@@ -6,15 +6,18 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 19:50:23 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/25 19:51:26 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/28 17:28:57 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEBUG_H
 # define DEBUG_H
+# include "libft.h"
+
 # include <stddef.h>
 
 int		dbg_print_room(void *content, size_t size, unsigned pos, unsigned max);
+void	hmap_print(t_list *hmap);
 
 /*
 ** DEBUG_H
