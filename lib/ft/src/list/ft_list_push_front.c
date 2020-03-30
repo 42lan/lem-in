@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 14:13:48 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/30 16:11:26 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/30 13:41:00 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	ft_list_push_front(t_list *list, t_list_link *link)
 	else
 	{
 		head = list->head;
-		ft_printf("test: %p\n", head);
 		link->prev = head->prev;
 		link->next = head;
 		head->prev->next = link;
