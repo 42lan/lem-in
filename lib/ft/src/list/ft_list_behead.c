@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 14:30:53 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/01 14:50:35 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/30 12:38:50 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 void	ft_list_behead(t_list **alist)
 {
 	(*alist)->head = NULL;
+	(*alist)->len = 0;
 	(*alist)->size = 0;
 	free(*alist);
 	*alist = NULL;

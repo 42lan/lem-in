@@ -6,18 +6,19 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 19:50:23 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/28 17:28:57 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/30 12:24:05 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEBUG_H
 # define DEBUG_H
 # include "libft.h"
-
+# include "lemin.h"
 # include <stddef.h>
 
 int		dbg_print_room(void *content, size_t size, unsigned pos, unsigned max);
-void	hmap_print(t_list *hmap);
+void	dbg_hmap_print(t_list *hmap);
+void	dbg_farm_print(t_farm *farm);
 
 /*
 ** DEBUG_H

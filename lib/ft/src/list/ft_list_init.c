@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 19:49:02 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/01 09:03:14 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/30 12:43:50 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_list	*ft_list_init(void)
 	if ((list = malloc(sizeof(*list))) == NULL)
 		return (NULL);
 	list->head = NULL;
+	list->len = 0;
 	list->size = 0;
 	return (list);
 }

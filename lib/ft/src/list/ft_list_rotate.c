@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 18:11:56 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/18 15:05:57 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/30 13:44:16 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 
 void	ft_list_rotate(t_list *list, int rot)
 {
-	if (list->size == 0)
+	if (list->len == 0)
 		return ;
 	if (rot < 0)
-		rot = (list->size + rot) % list->size;
+		rot = (list->len + rot) % list->len;
 	else
-		rot = rot % list->size;
+		rot = rot % list->len;
 	list->head = ft_list_at(list, (unsigned)rot);
 }

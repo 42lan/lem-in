@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 15:15:33 by abaisago          #+#    #+#             */
-/*   Updated: 2020/02/29 17:48:56 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/30 12:40:41 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
 **
 ** The pointers of the previous and next links are
 ** also set accordingly
-** __list__->size is decremented.
+** __list__->len is decremented.
+** __list__->size is substracted.
 **
 ** Return no value.
 */
@@ -30,6 +31,8 @@
 void	ft_list_delone(t_list *list, t_list_link *link,
 			void (*del)(void*, size_t))
 {
+	list->len -= 1;
+	list->size -= link->content_size;
 	(*del)(link->content, link->content_size);
 	link->prev->next = link->next;
 	link->next->prev = link->prev;
@@ -38,5 +41,4 @@ void	ft_list_delone(t_list *list, t_list_link *link,
 	link->content = 0;
 	link->content_size = 0;
 	free(link);
-	list->size -= 1;
 }

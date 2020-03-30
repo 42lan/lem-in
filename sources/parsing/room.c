@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:17:58 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/28 17:40:10 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/30 14:51:12 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_list		*get_room_list(t_list *hmap)
 			continue ;
 		if (read_room(&room, line) == 0)
 			break ;
-		room.links = ft_list_init();	//TODO: Needs to be freed
+		room.link_list = ft_list_init();	//TODO: Needs to be freed
 		ft_list_push_front(room_list, ft_list_link_new(&room, sizeof room));
 		hmap_add(hmap, room_list->head->content);
 		ft_bzero(&room, sizeof(room));

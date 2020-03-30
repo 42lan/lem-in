@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/28 17:22:03 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/30 14:06:03 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct	s_room t_room;
 struct			s_farm
 {
 	unsigned	ants;
-	t_room		**rooms;
+	t_room		*rooms;
 	unsigned	size;
 };
 
@@ -41,7 +41,9 @@ struct			s_room
 	t_ivec2		coord;
 	unsigned	index;
 	t_byte		flags;
-	t_list		*links;
+	t_list		*link_list;
+	unsigned	*links;
+	unsigned	nlinks;
 };
 
 /*

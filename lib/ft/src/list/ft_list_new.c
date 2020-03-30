@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 19:34:54 by abaisago          #+#    #+#             */
-/*   Updated: 2020/02/29 20:34:03 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/30 13:31:49 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,19 @@ t_list	*ft_list_new(t_list_link *link)
 		return (NULL);
 	list->head = link;
 	if (link == NULL)
+	{
+		list->len = 0;
 		list->size = 0;
+	}
 	else
 	{
-		list->size = 1;
+		list->len = 1;
+		list->size += link->content_size;
 		while (link->next != list->head)
 		{
 			link = link->next;
-			++list->size;
+			++list->len;
+			list->size += link->content_size;
 		}
 	}
 	return (list);

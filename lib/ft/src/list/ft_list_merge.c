@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 13:19:34 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/01 14:45:29 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/30 13:55:00 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@
 void					ft_list_merge(t_list *left, t_list **aright)
 {
 	t_list	*right;
-	
+
 	right = *aright;
-	if (left->size > 0 && right->size > 0)
+	if (left->len > 0 && right->len > 0)
 	{
 		left->head->prev->next = right->head;
 		right->head->prev->next = left->head;
-		left->size += right->size;
+		left->len += right->len;
 	}
-	else if (right->size > 0)
+	else if (right->len > 0)
 	{
 		left->head = right->head;
-		left->size = right->size;
+		left->len = right->len;
 	}
 }

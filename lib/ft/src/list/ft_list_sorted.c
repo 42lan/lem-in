@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 19:48:05 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/02 19:53:42 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/30 13:44:02 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		ft_list_sorted(t_list *list, int (*cmp)())
 {
 	t_list_link *link;
 
-	if (list->size == 0)
+	if (list->len == 0)
 		return (1);
 	link = list->head;
 	while (link->next != list->head)

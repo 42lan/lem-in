@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:54:45 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/28 18:11:24 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/30 12:28:15 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 #include <stddef.h>
 #include <string.h>
 
-static void		get_room_names_index(char *line, char *room_name[2], int *room_index)
+static void		get_room_names_index(char *line, char *room_name[2],
+					unsigned *room_index)
 {
 	room_name[0] = ft_strtok(line, "-");
 	room_name[1] = ft_strtok(NULL, "-");
@@ -29,7 +30,7 @@ static void		get_room_names_index(char *line, char *room_name[2], int *room_inde
 }
 
 static int		get_room_link(t_list *hmap, t_list_link *room_link[2],
-				int *room_index, char *room_name[2])
+					unsigned *room_index, char *room_name[2])
 {
 	room_link[0] = ft_list_find(&hmap[room_index[0]], room_name[0], room_namecmp);
 	room_link[1] = ft_list_find(&hmap[room_index[1]], room_name[1], room_namecmp);
@@ -38,22 +39,23 @@ static int		get_room_link(t_list *hmap, t_list_link *room_link[2],
 	return (SUCCESS);
 }
 
-static void		set_room_links(t_list_link *room_link[2])
+static void		set_room_links(t_list_link *room_link[2], unsigned *room_index)
 {
 	t_room		*room1;
 	t_room		*room2;
+
 	room1 = room_link[0]->content;
 	room2 = room_link[1]->content;
-	ft_list_push(room1->links,
-		ft_list_link_new(&room2->index, sizeof (unsigned)));
-	ft_list_push(room2->links,
-		ft_list_link_new(&room1->index, sizeof (unsigned)));
+	ft_list_push(room1->link_list,
+		ft_list_link_new(room_index + 1, sizeof (unsigned)));
+	ft_list_push(room2->link_list,
+		ft_list_link_new(room_index, sizeof (unsigned)));
 }
 
 static void		add_links(t_list *hmap, char *line)
 {
 	char		*room_name[2];
-	int			room_index[2];
+	unsigned	room_index[2];
 	t_list_link	*room_link[2];
 
 	if (ft_strchr(line, '-'))
@@ -63,7 +65,7 @@ static void		add_links(t_list *hmap, char *line)
 			return ;
 		if (get_room_link(hmap, room_link, room_index, room_name) == FAILURE)
 			return ;
-		set_room_links(room_link);
+		set_room_links(room_link, room_index);
 	}
 }
 

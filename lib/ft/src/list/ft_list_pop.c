@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 16:42:14 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/12 17:22:34 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/30 13:50:17 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,21 @@ t_list_link	*ft_list_pop(t_list *list)
 {
 	t_list_link	*tail;
 
-	if (list->size == 0)
+	if (list->len == 0)
 		return (NULL);
 	tail = list->head->prev;
-	if (list->size == 1)
+	if (list->len == 1)
+	{
 		list->head = NULL;
+		list->size = 0;
+	}
 	else
 	{
+		list->size -= tail->content_size;
 		tail->next->prev = tail->prev;
 		tail->prev->next = tail->next;
 	}
-	--list->size;
+	--list->len;
 	tail->prev = tail;
 	tail->next = tail;
 	return (tail);

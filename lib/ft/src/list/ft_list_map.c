@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 15:58:49 by abaisago          #+#    #+#             */
-/*   Updated: 2020/02/29 16:45:33 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/30 13:52:41 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_list_link	*ft_list_map(t_list *list, t_list_link *(*f)(t_list_link *elem),
 	t_list_link *link;
 	t_list_link	*map_link;
 
-	if (list->size == 0 || f == NULL)
+	if (list->len == 0 || f == NULL)
 		return (NULL);
 	if ((begin = (*f)(list->head)) == NULL)
 		return (NULL);

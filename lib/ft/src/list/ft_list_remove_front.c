@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/29 16:10:22 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/01 19:57:43 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/30 13:42:46 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 void	ft_list_remove_front(t_list *list, void (*del)(void *, size_t))
 {
+	if (list->len == 0)
+		return ;
 	ft_list_remove(list, list->head, del);
 }

@@ -6,16 +6,12 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 21:53:28 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/28 16:16:08 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/03/28 20:47:04 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
-
-void	print_farm(t_farm *farm)
-{
-	ft_printf("Number of ants: %d\n", farm->ants);
-}
+#include "libft.h"
 
 void	room_index(t_room *room, size_t size, unsigned pos, unsigned max)
 {
