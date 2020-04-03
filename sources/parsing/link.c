@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:54:45 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/03 11:52:02 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/03 19:38:40 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,29 +52,32 @@ static void		set_room_links(t_list_link *room_link[2])
 		ft_list_link_new(&room1->index, sizeof (unsigned)));
 }
 
-static void		add_links(t_list *hmap, char *line)
+static int		add_links(t_list *hmap, char *line)
 {
 	char		*room_name[2];
 	unsigned	room_index[2];
 	t_list_link	*room_link[2];
 
-	if (ft_strchr(line, '-'))
+	if (!ft_strchr(line, '-'))
 	{
-		get_room_names_index(line, room_name, room_index);
-		if (ft_strequ(room_name[0], room_name[1]))
-			return ;
-		if (get_room_link(hmap, room_link, room_index, room_name) == FAILURE)
-			return ;
-		set_room_links(room_link);
+		ft_dprintf(2, "Incorrect link: %s\n", line);
+		return (FAILURE);
 	}
+	get_room_names_index(line, room_name, room_index);
+	if (ft_strequ(room_name[0], room_name[1]))
+		return (FAILURE);
+	if (get_room_link(hmap, room_link, room_index, room_name) == FAILURE)
+		return (FAILURE);
+	set_room_links(room_link);
+	return (SUCCESS);
 }
 
-void		get_links(t_list *hmap, char *line)
+int			get_links(t_list *hmap, char *line)
 {
 	int		ret;
 
 	if (!line)
-		return ;
+		return (FAILURE);
 	if (line[0] != '#')
 		add_links(hmap, line);
 	ft_strdel(&line);
@@ -85,4 +88,5 @@ void		get_links(t_list *hmap, char *line)
 		add_links(hmap, line);
 		ft_strdel(&line);
 	}
+	return (SUCCESS);
 }

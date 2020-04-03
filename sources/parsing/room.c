@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:17:58 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/03 11:55:24 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/03 19:27:07 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,24 @@ int			read_room(t_room *room, char *line)
 	while (ft_isprint(*line) &&  *line != ' ' && *line != '-')
 		++line;
 	if (*line != ' ')
-		return (0);
+		return (FAILURE);
 	++line;
 	if (!ft_isdigit(*line))
-		return (0);
+		return (FAILURE);
 	room->coord.x = ft_atoll(line);
 	if (overflowed(line, room->coord.x))
-		return (0);
+		return (FAILURE);
 	line += ft_strskip(line, ft_isdigit);
 	line += ft_strskip_set(line, " \t");
 	if (!ft_isdigit(*line))
-		return (0);
+		return (FAILURE);
 	room->coord.y = ft_atoll(line);
 	if (overflowed(line, room->coord.x))
-		return (0);
+		return (FAILURE);
 	line += ft_strskip(line, ft_isdigit);
 	if (*line != '\0')
-		return (0);
-	return (1);
+		return (FAILURE);
+	return (SUCCESS);
 }
 
 int			handle_comments(t_room *room, char *line)
@@ -53,8 +53,8 @@ int			handle_comments(t_room *room, char *line)
 	else if (ft_strcmp(line, "##end") == 0)
 		room->flags |= F_END;
 	else if (line[0] != '#')
-		return (0);
-	return (1);
+		return (FAILURE);
+	return (SUCCESS);
 }
 
 void		handle_room(t_list *hmap, t_list *room_list, t_room *room, unsigned index)
@@ -80,9 +80,9 @@ t_list		*get_room_list(t_farm *farm, t_list *hmap)
 	{
 		if (line[0] == 'L')
 			break ;
-		if (handle_comments(&room, line))
+		if (handle_comments(&room, line) == SUCCESS)
 			continue ;
-		if (read_room(&room, line) == 0)
+		if (read_room(&room, line) == FAILURE)
 			break ;
 		handle_room(hmap, room_list, &room, index++);
 		ft_bzero(&room, sizeof(room));
@@ -90,6 +90,7 @@ t_list		*get_room_list(t_farm *farm, t_list *hmap)
 	}
 	if (ret < 0)
 		ft_printerr("lem-in: get_rooms(read): %s\n", strerror(errno));
-	get_links(hmap, line);
+	if (get_links(hmap, line) == FAILURE)
+		ft_printerr("lem-in: get_links()\n");
 	return (room_list);
 }
