@@ -6,13 +6,15 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:17:58 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/30 14:51:12 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/03 11:00:43 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
+#include "debug.h"
 #include "predicates.h"
+#include "tools.h"
 
 #include <errno.h>
 #include <string.h>
@@ -55,15 +57,25 @@ int			handle_comments(t_room *room, char *line)
 	return (1);
 }
 
-t_list		*get_room_list(t_list *hmap)
+void		handle_room(t_list *hmap, t_list *room_list, t_room *room, unsigned index)
+{
+	room->link_list = ft_list_init();	//TODO: Needs to be freed
+	room->index = index;
+	ft_list_push_front(room_list, ft_list_link_new(room, sizeof *room));
+	hmap_add(hmap, room_list->head->content);
+}
+
+t_list		*get_room_list(t_farm *farm, t_list *hmap)
 {
 	t_list		*room_list;		//TODO: Needs to be freed
 	t_room		room;
 	char		*line;
 	int			ret;
+	unsigned	index;
 
 	ft_bzero(&room, sizeof(room));
 	room_list = ft_list_init();
+	index = 0;
 	while ((ret = get_next_line(0, &line)) > 0)
 	{
 		if (line[0] == 'L')
@@ -72,9 +84,7 @@ t_list		*get_room_list(t_list *hmap)
 			continue ;
 		if (read_room(&room, line) == 0)
 			break ;
-		room.link_list = ft_list_init();	//TODO: Needs to be freed
-		ft_list_push_front(room_list, ft_list_link_new(&room, sizeof room));
-		hmap_add(hmap, room_list->head->content);
+		handle_room(hmap, room_list, &room, index++);
 		ft_bzero(&room, sizeof(room));
 		ft_strdel(&line);
 	}
