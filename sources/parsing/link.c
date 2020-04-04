@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:54:45 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/03 19:38:40 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/04 16:19:38 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ static void		set_room_links(t_list_link *room_link[2])
 
 	room1 = room_link[0]->content;
 	room2 = room_link[1]->content;
-	ft_list_push(room1->link_list,
+	ft_list_push(room1->link.list,
 		ft_list_link_new(&room2->index, sizeof (unsigned)));
-	ft_list_push(room2->link_list,
+	ft_list_push(room2->link.list,
 		ft_list_link_new(&room1->index, sizeof (unsigned)));
 }
 

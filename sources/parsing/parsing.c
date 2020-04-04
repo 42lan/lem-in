@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 09:32:10 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/03 10:42:49 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/04 15:19:34 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,8 @@ void		links_to_array(t_room *rooms, unsigned size)
 
 	i = -1;
 	while (++i < size)
-	{
-		rooms[i].links = (unsigned*)ft_list_to_arr(rooms[i].link_list,
+		rooms[i].link.arr = (unsigned*)ft_list_to_arr(rooms[i].link.list,
 			sizeof (unsigned), NULL);
-		rooms[i].nlinks = rooms[i].link_list->len;
-	}
 }
 
 int			parse_input(t_farm *farm, t_list *hmap)
@@ -47,7 +44,6 @@ int			parse_input(t_farm *farm, t_list *hmap)
 		ft_printerr("lem-in: get_rooms(list_to_arr): %s\n", strerror(errno));
 	farm->size = room_list->len;
 	links_to_array(farm->rooms, farm->size);
-	/* hmap_print(hmap); */
 	dbg_farm_print(farm);
 	return (SUCCESS);
 }

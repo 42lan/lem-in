@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/30 14:06:03 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/04 15:12:43 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # endif
 
 typedef struct	s_farm t_farm;
+typedef struct	s_link t_link;
 typedef struct	s_room t_room;
 
 struct			s_farm
@@ -35,16 +36,22 @@ struct			s_farm
 	unsigned	size;
 };
 
+struct			s_link
+{
+	unsigned	*arr;
+	t_list		*list;
+};
+
 struct			s_room
 {
+	unsigned	index;
 	char		*name;
 	t_ivec2		coord;
-	unsigned	index;
+	t_link		link;
 	t_byte		flags;
-	t_list		*link_list;
-	unsigned	*links;
-	unsigned	nlinks;
 };
+
+
 
 /*
 ************

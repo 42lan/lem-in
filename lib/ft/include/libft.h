@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 16:46:22 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/30 13:10:07 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/04 14:23:05 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ char			*ft_lluitosa_base(size_t value, int8_t base, char *tab);
 */
 t_list_link		*ft_list_at(t_list *list, unsigned pos);
 void			ft_list_behead(t_list **list);
+void			ft_list_clear(t_list *list, void (*del)(void *, size_t));
 void			ft_list_del(t_list **alist, void (*del)(void *, size_t));
 void			ft_list_del_unsafe(t_list_link **alink,
 					void (*del)(void *, size_t));

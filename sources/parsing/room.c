@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:17:58 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/03 19:43:59 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/04 15:13:22 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int			handle_comments(t_room *room, char *line)
 
 void		handle_room(t_list *hmap, t_list *room_list, t_room *room, unsigned index)
 {
-	room->link_list = ft_list_init();	//TODO: Needs to be freed
+	room->link.list = ft_list_init();	//TODO: Needs to be freed
 	room->index = index;
 	ft_list_push(room_list, ft_list_link_new(room, sizeof *room));
 	hmap_add(hmap, room_list->head->prev->content);
