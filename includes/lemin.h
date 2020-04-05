@@ -6,13 +6,15 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/05 16:32:58 by abosch           ###   ########.fr       */
+/*   Updated: 2020/04/05 17:07:34 by abosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEMIN_H
 # define LEMIN_H
 # include "libft.h"
+
+# include <unistd.h>
 
 # define SUCCESS	0
 # define FAILURE	1
@@ -56,9 +58,9 @@ struct			s_room
 	t_ivec2		coord;
 	t_link		link;
 	t_byte		flags;
-	unsigned	cost[2];
-	unsigned	pre[2];
-	unsigned	ant_id;
+	ssize_t		cost[2];
+	ssize_t		pre[2];
+	ssize_t		ant_id;
 };
 
 /*
