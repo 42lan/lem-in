@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:17:58 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/04 15:13:22 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/05 16:02:43 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void		handle_room(t_list *hmap, t_list *room_list, t_room *room, unsigned index)
 {
 	room->link.list = ft_list_init();	//TODO: Needs to be freed
 	room->index = index;
+	ft_memset(room->pre, -1, sizeof room->pre);
+	ft_memset(room->cost, -1, sizeof room->cost);
 	ft_list_push(room_list, ft_list_link_new(room, sizeof *room));
 	hmap_add(hmap, room_list->head->prev->content);
 }

@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/04 15:12:43 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/05 15:57:32 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 # define ERROR		"ERROR\n"
 # define F_START	0x01
 # define F_END		0x02
+# define F_DEAD		0x03
+# define CUR		0
+# define OLD		1
 
 // Error Management Flag - activable on make EMF="-D EMF=1"
 # ifndef EMF
@@ -38,8 +41,9 @@ struct			s_farm
 
 struct			s_link
 {
-	unsigned	*arr;
 	t_list		*list;
+	unsigned	*arr;
+	t_byte		*dir;
 };
 
 struct			s_room
@@ -49,9 +53,10 @@ struct			s_room
 	t_ivec2		coord;
 	t_link		link;
 	t_byte		flags;
+	unsigned	cost[2];
+	unsigned	pre[2];
+	unsigned	ant_id;
 };
-
-
 
 /*
 ************
