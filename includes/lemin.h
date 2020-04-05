@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/05 15:57:32 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/05 16:32:58 by abosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # define F_DEAD		0x03
 # define CUR		0
 # define OLD		1
+# define BOTH		2
+# define ONEWAY		1
+# define REVERSE	0
 
 // Error Management Flag - activable on make EMF="-D EMF=1"
 # ifndef EMF
