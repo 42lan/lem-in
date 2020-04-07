@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/05 17:07:34 by abosch           ###   ########.fr       */
+/*   Updated: 2020/04/05 18:29:40 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,9 @@ typedef struct	s_room t_room;
 
 struct			s_farm
 {
-	unsigned	ants;
+	unsigned	ants_total;
+	unsigned	ants_start;
+	unsigned	ants_end;
 	t_room		*rooms;
 	unsigned	size;
 };

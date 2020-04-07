@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 16:10:47 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/04 16:24:43 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/05 18:31:11 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,9 @@ void	dbg_farm_print(t_farm *farm)
 	unsigned	j;
 	t_room		*room;
 
-	ft_printf("/* ------------- */\n", farm->ants);
-	ft_printf("Number of ants: %d\n", farm->ants);
+	ft_printf("Total number of ants: %d\n", farm->ants_total);
+	ft_printf("Number of ants in start room: %d\n", farm->ants_start);
+	ft_printf("Number of ants in end room: %d\n", farm->ants_end);
 	i = -1;
 	while (++i < farm->size)
 	{
@@ -64,4 +65,3 @@ void	dbg_farm_print(t_farm *farm)
 		ft_putchar('\n');
 	}
 }
-
