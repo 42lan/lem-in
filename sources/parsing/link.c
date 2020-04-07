@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:54:45 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/04 16:19:38 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/07 18:35:06 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,8 @@ static int		add_links(t_list *hmap, char *line)
 	unsigned	room_index[2];
 	t_list_link	*room_link[2];
 
-	if (!ft_strchr(line, '-'))
-	{
-		ft_dprintf(2, "Incorrect link: %s\n", line);
+	if (!ft_strchr(line, '-') || !line[ft_strclen(line, '-') + 1])
 		return (FAILURE);
-	}
 	get_room_names_index(line, room_name, room_index);
 	if (ft_strequ(room_name[0], room_name[1]))
 		return (FAILURE);
@@ -79,13 +76,15 @@ int			get_links(t_list *hmap, char *line)
 	if (!line)
 		return (FAILURE);
 	if (line[0] != '#')
-		add_links(hmap, line);
+		if (add_links(hmap, line) == FAILURE)
+			return (FAILURE);
 	ft_strdel(&line);
 	while ((ret = get_next_line(0, &line)) > 0)
 	{
 		if (line[0] == '#')
 			continue ;
-		add_links(hmap, line);
+		if (add_links(hmap, line) == FAILURE)
+			return (FAILURE);
 		ft_strdel(&line);
 	}
 	return (SUCCESS);

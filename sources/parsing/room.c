@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:17:58 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/05 16:02:43 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/07 18:34:57 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,9 @@ t_list		*get_room_list(t_farm *farm, t_list *hmap)
 	if (ret < 0)
 		ft_printerr("lem-in: get_rooms(read): %s\n", strerror(errno));
 	if (get_links(hmap, line) == FAILURE)
-		ft_printerr("lem-in: get_links()\n");
+	{
+		ft_strdel(&line);
+		ft_printerr("lem-in: Incorrect link\n");
+	}
 	return (room_list);
 }
