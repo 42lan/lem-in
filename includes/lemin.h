@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/05 18:29:40 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/07 23:29:52 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,6 @@
 # define F_DEAD		0x03
 # define CUR		0
 # define OLD		1
-
-// Error Management Flag - activable on make EMF="-D EMF=1"
-# ifndef EMF
-#  define EMF 0
-# endif
 
 typedef struct	s_farm t_farm;
 typedef struct	s_link t_link;
