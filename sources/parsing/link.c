@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:54:45 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/07 18:35:06 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/07 18:53:38 by abosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ static void		get_room_names_index(char *line, char *room_name[2],
 static int		get_room_link(t_list *hmap, t_list_link *room_link[2],
 					unsigned *room_index, char *room_name[2])
 {
-	room_link[0] = ft_list_find(&hmap[room_index[0]], room_name[0], room_namecmp);
-	room_link[1] = ft_list_find(&hmap[room_index[1]], room_name[1], room_namecmp);
+	room_link[0] = ft_list_find(&hmap[room_index[0]],
+		room_name[0], room_namecmp);
+	room_link[1] = ft_list_find(&hmap[room_index[1]],
+		room_name[1], room_namecmp);
 	if (!room_link[0] || !room_link[1])
 		return (FAILURE);
 	return (SUCCESS);
