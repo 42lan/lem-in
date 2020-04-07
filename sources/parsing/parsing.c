@@ -23,39 +23,28 @@
 #include <stdlib.h>
 #include <string.h>
 
-void		link_to_array(t_room *room)
-{
-	unsigned	j;
-
-	if ((room->link.arr = (unsigned*)ft_list_to_arr(room->link.list,
-					sizeof (unsigned), NULL)) == NULL)
-		ft_printerr("lem-in: links_to_array(arr malloc): %s\n",
-				strerror(errno));
-	if (room->link.list->len != 0)
-	{
-		if ((room->link.dir =
-					(t_byte*)malloc(room->link.list->len)) == NULL)
-			ft_printerr("lem-in: links_to_array(dir malloc): %s\n",
-					strerror(errno));
-		j = -1;
-		while (++j < room->link.list->len)
-			room->link.dir[j] = BOTH;
-	}
-}
-
-void		preparation(t_room *rooms, unsigned size)
+void		links_to_array(t_room *rooms, unsigned size)
 {
 	unsigned	i;
+	unsigned	j;
 
 	i = -1;
 	while (++i < size)
 	{
-		link_to_array(&rooms[i]);
-		rooms[i].cost[0] = -1;
-		rooms[i].cost[1] = -1;
-		rooms[i].pre[0] = -1;
-		rooms[i].pre[1] = -1;
-		rooms[i].ant_id = -1;
+		if ((rooms[i].link.arr = (unsigned*)ft_list_to_arr(rooms[i].link.list,
+			sizeof (unsigned), NULL)) == NULL)
+			ft_printerr("lem-in: links_to_array(arr malloc): %s\n",
+				strerror(errno));
+		if (rooms[i].link.list->len != 0)
+		{
+			if ((rooms[i].link.dir =
+				(t_byte*)malloc(rooms[i].link.list->len)) == NULL)
+				ft_printerr("lem-in: links_to_array(dir malloc): %s\n",
+					strerror(errno));
+			j = -1;
+			while (++j < rooms[i].link.list->len)
+				rooms[i].link.dir[j] = BOTH;
+		}
 	}
 }
 
@@ -69,10 +58,10 @@ int			parse_input(t_farm *farm, t_list *hmap)
 	room_list = get_room_list(farm, hmap);
 	// TODO: Needs to be freed
 	if ((farm->rooms = (t_room*)ft_list_to_arr(room_list,
-					sizeof (t_room), NULL)) == NULL)
+		sizeof (t_room), NULL)) == NULL)
 		ft_printerr("lem-in: get_rooms(list_to_arr): %s\n", strerror(errno));
 	farm->size = room_list->len;
-	preparation(farm->rooms, farm->size);
+	links_to_array(farm->rooms, farm->size);
 	dbg_farm_print(farm);
 	return (SUCCESS);
 }

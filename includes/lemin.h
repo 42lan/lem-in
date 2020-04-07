@@ -14,8 +14,6 @@
 # define LEMIN_H
 # include "libft.h"
 
-# include <unistd.h>
-
 # define SUCCESS	0
 # define FAILURE	1
 # define ERROR		"ERROR\n"
@@ -60,9 +58,9 @@ struct			s_room
 	t_ivec2		coord;
 	t_link		link;
 	t_byte		flags;
-	ssize_t		cost[2];
-	ssize_t		pre[2];
-	ssize_t		ant_id;
+	unsigned	cost[2];
+	unsigned	pre[2];
+	unsigned	ant_id;
 };
 
 /*
