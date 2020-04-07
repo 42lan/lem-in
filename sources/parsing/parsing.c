@@ -26,7 +26,6 @@
 void		links_to_array(t_room *rooms, unsigned size)
 {
 	unsigned	i;
-	unsigned	j;
 
 	i = -1;
 	while (++i < size)
@@ -35,16 +34,10 @@ void		links_to_array(t_room *rooms, unsigned size)
 			sizeof (unsigned), NULL)) == NULL)
 			ft_printerr("lem-in: links_to_array(arr malloc): %s\n",
 				strerror(errno));
-		if (rooms[i].link.list->len != 0)
-		{
-			if ((rooms[i].link.dir =
-				(t_byte*)malloc(rooms[i].link.list->len)) == NULL)
-				ft_printerr("lem-in: links_to_array(dir malloc): %s\n",
-					strerror(errno));
-			j = -1;
-			while (++j < rooms[i].link.list->len)
-				rooms[i].link.dir[j] = BOTH;
-		}
+		if ((rooms[i].link.dir =
+			(t_byte*)malloc(rooms[i].link.list->len)) == NULL)
+			ft_printerr("lem-in: links_to_array(dir malloc): %s\n",
+				strerror(errno));
 	}
 }
 

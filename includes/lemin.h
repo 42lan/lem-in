@@ -22,9 +22,6 @@
 # define F_DEAD		0x03
 # define CUR		0
 # define OLD		1
-# define BOTH		2
-# define ONEWAY		1
-# define REVERSE	0
 
 // Error Management Flag - activable on make EMF="-D EMF=1"
 # ifndef EMF
