@@ -20,7 +20,7 @@
 #include <string.h>
 
 //TODO Redo with strtoll
-int			read_room(t_room *room, char *line)
+int				read_room(t_room *room, char *line)
 {
 	room->name = ft_strsub(line, 0, ft_strclen(line, ' '));
 	while (ft_isprint(*line) &&  *line != ' ' && *line != '-')
@@ -46,7 +46,7 @@ int			read_room(t_room *room, char *line)
 	return (SUCCESS);
 }
 
-int			handle_comments(t_room *room, char *line)
+int				handle_comments(t_room *room, char *line)
 {
 	if (ft_strequ(line, "##start"))
 		room->flags |= F_START;
@@ -57,7 +57,8 @@ int			handle_comments(t_room *room, char *line)
 	return (SUCCESS);
 }
 
-void		handle_room(t_list *hmap, t_list *room_list, t_room *room, unsigned index)
+static int		handle_room(t_list *hmap, t_list *room_list, t_room *room,
+					unsigned index)
 {
 	room->link.list = ft_list_init();	//TODO: Needs to be freed
 	room->index = index;
