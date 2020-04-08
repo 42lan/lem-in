@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:17:58 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/08 02:58:58 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/08 03:14:59 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #include <string.h>
 
 //TODO Redo with strtoll
-int				read_room(t_room *room, char *line)
+static int		read_room(t_room *room, char *line)
 {
 	room->name = ft_strsub(line, 0, ft_strclen(line, ' '));
 	while (ft_isprint(*line) &&  *line != ' ' && *line != '-')
@@ -46,7 +46,7 @@ int				read_room(t_room *room, char *line)
 	return (SUCCESS);
 }
 
-int				handle_comments(t_room *room, char *line)
+static int		handle_comments(t_room *room, char *line)
 {
 	if (ft_strequ(line, "##start"))
 		room->flags |= F_START;
