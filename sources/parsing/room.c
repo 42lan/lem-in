@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:17:58 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/07 18:34:57 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/08 02:58:58 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,11 @@ static int		handle_room(t_list *hmap, t_list *room_list, t_room *room,
 	room->index = index;
 	ft_memset(room->pre, -1, sizeof room->pre);
 	ft_memset(room->cost, -1, sizeof room->cost);
+	if (ft_list_find(room_list, room->name, room_namecmp))
+		return (FAILURE);
 	ft_list_push(room_list, ft_list_link_new(room, sizeof *room));
 	hmap_add(hmap, room_list->head->prev->content);
+	return (SUCCESS);
 }
 
 t_list		*get_room_list(t_farm *farm, t_list *hmap)
@@ -87,9 +90,9 @@ t_list		*get_room_list(t_farm *farm, t_list *hmap)
 			continue ;
 		if (read_room(&room, line) == FAILURE)
 			break ;
-		handle_room(hmap, room_list, &room, index++);
-		ft_bzero(&room, sizeof(room));
-		ft_strdel(&line);
+		if (handle_room(hmap, room_list, &room, index++) == FAILURE)
+			return (FAILURE);
+		ft_strdel(line);
 	}
 	if (ret < 0)
 		ft_printerr("lem-in: get_rooms(read): %s\n", strerror(errno));
