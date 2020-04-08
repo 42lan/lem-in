@@ -71,24 +71,21 @@ static int		handle_room(t_list *hmap, t_list *room_list, t_room *room,
 	return (SUCCESS);
 }
 
-t_list		*get_room_list(t_farm *farm, t_list *hmap)
+static int		get_rooms(t_list *hmap, t_list *room_list, char **line)
 {
-	t_list		*room_list;		//TODO: Needs to be freed
 	t_room		room;
-	char		*line;
-	int			ret;
 	unsigned	index;
+	int			ret;
 
-	ft_bzero(&room, sizeof(room));
-	room_list = ft_list_init();
 	index = 0;
-	while ((ret = get_next_line(0, &line)) > 0)
+	while ((ret = get_next_line(0, line)) > 0)
 	{
-		if (line[0] == 'L')
+		ft_bzero(&room, sizeof(room));
+		if (*line[0] == 'L')
 			break ;
-		if (handle_comments(&room, line) == SUCCESS)
+		if (handle_comments(&room, *line) == SUCCESS)
 			continue ;
-		if (read_room(&room, line) == FAILURE)
+		if (read_room(&room, *line) == FAILURE)
 			break ;
 		if (handle_room(hmap, room_list, &room, index++) == FAILURE)
 			return (FAILURE);
@@ -96,6 +93,17 @@ t_list		*get_room_list(t_farm *farm, t_list *hmap)
 	}
 	if (ret < 0)
 		ft_printerr("lem-in: get_rooms(read): %s\n", strerror(errno));
+	return (SUCCESS);
+}
+
+t_list			*get_room_list(t_farm *farm, t_list *hmap)
+{
+	t_list		*room_list;		//TODO: Needs to be freed
+	char		*line;
+
+	room_list = ft_list_init();
+	if (get_rooms(hmap, room_list, &line) == FAILURE)
+		ft_printerr("lem-in: Same room name was found in room_list\n");
 	if (get_links(hmap, line) == FAILURE)
 	{
 		ft_strdel(&line);
