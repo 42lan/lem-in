@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:17:58 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/08 03:14:59 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/09 21:27:29 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ static int		get_rooms(t_list *hmap, t_list *room_list, char **line)
 	int			ret;
 
 	index = 0;
+	ft_bzero(&room, sizeof(room));
 	while ((ret = get_next_line(0, line)) > 0)
 	{
-		ft_bzero(&room, sizeof(room));
 		if (*line[0] == 'L')
 			break ;
 		if (handle_comments(&room, *line) == SUCCESS)
@@ -89,6 +89,7 @@ static int		get_rooms(t_list *hmap, t_list *room_list, char **line)
 			break ;
 		if (handle_room(hmap, room_list, &room, index++) == FAILURE)
 			return (FAILURE);
+		ft_bzero(&room, sizeof(room));
 		ft_strdel(line);
 	}
 	if (ret < 0)
