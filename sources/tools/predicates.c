@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 22:14:44 by amalsago          #+#    #+#             */
-/*   Updated: 2020/03/28 16:14:17 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/09 18:16:53 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int		overflowed(char *str, long long num)
 	size_t				digits;
 
 	zeros = ft_strskip_set(str, "0");
+	str += (str[ft_strlen(str) - 1] == '0') ? zeros - 1 : zeros;
 	digits = zeros + ft_strskip(str, ft_isdigit);
 	if (digits - zeros > 10)
 		return (1);
