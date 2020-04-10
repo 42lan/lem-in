@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:17:58 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/10 14:14:51 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/10 15:51:37 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ static int		get_rooms(t_list *hmap, t_list *room_list, char **line)
 	return (SUCCESS);
 }
 
-t_list			*get_room_list(t_farm *farm, t_list *hmap)
+t_list			*get_room_list(t_list *hmap)
 {
 	t_list		*room_list;		//TODO: Needs to be freed
 	char		*line;

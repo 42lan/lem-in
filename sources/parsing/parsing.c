@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 09:32:10 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/07 14:42:58 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/10 15:59:09 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,20 +41,20 @@ void		links_to_array(t_room *rooms, unsigned size)
 	}
 }
 
-int			parse_input(t_farm *farm, t_list *hmap)
+int			parse_input(t_list *hmap)
 {
 	t_list	*room_list; //TODO Needs to be freed
 
-	farm->ants_total = get_ants();
-	farm->ants_start = farm->ants_total;
-	farm->ants_end = 0;
-	room_list = get_room_list(farm, hmap);
+	g_farm.ants_total = get_ants();
+	g_farm.ants_start = g_farm.ants_total;
+	g_farm.ants_end = 0;
+	room_list = get_room_list(hmap);
 	// TODO: Needs to be freed
-	if ((farm->rooms = (t_room*)ft_list_to_arr(room_list,
+	if ((g_farm.rooms = (t_room*)ft_list_to_arr(room_list,
 		sizeof (t_room), NULL)) == NULL)
 		ft_printerr("lem-in: get_rooms(list_to_arr): %s\n", strerror(errno));
-	farm->size = room_list->len;
-	links_to_array(farm->rooms, farm->size);
-	dbg_farm_print(farm);
+	g_farm.size = room_list->len;
+	links_to_array(g_farm.rooms, g_farm.size);
+	dbg_farm_print(&g_farm);
 	return (SUCCESS);
 }
