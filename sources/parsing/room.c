@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:17:58 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/09 21:27:29 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/10 14:14:51 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,12 @@ static int		handle_room(t_list *hmap, t_list *room_list, t_room *room,
 	room->index = index;
 	ft_memset(room->pre, -1, sizeof room->pre);
 	ft_memset(room->cost, -1, sizeof room->cost);
-	if (ft_list_find(room_list, room->name, room_namecmp))
+	if (hmap_add(hmap, room) == FAILURE)
+	{
+		// TODO: free room->link.list
 		return (FAILURE);
+	}
 	ft_list_push(room_list, ft_list_link_new(room, sizeof *room));
-	hmap_add(hmap, room_list->head->prev->content);
 	return (SUCCESS);
 }
 
@@ -104,7 +106,7 @@ t_list			*get_room_list(t_farm *farm, t_list *hmap)
 
 	room_list = ft_list_init();
 	if (get_rooms(hmap, room_list, &line) == FAILURE)
-		ft_printerr("lem-in: Same room name was found in room_list\n");
+		ft_printerr(ERROR);
 	if (get_links(hmap, line) == FAILURE)
 	{
 		ft_strdel(&line);
