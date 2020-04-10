@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/07 23:29:52 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/10 15:44:24 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ struct			s_room
 	unsigned	pre[2];
 	unsigned	ant_id;
 };
+
+int		lemin(int ac, char **av);
 
 /*
 ************

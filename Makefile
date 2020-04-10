@@ -6,7 +6,7 @@
 #    By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/13 11:54:38 by abaisago          #+#    #+#              #
-#    Updated: 2020/03/28 17:38:06 by abaisago         ###   ########.fr        #
+#    Updated: 2020/04/10 15:46:03 by abaisago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,6 +91,7 @@ SRC_TOOLS      := tools.c \
 SRC_TOOLS      := $(addprefix tools/, $(SRC_TOOLS))
 
 SRC_NAME       := main.c \
+                  lemin.c \
                   $(SRC_DBG) \
                   $(SRC_LIB) \
                   $(SRC_PARSE) \
