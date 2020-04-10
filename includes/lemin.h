@@ -29,11 +29,13 @@ typedef struct	s_room t_room;
 
 struct			s_farm
 {
-	unsigned	ants_total;
-	unsigned	ants_start;
-	unsigned	ants_end;
 	t_room		*rooms;
 	unsigned	size;
+	unsigned	ants_total;
+	t_room		*start;
+	unsigned	ants_start;
+	t_room		*end;
+	unsigned	ants_end;
 };
 
 struct			s_link

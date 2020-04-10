@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:17:58 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/10 15:51:37 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/10 16:07:25 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,10 @@ static int		handle_room(t_list *hmap, t_list *room_list, t_room *room,
 		return (FAILURE);
 	}
 	ft_list_push(room_list, ft_list_link_new(room, sizeof *room));
+	if (room->flags & F_START)
+		g_farm.start = room_list->head->prev->content;
+	if (room->flags & F_END)
+		g_farm.end = room_list->head->prev->content;
 	return (SUCCESS);
 }
 
