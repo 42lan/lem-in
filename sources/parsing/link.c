@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:54:45 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/08 03:19:39 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/12 00:34:35 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,10 @@ static int		add_links(t_list *hmap, char *line)
 		return (FAILURE);
 	get_room_names_index(line, room_name, room_index);
 	if (ft_strequ(room_name[0], room_name[1]))
-		return (FAILURE);
+	{
+		ft_printf("WARN: link to itself is skipped to avoid infinite loop\n");
+		return (SUCCESS);
+	}
 	if (get_room_link(hmap, room_link, room_index, room_name) == FAILURE)
 		return (FAILURE);
 	set_room_links(room_link);
