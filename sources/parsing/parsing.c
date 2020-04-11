@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 09:32:10 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/10 16:50:04 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/11 20:43:37 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ void		links_to_array(t_room *rooms, unsigned size)
 			(t_byte*)malloc(rooms[i].link.list->len)) == NULL)
 			ft_printerr("lem-in: links_to_array(dir malloc): %s\n",
 				strerror(errno));
+		if (rooms[i].flags & F_START)
+			g_farm.start = rooms + i;
+		if (rooms[i].flags & F_END)
+			g_farm.end = rooms + i;
 	}
 }
 
@@ -49,14 +53,14 @@ int			parse_input(t_list *hmap)
 	g_farm.ants_start = g_farm.ants_total;
 	g_farm.ants_end = 0;
 	room_list = get_room_list(hmap);
-	if (!g_farm.start || !g_farm.end)
-		ft_printerr(ERROR);
 	// TODO: Needs to be freed
 	if ((g_farm.rooms = (t_room*)ft_list_to_arr(room_list,
 		sizeof (t_room), NULL)) == NULL)
 		ft_printerr("lem-in: get_rooms(list_to_arr): %s\n", strerror(errno));
 	g_farm.size = room_list->len;
 	links_to_array(g_farm.rooms, g_farm.size);
+	if (!g_farm.start || !g_farm.end)
+		ft_printerr(ERROR);
 	dbg_farm_print(&g_farm);
 	return (SUCCESS);
 }
