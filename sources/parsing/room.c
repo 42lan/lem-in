@@ -84,11 +84,15 @@ static int		get_rooms(t_list *hmap, t_list *room_list, char **line)
 	while ((ret = get_next_line(0, line)) > 0)
 	{
 		if (*line[0] == 'L')
-			break ;
+			return (FAILURE);
 		if (handle_comments(&room, *line) == SUCCESS)
 			continue ;
 		if (read_room(&room, *line) == FAILURE)
-			break ;
+		{
+			if (ft_strchr(*line, '-'))
+				break ;
+			return (FAILURE);
+		}
 		if (handle_room(hmap, room_list, &room, index++) == FAILURE)
 			return (FAILURE);
 		ft_bzero(&room, sizeof(room));
