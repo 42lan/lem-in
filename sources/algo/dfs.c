@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:11:29 by abosch            #+#    #+#             */
-/*   Updated: 2020/04/11 20:58:38 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/11 21:28:06 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ void	dfs()
 		if (i == node->link.list->len)
 		{
 			ft_printf("we go back because we are on a dead end\n");
-			node = &g_farm.rooms[node->pre[CUR]];
+			node = g_farm.rooms + node->pre[CUR];
 		}
 		else
 		{
 			ft_printf("We go deeper\n");
-			node = &g_farm.rooms[node->link.arr[i]];
+			node = g_farm.rooms + node->link.arr[i];
 		}
 		if (node->pre[CUR] == UINT_MAX)
 			g_farm.rooms[node->index].pre[CUR] = prev;
