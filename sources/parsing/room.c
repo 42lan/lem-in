@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:17:58 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/08 03:14:59 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/10 16:07:25 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,16 @@ static int		handle_room(t_list *hmap, t_list *room_list, t_room *room,
 	room->index = index;
 	ft_memset(room->pre, -1, sizeof room->pre);
 	ft_memset(room->cost, -1, sizeof room->cost);
-	if (ft_list_find(room_list, room->name, room_namecmp))
+	if (hmap_add(hmap, room) == FAILURE)
+	{
+		// TODO: free room->link.list
 		return (FAILURE);
+	}
 	ft_list_push(room_list, ft_list_link_new(room, sizeof *room));
-	hmap_add(hmap, room_list->head->prev->content);
+	if (room->flags & F_START)
+		g_farm.start = room_list->head->prev->content;
+	if (room->flags & F_END)
+		g_farm.end = room_list->head->prev->content;
 	return (SUCCESS);
 }
 
@@ -78,9 +84,9 @@ static int		get_rooms(t_list *hmap, t_list *room_list, char **line)
 	int			ret;
 
 	index = 0;
+	ft_bzero(&room, sizeof(room));
 	while ((ret = get_next_line(0, line)) > 0)
 	{
-		ft_bzero(&room, sizeof(room));
 		if (*line[0] == 'L')
 			break ;
 		if (handle_comments(&room, *line) == SUCCESS)
@@ -89,6 +95,7 @@ static int		get_rooms(t_list *hmap, t_list *room_list, char **line)
 			break ;
 		if (handle_room(hmap, room_list, &room, index++) == FAILURE)
 			return (FAILURE);
+		ft_bzero(&room, sizeof(room));
 		ft_strdel(line);
 	}
 	if (ret < 0)
@@ -96,14 +103,14 @@ static int		get_rooms(t_list *hmap, t_list *room_list, char **line)
 	return (SUCCESS);
 }
 
-t_list			*get_room_list(t_farm *farm, t_list *hmap)
+t_list			*get_room_list(t_list *hmap)
 {
 	t_list		*room_list;		//TODO: Needs to be freed
 	char		*line;
 
 	room_list = ft_list_init();
 	if (get_rooms(hmap, room_list, &line) == FAILURE)
-		ft_printerr("lem-in: Same room name was found in room_list\n");
+		ft_printerr(ERROR);
 	if (get_links(hmap, line) == FAILURE)
 	{
 		ft_strdel(&line);

@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/07 23:29:52 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/10 15:49:42 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,13 @@ typedef struct	s_room t_room;
 
 struct			s_farm
 {
-	unsigned	ants_total;
-	unsigned	ants_start;
-	unsigned	ants_end;
 	t_room		*rooms;
 	unsigned	size;
+	unsigned	ants_total;
+	t_room		*start;
+	unsigned	ants_start;
+	t_room		*end;
+	unsigned	ants_end;
 };
 
 struct			s_link
@@ -54,6 +56,10 @@ struct			s_room
 	unsigned	pre[2];
 	unsigned	ant_id;
 };
+
+extern t_farm g_farm;
+
+int		lemin(int ac, char **av);
 
 /*
 ************
