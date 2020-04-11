@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:17:58 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/11 20:40:18 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/12 00:13:34 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ static int		read_room(t_room *room, char *line)
 static int		handle_comments(t_room *room, char *line)
 {
 	if (ft_strequ(line, "##start"))
-		room->flags |= F_START;
+		room->flags = F_START;
 	else if (ft_strequ(line, "##end"))
-		room->flags |= F_END;
+		room->flags = F_END;
 	else if (line[0] != '#')
 		return (FAILURE);
 	return (SUCCESS);
