@@ -6,7 +6,7 @@
 #    By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/13 11:54:38 by abaisago          #+#    #+#              #
-#    Updated: 2020/03/28 17:38:06 by abaisago         ###   ########.fr        #
+#    Updated: 2020/04/09 18:27:38 by abosch           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,11 +90,14 @@ SRC_TOOLS      := tools.c \
                   print_help.c
 SRC_TOOLS      := $(addprefix tools/, $(SRC_TOOLS))
 
+SRC_ALGO       := dfs.c
+SRC_ALGO       := $(addprefix algo/, $(SRC_ALGO))
 SRC_NAME       := main.c \
                   $(SRC_DBG) \
                   $(SRC_LIB) \
                   $(SRC_PARSE) \
-                  $(SRC_TOOLS)
+                  $(SRC_TOOLS) \
+				  $(SRC_ALGO)
 SRC            := $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 
 OBJ_PATH       := obj
