@@ -15,6 +15,6 @@
 
 # include "lemin.h"
 
-void	dfs(t_farm farm);
+void	dfs();
 
 #endif
