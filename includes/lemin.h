@@ -6,17 +6,17 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/10 15:49:42 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/12 00:03:35 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEMIN_H
 # define LEMIN_H
 # include "libft.h"
+# include "errors.h"
 
 # define SUCCESS	0
 # define FAILURE	1
-# define ERROR		"ERROR\n"
 # define F_START	0x01
 # define F_END		0x02
 # define F_DEAD		0x03
