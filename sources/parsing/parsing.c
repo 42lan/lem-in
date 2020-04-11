@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 09:32:10 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/11 20:43:37 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/11 23:47:50 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int			parse_input(t_list *hmap)
 	g_farm.size = room_list->len;
 	links_to_array(g_farm.rooms, g_farm.size);
 	if (!g_farm.start || !g_farm.end)
-		ft_printerr(ERROR);
+		ft_printerr(E_SE_DEF);
 	dbg_farm_print(&g_farm);
 	return (SUCCESS);
 }

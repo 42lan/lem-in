@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:22:27 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/30 14:35:14 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/11 23:42:46 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ unsigned	get_ants()
 		ft_printerr(ERROR);
 	ants = ft_atoll(line);
 	if (overflowed(line, ants))
-		ft_printerr(ERROR);
+		ft_printerr(E_ANTS);
 	line += ft_strskip(line, ft_isdigit);
 	line += ft_strskip_set(line, " \t");
 	if (*line != '\0')
-		ft_printerr(ERROR);
+		ft_printerr(E_NONDIG);
 	return (ants);
 }
 

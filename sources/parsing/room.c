@@ -110,11 +110,11 @@ t_list			*get_room_list(t_list *hmap)
 
 	room_list = ft_list_init();
 	if (get_rooms(hmap, room_list, &line) == FAILURE)
-		ft_printerr(ERROR);
+		ft_printerr(E_ROOMS);
 	if (get_links(hmap, line) == FAILURE)
 	{
 		ft_strdel(&line);
-		ft_printerr("lem-in: Incorrect link\n");
+		ft_printerr(E_LINKS);
 	}
 	return (room_list);
 }
