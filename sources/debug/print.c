@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 16:10:47 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/10 16:07:35 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/12 00:37:41 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,15 @@ void	dbg_hmap_print(t_list *hmap)
 		}
 }
 
+static char *room_type(t_byte flags)
+{
+	if (flags & F_START)
+		return ("START");
+	else if (flags & F_END)
+		return ("END");
+	return ("");
+}
+
 void	dbg_farm_print(t_farm *farm)
 {
 	unsigned	i;
@@ -56,12 +65,12 @@ void	dbg_farm_print(t_farm *farm)
 	while (++i < farm->size)
 	{
 		room = &farm->rooms[i];
-		ft_printf("%04u: #%05u [%-5s %04d,%04d] (%u) > ", hmap_index(room->name),
-			room->index, room->name, room->coord.x, room->coord.y,
-			room->link.list->len);
+		ft_printf("%04u: #%05u [%-5s %04d,%04d %5s] (%u)",
+			hmap_index(room->name), room->index, room->name, room->coord.x,
+			room->coord.y, room_type(room->flags), room->link.list->len);
 		j = -1;
 		while (++j < room->link.list->len)
-			ft_printf(room->link.arr[j + 1] ? "%-5s > " : "%-5s",
+			ft_printf(room->link.arr[j + 1] ? " > %s > " : " > %s",
 				farm->rooms[room->link.arr[j]].name);
 		ft_putchar('\n');
 	}
