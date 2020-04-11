@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:11:29 by abosch            #+#    #+#             */
-/*   Updated: 2020/04/11 20:51:05 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/11 20:58:38 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	dfs()
 	unsigned	i;
 
 	node = g_farm.start;
-	ft_printf("start is %s\n", node->name);
+	ft_printf("start is :|%s|:\n", node->name);
 	g_farm.rooms[node->index].pre[CUR] = node->index;
 	while ((node->flags & F_END) == 0)
 	{
@@ -48,7 +48,7 @@ void	dfs()
 		}
 		if (node->pre[CUR] == UINT_MAX)
 			g_farm.rooms[node->index].pre[CUR] = prev;
-		ft_printf("=================\n\n", node->name);
+		ft_printf("=================\n\n");
 	}
-	ft_printf("Le DFS est fini!\n");
+	ft_printf("Le DFS est fini sur :|%s|:!\n", node->name);
 }
