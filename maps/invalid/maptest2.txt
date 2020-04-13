@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 100
 #Here is the number of lines required: 66
 ##start
@@ -6051,4 +6050,3 @@ Zrv0-Dlh0
 Ixt9-Zte8
 W_o7-Khi3
 #Here is the number of lines required: 35
->>>>>>> 4184f3e5f08c3317cb856e808b497c035d4467c9
