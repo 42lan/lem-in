@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 18:25:39 by abosch            #+#    #+#             */
-/*   Updated: 2020/04/09 18:27:00 by abosch           ###   ########.fr       */
+/*   Updated: 2020/04/13 16:45:32 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 # include "lemin.h"
 
-void	dfs();
+int		dfs(t_room *start, t_room *target);
 
 #endif

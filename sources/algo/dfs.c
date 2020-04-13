@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:11:29 by abosch            #+#    #+#             */
-/*   Updated: 2020/04/13 14:41:05 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/13 16:52:26 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,37 +16,53 @@
 
 #include <limits.h>
 
-void	dfs()
+int		dfs(t_room *start, t_room *target)
 {
 	t_room		*room;
 	unsigned	prev;
+	unsigned	cost;
 	unsigned	i;
 
-	room = g_farm.start;
-	ft_printf("start is :|%s|:\n", room->name);
+	room = start;
 	room->pre[CUR] = room->index;
-	while ((room->flags & F_END) == 0)
+	room->cost[CUR] = (cost = 0);
+	while (room != target)
 	{
-		ft_printf("======== %s =========\n", room->name);
+		ft_printf("\n======| %s |=========< %u:%s\n",
+			room->name, room->cost[CUR], ROOMS[room->pre[CUR]].name);
 		prev = room->index;
 		i = 0;
 		while (ROOMS[LINK_ARR[i]].pre[CUR] != UINT_MAX && i < LINK_SIZE)
 			++i;
-		ft_printf("On arrete la while sur le lien numero %d qui est %s\n"
-			"La size est %d\n", i, ROOMS[LINK_ARR[i]].name, LINK_SIZE);
-		if (i == LINK_SIZE)
+		if (i >= LINK_SIZE)
+			break;
+		ft_printf("while: %u/%u -> %s\n", i + 1, LINK_SIZE, ROOMS[LINK_ARR[i]].name);
+		if (i == LINK_SIZE || ROOMS[LINK_ARR[i]].cost[CUR] <= cost + 1)
 		{
-			ft_printf("we go back because we are on a dead end\n");
+			--cost;
+			room->pre[CUR] = room->pre[OLD];
+			room->cost[CUR] = room->cost[OLD];
 			room = ROOMS + room->pre[CUR];
+			ft_printf("we go back\n");
 		}
 		else
 		{
-			ft_printf("We go deeper\n");
+			++cost;
 			room = ROOMS + LINK_ARR[i];
-		}
-		if (room->pre[CUR] == UINT_MAX)
 			room->pre[CUR] = prev;
-		ft_printf("=================\n\n");
+			room->cost[CUR] = cost;
+			ft_printf("We go deeper\n");
+		}
+		ft_printf("=================\n");
 	}
-	ft_printf("Le DFS est fini sur :|%s|:!\n", room->name);
+	if (room != target)
+	{
+		ft_printf("\nDFS: failure, target :|%s|: not found\n", target->name);
+		return (FAILURE);
+	}
+	else
+	{
+		ft_printf("\nDFS: success, target :|%s|: found\n", room->name);
+		return (SUCCESS);
+	}
 }
