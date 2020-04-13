@@ -1,0 +1,28 @@
+100
+#########################
+##start
+START 2 0
+A 1 5
+B 1 10
+C 1 15
+D 2 4
+E 2 8
+F 2 12
+G 2 16
+H 3 5
+I 3 15
+##end
+END 2 20
+#########################
+START-A
+A-B
+B-C
+C-END
+START-D
+D-E
+E-F
+F-G
+G-END
+START-H
+H-I
+I-END
