@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:54:45 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/13 13:20:43 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/13 14:15:19 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int			get_links(t_list *hmap, char *line)
 		if (add_links(hmap, line) == FAILURE)
 		{
 			ft_strdel(&line);
-			return (FAILURE);
+			return (SUCCESS);
 		}
 	ft_strdel(&line);
 	while ((ret = get_next_line(0, &line)) > 0)
@@ -94,7 +94,7 @@ int			get_links(t_list *hmap, char *line)
 		if (add_links(hmap, line) == FAILURE)
 		{
 			ft_strdel(&line);
-			return (FAILURE);
+			return (SUCCESS);
 		}
 		ft_strdel(&line);
 	}
