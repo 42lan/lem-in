@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:30:46 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/13 16:46:32 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/13 21:42:20 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ int		lemin(int ac, char **av)
 	hmap_init(hmap);
 	if (parse_input(hmap) == FAILURE)
 		exit(EXIT_FAILURE);
-	dfs(g_farm.start, g_farm.end);
+	dfs(g_farm.start, g_farm.end, FULL);
 	return (SUCCESS);
 }

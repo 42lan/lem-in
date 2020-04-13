@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:11:29 by abosch            #+#    #+#             */
-/*   Updated: 2020/04/13 21:24:07 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/13 21:41:32 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include <limits.h>
 
-int		dfs(t_room *start, t_room *target)
+int		dfs(t_room *start, t_room *target, t_byte type)
 {
 	t_room		*room;
 	unsigned	prev;
@@ -35,7 +35,10 @@ int		dfs(t_room *start, t_room *target)
 			--cost;
 			room = ROOMS + room->pre[CUR];
 			ft_printf("we go back at end\n=======================\n");
-			continue ;
+			if (type == FULL)
+				continue ;
+			else
+				break ;
 		}
 		prev = room->index;
 		i = 0;
