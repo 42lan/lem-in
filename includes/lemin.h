@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/12 00:03:35 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/13 14:40:37 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@
 # define F_DEAD		0x03
 # define CUR		0
 # define OLD		1
+
+# define ROOMS		g_farm.rooms
+# define LINK_ARR	room->link.arr
+# define LINK_SIZE	room->link.list->len
 
 typedef struct	s_farm t_farm;
 typedef struct	s_link t_link;
