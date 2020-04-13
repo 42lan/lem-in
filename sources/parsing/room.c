@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:17:58 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/12 00:13:34 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/13 13:19:22 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,16 +88,14 @@ static int		get_rooms(t_list *hmap, t_list *room_list, char **line)
 		if (handle_comments(&room, *line) == SUCCESS)
 			continue ;
 		if (read_room(&room, *line) == FAILURE)
-		{
-			if (ft_strchr(*line, '-'))
-				break ;
 			return (FAILURE);
-		}
 		if (handle_room(hmap, room_list, &room, index++) == FAILURE)
 			return (FAILURE);
 		ft_bzero(&room, sizeof(room));
 		ft_strdel(line);
 	}
+	if (ret == 0)
+		ft_printerr(ERROR);
 	if (ret < 0)
 		ft_printerr("lem-in: get_rooms(read): %s\n", strerror(errno));
 	return (SUCCESS);
@@ -110,11 +108,9 @@ t_list			*get_room_list(t_list *hmap)
 
 	room_list = ft_list_init();
 	if (get_rooms(hmap, room_list, &line) == FAILURE)
-		ft_printerr(E_ROOMS);
+		if (!ft_strchr(line, '-'))
+			ft_printerr(E_ROOMS);
 	if (get_links(hmap, line) == FAILURE)
-	{
-		ft_strdel(&line);
 		ft_printerr(E_LINKS);
-	}
 	return (room_list);
 }
