@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 16:10:47 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/13 15:47:11 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/14 22:08:07 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	dbg_farm_print(t_farm *farm)
 			room->coord.y, room_type(room->flags), room->link.list->len);
 		j = -1;
 		while (++j < room->link.list->len)
-			ft_printf(room->link.arr[j + 1] ? " > %s > " : " > %s",
+			ft_printf(room->link.arr[j + 1] ? " %s >" : " %s",
 				farm->rooms[room->link.arr[j]].name);
 		ft_putchar('\n');
 	}
