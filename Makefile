@@ -6,7 +6,7 @@
 #    By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/13 11:54:38 by abaisago          #+#    #+#              #
-#    Updated: 2020/04/11 16:49:46 by abosch           ###   ########.fr        #
+#    Updated: 2020/04/14 21:42:56 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -90,8 +90,10 @@ SRC_TOOLS      := tools.c \
                   print_help.c
 SRC_TOOLS      := $(addprefix tools/, $(SRC_TOOLS))
 
-SRC_ALGO       := dfs.c
+SRC_ALGO       := dfs.c \
+                  get_path2target.c
 SRC_ALGO       := $(addprefix algo/, $(SRC_ALGO))
+
 SRC_NAME       := main.c \
                   lemin.c \
                   $(SRC_DBG) \
