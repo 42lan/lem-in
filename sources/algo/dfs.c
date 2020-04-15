@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:11:29 by abosch            #+#    #+#             */
-/*   Updated: 2020/04/13 21:41:32 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/15 15:50:58 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ int		dfs(t_room *start, t_room *target, t_byte type)
 	room->cost[CUR] = (cost = 0);
 	while (1)
 	{
-		ft_printf("\n===| %s || %u |=====< %s\n",
-			room->name, room->cost[CUR], ROOMS[room->pre[CUR]].name);
+		/* ft_printf("\n===| %s || %u |=====< %s\n", */
+		/* 	room->name, room->cost[CUR], ROOMS[room->pre[CUR]].name); */
 		if (room == target)
 		{
 			--cost;
 			room = ROOMS + room->pre[CUR];
-			ft_printf("we go back at end\n=======================\n");
+			/* ft_printf("we go back at end\n=======================\n"); */
 			if (type == FULL)
 				continue ;
 			else
@@ -42,11 +42,14 @@ int		dfs(t_room *start, t_room *target, t_byte type)
 		}
 		prev = room->index;
 		i = 0;
-		while ((cost + 1 > ROOMS[LINK_ARR[i]].cost[CUR]
-			|| ROOMS[LINK_ARR[i]].pre[CUR] == room->index) && i < LINK_SIZE)
+		while (i < LINK_SIZE
+			&& (cost + 1 > ROOMS[LINK_ARR[i]].cost[CUR]
+			|| ROOMS[LINK_ARR[i]].pre[CUR] == room->index
+			|| (LINK_DIR[i] == INWARD
+			&& ROOMS[LINK_ARR[i]].link.dir[room->index] != INWARD)))
 			++i;
-		ft_printf("while: %u/%u -> %s:%u\n", i + 1, LINK_SIZE,
-			ROOMS[LINK_ARR[i]].name, ROOMS[LINK_ARR[i]].cost[CUR]);
+		/* ft_printf("while: %u/%u -> %s:%u\n", i + 1, LINK_SIZE, */
+		/* 	ROOMS[LINK_ARR[i]].name, ROOMS[LINK_ARR[i]].cost[CUR]); */
 		if (i == LINK_SIZE)
 		{
 			if (room == start)
@@ -55,7 +58,7 @@ int		dfs(t_room *start, t_room *target, t_byte type)
 			{
 				--cost;
 				room = ROOMS + room->pre[CUR];
-				ft_printf("we go back\n");
+				/* ft_printf("we go back\n"); */
 			}
 		}
 		else
@@ -66,9 +69,9 @@ int		dfs(t_room *start, t_room *target, t_byte type)
 			room->cost[OLD] = room->cost[CUR];
 			room->pre[CUR] = prev;
 			room->cost[CUR] = cost;
-			ft_printf("We go deeper\n");
+			/* ft_printf("We go deeper\n"); */
 		}
-		ft_printf("=================\n");
+		/* ft_printf("=================\n"); */
 	}
 	if (target->pre[CUR] == UINT_MAX)
 	{
