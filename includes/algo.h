@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 18:25:39 by abosch            #+#    #+#             */
-/*   Updated: 2020/04/14 20:16:10 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/15 17:44:36 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@
 # define FULL 1
 
 int			dfs(t_room *start, t_room *target, t_byte type);
-unsigned	*get_path2target(t_room *target);
+void		orient_path_to(t_room *target);
 
 #endif

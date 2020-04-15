@@ -6,40 +6,59 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 20:15:42 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/14 20:17:35 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/15 17:47:49 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "algo.h"
+
 #include "lemin.h"
 
-static void		print_path2target(unsigned *path, unsigned size)
+static void		print_paths_from(t_room *start)
 {
+	t_room		*room;
+	unsigned	begin;
 	unsigned	i;
 
-	i = -1;
-	while (++i < size)
-		ft_printf(i + 1 == size ? "%d (%s)\n" : "%d (%s) -> ", path[i],
-			ROOMS[path[i]].name);
+	begin = -1;
+	while (++begin < start->LINK_LEN)
+	{
+		if (start->link.dir[begin] == INWARD)
+		{
+			ft_printf("%s ", start->name);
+			room = ROOMS + start->link.arr[begin];
+			ft_printf("-> %s ", room->name);
+			i = -1;
+			while (++i < room->LINK_LEN)
+			{
+				if (LINK_DIR[i] == INWARD)
+				{
+					room = ROOMS + LINK_ARR[i];
+					ft_printf("-> %s ", room->name);
+					i = -1;
+				}
+			}
+			ft_putchar('\n');
+		}
+
+	}
 }
 
-unsigned		*get_path2target(t_room *target)
+void	orient_path_to(t_room *target)
 {
-	unsigned	i;
-	unsigned	cost;
-	unsigned	*path;
 	t_room		*room;
+	t_room		*prev;
+	unsigned	i;
 
 	room = target;
-	cost = target->cost[CUR];
-	i = cost;
-	if (!(path = (unsigned *)ft_memalloc(cost)))
-		ft_printerr("lem-in: get_path2target(malloc)\n");
-	while (room->flags != F_START)
+	while (room->cost[CUR] != 0)
 	{
-		path[i - 1] = room->pre[CUR];
-		room = ROOMS + room->pre[CUR];
-		i--;
+		prev = ROOMS + room->pre[CUR];
+		i = -1;
+		while (prev->link.arr[++i] != room->index)
+			;
+		prev->link.dir[i] = INWARD;
+		room = prev;
 	}
-	print_path2target(path, cost);
-	return (path);
+	print_paths_from(room);
 }

@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/15 15:41:37 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/15 17:38:09 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define LINK_ARR	room->link.arr
 # define LINK_DIR	room->link.dir
 # define LINK_SIZE	room->link.list->len
+# define LINK_LEN	link.list->len
 
 typedef struct	s_farm t_farm;
 typedef struct	s_link t_link;
