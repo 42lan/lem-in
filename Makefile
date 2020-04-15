@@ -6,7 +6,7 @@
 #    By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/13 11:54:38 by abaisago          #+#    #+#              #
-#    Updated: 2020/04/14 21:42:56 by amalsago         ###   ########.fr        #
+#    Updated: 2020/04/15 19:54:32 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -87,7 +87,8 @@ SRC_PARSE      := $(addprefix parsing/, $(SRC_PARSE))
 
 SRC_TOOLS      := tools.c \
                   predicates.c \
-                  print_help.c
+                  print_help.c \
+				  reset_info.c
 SRC_TOOLS      := $(addprefix tools/, $(SRC_TOOLS))
 
 SRC_ALGO       := dfs.c \

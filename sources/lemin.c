@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:30:46 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/15 17:48:25 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/15 19:53:02 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 #include "parsing.h"
 
 #include "algo.h"
+#include "tools.h"
 
 #include <stdlib.h>
 
 t_farm	g_farm;
-
 
 int		lemin(int ac, char **av)
 {
@@ -30,5 +30,6 @@ int		lemin(int ac, char **av)
 		exit(EXIT_FAILURE);
 	dfs(g_farm.start, g_farm.end, FULL);
 	orient_path_to(g_farm.end);
+	reset_info();
 	return (SUCCESS);
 }
