@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/15 17:38:09 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/16 14:57:53 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define FAILURE	1
 # define F_START	0x01
 # define F_END		0x02
-# define F_DEAD		0x03
+# define F_DEAD		0x04
 # define UNSET		0
 # define INWARD		1
 # define CUR		0
