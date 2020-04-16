@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:54:45 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/16 16:52:43 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/16 19:51:57 by abosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ static int		set_room_links(t_list_link *room_link[2])
 	if (ft_list_find(room1->link.list, &(room2->index), room_indexcmp)
 		&& ft_list_find(room2->link.list, &(room1->index), room_indexcmp))
 	{
-		ft_printf("WARN: link was already set. get_links() stops\n");
+		ft_printf("WARN: link \"%s-%s\" was already set. get_links() stops\n",
+			room1->name, room2->name);
 		return (FAILURE);
 	}
 	ft_list_push(room1->link.list,
