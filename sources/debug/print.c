@@ -6,15 +6,15 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 16:10:47 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/14 22:08:07 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/16 13:54:14 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "debug.h"
 #include "libft.h"
 
-#include "parsing.h"
 #include "lemin.h"
+#include "parsing.h"
 
 int		dbg_print_room(void *content, size_t size, unsigned pos, unsigned max)
 {
@@ -73,3 +73,28 @@ void	dbg_farm_print(t_farm *farm)
 		ft_putchar('\n');
 	}
 }
+
+void		print_paths_from(t_room *start)
+{
+	t_room		*room;
+	unsigned	begin;
+	unsigned	i;
+
+	begin = -1;
+	while (++begin < start->LINK_LEN)
+		if (start->link.dir[begin] == INWARD)
+		{
+			i = -1;
+			room = ROOMS + start->link.arr[begin];
+			ft_printf("%s -> %s ", start->name, room->name);
+			while (++i < room->LINK_LEN)
+				if (LINK_DIR[i] == INWARD)
+				{
+					room = ROOMS + LINK_ARR[i];
+					ft_printf("-> %s ", room->name);
+					i = -1;
+				}
+			ft_putchar('\n');
+		}
+}
+
