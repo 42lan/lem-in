@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:11:29 by abosch            #+#    #+#             */
-/*   Updated: 2020/04/15 15:50:58 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/16 14:59:34 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ int		dfs(t_room *start, t_room *target, t_byte type)
 		prev = room->index;
 		i = 0;
 		while (i < LINK_SIZE
-			&& (cost + 1 > ROOMS[LINK_ARR[i]].cost[CUR]
+			&& (ROOMS[LINK_ARR[i]].flags & F_DEAD
+			|| cost + 1 > ROOMS[LINK_ARR[i]].cost[CUR]
 			|| ROOMS[LINK_ARR[i]].pre[CUR] == room->index
-			|| (LINK_DIR[i] == INWARD
-			&& ROOMS[LINK_ARR[i]].link.dir[room->index] != INWARD)))
+			|| LINK_DIR[i] == INWARD))
 			++i;
 		/* ft_printf("while: %u/%u -> %s:%u\n", i + 1, LINK_SIZE, */
 		/* 	ROOMS[LINK_ARR[i]].name, ROOMS[LINK_ARR[i]].cost[CUR]); */
@@ -80,7 +80,7 @@ int		dfs(t_room *start, t_room *target, t_byte type)
 	}
 	else
 	{
-		ft_printf("\nDFS: success, target :|%s|: found with cost= %u\n",
+		ft_printf("\nDFS: success, target :|%s|: (%u steps)\n",
 			target->name, target->cost[CUR]);
 		return (SUCCESS);
 	}
