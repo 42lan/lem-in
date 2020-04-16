@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 18:25:39 by abosch            #+#    #+#             */
-/*   Updated: 2020/04/15 17:44:36 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/16 17:49:48 by abosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,6 @@
 
 int			dfs(t_room *start, t_room *target, t_byte type);
 void		orient_path_to(t_room *target);
+void		remove_deadend(void);
 
 #endif

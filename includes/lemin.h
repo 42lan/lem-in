@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/16 14:57:53 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/16 18:04:23 by abosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define CUR		0
 # define OLD		1
 
+# define START		g_farm.start
+# define END		g_farm.end
 # define ROOMS		g_farm.rooms
 # define LINK_ARR	room->link.arr
 # define LINK_DIR	room->link.dir
