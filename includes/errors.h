@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/11 17:02:15 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/16 17:21:45 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/16 19:38:49 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define E_SE_LINK	"ERROR: START and/or END rooms haven't at least one link\n"
 # define E_ROOMS	"ERROR: incorrect rooms definition\n"
 # define E_LINKS	"ERROR: incorrect links definition\n"
+# define E_WSPACE	"ERROR: link contains whitespace character\n"
 
 /*
 ** ERRORS_H

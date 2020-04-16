@@ -6,11 +6,12 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:54:45 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/16 16:52:43 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/16 20:01:58 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+#include "predicates.h"
 
 #include "lib.h"
 #include "debug.h"
@@ -19,6 +20,7 @@
 #include <errno.h>
 #include <stddef.h>
 #include <string.h>
+
 
 static void		get_room_names_index(char *line, char *room_name[2],
 					unsigned *room_index)
@@ -69,6 +71,8 @@ static int		add_links(t_list *hmap, char *line)
 
 	if (!ft_strchr(line, '-') || !ft_strrchr(line, '-')[1])
 		return (FAILURE);
+	if (contains_whitespace(line) == SUCCESS)
+		ft_printerr(E_WSPACE);
 	get_room_names_index(line, room_name, room_index);
 	if (ft_strequ(room_name[0], room_name[1]))
 	{
