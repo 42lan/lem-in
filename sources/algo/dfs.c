@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:11:29 by abosch            #+#    #+#             */
-/*   Updated: 2020/04/16 14:59:34 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/16 21:28:29 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,63 +16,52 @@
 
 #include <limits.h>
 
-int		dfs(t_room *start, t_room *target, t_byte type)
+static unsigned	choose_link(t_room *room)
 {
-	t_room		*room;
-	unsigned	prev;
-	unsigned	cost;
 	unsigned	i;
 
-	room = start;
-	room->pre[CUR] = room->index;
-	room->cost[CUR] = (cost = 0);
-	while (1)
+	i = 0;
+	while (i < LINK_SIZE
+		&& (ROOMS[LINK_ARR[i]].flags & F_DEAD
+		|| room->cost[CUR] + 1 > ROOMS[LINK_ARR[i]].cost[CUR]
+		|| ROOMS[LINK_ARR[i]].pre[CUR] == room->index
+		|| LINK_DIR[i] == INWARD))
+		++i;
+	return (i);
+}
+
+static t_room	*traverse(t_room *start, t_room *room, unsigned offset)
+{
+	unsigned	cost;
+	t_room		*prev;
+
+	prev = room;
+	cost = room->cost[CUR];
+	if (offset == LINK_SIZE)
 	{
-		/* ft_printf("\n===| %s || %u |=====< %s\n", */
-		/* 	room->name, room->cost[CUR], ROOMS[room->pre[CUR]].name); */
-		if (room == target)
-		{
-			--cost;
-			room = ROOMS + room->pre[CUR];
-			/* ft_printf("we go back at end\n=======================\n"); */
-			if (type == FULL)
-				continue ;
-			else
-				break ;
-		}
-		prev = room->index;
-		i = 0;
-		while (i < LINK_SIZE
-			&& (ROOMS[LINK_ARR[i]].flags & F_DEAD
-			|| cost + 1 > ROOMS[LINK_ARR[i]].cost[CUR]
-			|| ROOMS[LINK_ARR[i]].pre[CUR] == room->index
-			|| LINK_DIR[i] == INWARD))
-			++i;
-		/* ft_printf("while: %u/%u -> %s:%u\n", i + 1, LINK_SIZE, */
-		/* 	ROOMS[LINK_ARR[i]].name, ROOMS[LINK_ARR[i]].cost[CUR]); */
-		if (i == LINK_SIZE)
-		{
-			if (room == start)
-				break;
-			else
-			{
-				--cost;
-				room = ROOMS + room->pre[CUR];
-				/* ft_printf("we go back\n"); */
-			}
-		}
+		if (room == start)
+			return (NULL);
 		else
 		{
-			++cost;
-			room = ROOMS + LINK_ARR[i];
-			room->pre[OLD] = room->pre[CUR];
-			room->cost[OLD] = room->cost[CUR];
-			room->pre[CUR] = prev;
-			room->cost[CUR] = cost;
-			/* ft_printf("We go deeper\n"); */
+			room = ROOMS + room->pre[CUR];
+			/* ft_printf("we go back\n"); */
 		}
-		/* ft_printf("=================\n"); */
 	}
+	else
+	{
+		++cost;
+		room = ROOMS + LINK_ARR[offset];
+		room->pre[OLD] = room->pre[CUR];
+		room->cost[OLD] = room->cost[CUR];
+		room->pre[CUR] = prev->index;
+		room->cost[CUR] = prev->cost[CUR] + 1;
+		/* ft_printf("We go deeper\n"); */
+	}
+	return (room);
+}
+
+static int		finish(t_room *target)
+{
 	if (target->pre[CUR] == UINT_MAX)
 	{
 		ft_printf("\nDFS: failure, target :|%s|: not found\n", target->name);
@@ -84,4 +73,35 @@ int		dfs(t_room *start, t_room *target, t_byte type)
 			target->name, target->cost[CUR]);
 		return (SUCCESS);
 	}
+}
+
+int		dfs(t_room *start, t_room *target, t_byte type)
+{
+	t_room		*room;
+	unsigned	offset;
+
+	room = start;
+	room->pre[CUR] = room->index;
+	room->cost[CUR] = 0;
+	while (1)
+	{
+		/* ft_printf("\n===| %s || %u |=====< %s\n", */
+		/* 	room->name, room->cost[CUR], ROOMS[room->pre[CUR]].name); */
+		if (room == target)
+		{
+			room = ROOMS + room->pre[CUR];
+			/* ft_printf("we go back at end\n=======================\n"); */
+			if (type == FULL)
+				continue ;
+			else
+				break ;
+		}
+		offset = choose_link(room);
+		/* ft_printf("while: %u/%u -> %s:%u\n", i + 1, LINK_SIZE, */
+			/* ROOMS[LINK_ARR[i]].name, ROOMS[LINK_ARR[i]].cost[CUR]); */
+		if ((room = traverse(start, room, offset)) == NULL)
+			break ;
+		/* ft_printf("=================\n"); */
+	}
+	return (finish(target));
 }
