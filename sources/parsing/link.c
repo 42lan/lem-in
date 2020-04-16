@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:54:45 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/13 18:38:11 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/16 16:52:43 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,17 +41,24 @@ static int		get_room_link(t_list *hmap, t_list_link *room_link[2],
 	return (SUCCESS);
 }
 
-static void		set_room_links(t_list_link *room_link[2])
+static int		set_room_links(t_list_link *room_link[2])
 {
 	t_room		*room1;
 	t_room		*room2;
 
 	room1 = room_link[0]->content;
 	room2 = room_link[1]->content;
+	if (ft_list_find(room1->link.list, &(room2->index), room_indexcmp)
+		&& ft_list_find(room2->link.list, &(room1->index), room_indexcmp))
+	{
+		ft_printf("WARN: link was already set. get_links() stops\n");
+		return (FAILURE);
+	}
 	ft_list_push(room1->link.list,
 		ft_list_link_new(&room2->index, sizeof (unsigned)));
 	ft_list_push(room2->link.list,
 		ft_list_link_new(&room1->index, sizeof (unsigned)));
+	return (SUCCESS);
 }
 
 static int		add_links(t_list *hmap, char *line)
@@ -70,7 +77,8 @@ static int		add_links(t_list *hmap, char *line)
 	}
 	if (get_room_link(hmap, room_link, room_index, room_name) == FAILURE)
 		return (FAILURE);
-	set_room_links(room_link);
+	if (set_room_links(room_link) == FAILURE)
+		return (FAILURE);
 	return (SUCCESS);
 }
 
