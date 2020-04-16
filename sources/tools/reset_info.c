@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/15 19:28:16 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/15 19:53:15 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/16 20:39:37 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ void	reset_info(void)
 	i = -1;
 	while (++i < g_farm.size)
 	{
-		ft_memset(ROOMS[i].pre, -1, sizeof ROOMS[i].pre);
-		ft_memset(ROOMS[i].cost, -1, sizeof ROOMS[i].cost);
+		ROOMS[i].pre[OLD] = ROOMS[i].pre[CUR];
+		ROOMS[i].pre[CUR] = -1;
+		ROOMS[i].cost[OLD] = ROOMS[i].cost[CUR];
+		ROOMS[i].cost[CUR] = -1;
 	}
 }
