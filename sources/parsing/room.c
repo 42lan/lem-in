@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:17:58 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/17 19:38:46 by abosch           ###   ########.fr       */
+/*   Updated: 2020/04/17 20:37:58 by abosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int		handle_room(t_list *hmap, t_list *room_list, t_room *room,
 	ft_memset(room->cost, -1, sizeof room->cost);
 	if (hmap_add(hmap, room) == FAILURE)
 	{
-		ft_list_del(&(room->link.list), &del_link);
+		ft_list_del(&(room->link.list), &del_link_list);
 		return (FAILURE);
 	}
 	ft_list_push(room_list, ft_list_link_new(room, sizeof *room));
