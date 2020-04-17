@@ -6,11 +6,12 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:54:45 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/16 19:51:57 by abosch           ###   ########.fr       */
+/*   Updated: 2020/04/17 18:35:45 by abosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+#include "predicates.h"
 
 #include "lib.h"
 #include "debug.h"
@@ -19,6 +20,7 @@
 #include <errno.h>
 #include <stddef.h>
 #include <string.h>
+
 
 static void		get_room_names_index(char *line, char *room_name[2],
 					unsigned *room_index)
@@ -41,7 +43,7 @@ static int		get_room_link(t_list *hmap, t_list_link *room_link[2],
 	return (SUCCESS);
 }
 
-static int		set_room_links(t_list_link *room_link[2])
+static void		set_room_links(t_list_link *room_link[2])
 {
 	t_room		*room1;
 	t_room		*room2;
@@ -53,13 +55,12 @@ static int		set_room_links(t_list_link *room_link[2])
 	{
 		ft_printf("WARN: link \"%s-%s\" was already set. get_links() stops\n",
 			room1->name, room2->name);
-		return (FAILURE);
+		return ;
 	}
 	ft_list_push(room1->link.list,
 		ft_list_link_new(&room2->index, sizeof (unsigned)));
 	ft_list_push(room2->link.list,
 		ft_list_link_new(&room1->index, sizeof (unsigned)));
-	return (SUCCESS);
 }
 
 static int		add_links(t_list *hmap, char *line)
@@ -70,6 +71,8 @@ static int		add_links(t_list *hmap, char *line)
 
 	if (!ft_strchr(line, '-') || !ft_strrchr(line, '-')[1])
 		return (FAILURE);
+	if (contains_whitespace(line) == SUCCESS)
+		ft_printerr(E_WSPACE);
 	get_room_names_index(line, room_name, room_index);
 	if (ft_strequ(room_name[0], room_name[1]))
 	{
@@ -78,8 +81,7 @@ static int		add_links(t_list *hmap, char *line)
 	}
 	if (get_room_link(hmap, room_link, room_index, room_name) == FAILURE)
 		return (FAILURE);
-	if (set_room_links(room_link) == FAILURE)
-		return (FAILURE);
+	set_room_links(room_link);
 	return (SUCCESS);
 }
 
