@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:11:29 by abosch            #+#    #+#             */
-/*   Updated: 2020/04/16 21:28:29 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/17 15:55:00 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,16 @@ static unsigned	choose_link(t_room *room)
 		|| ROOMS[LINK_ARR[i]].pre[CUR] == room->index
 		|| LINK_DIR[i] == INWARD))
 		++i;
+	/* ft_printf("while: %u/%u -> %s:%u\n", i + 1, LINK_SIZE, */
+	/* 	ROOMS[LINK_ARR[i]].name, ROOMS[LINK_ARR[i]].cost[CUR]); */
 	return (i);
 }
 
 static t_room	*traverse(t_room *start, t_room *room, unsigned offset)
 {
-	unsigned	cost;
 	t_room		*prev;
 
 	prev = room;
-	cost = room->cost[CUR];
 	if (offset == LINK_SIZE)
 	{
 		if (room == start)
@@ -49,7 +49,6 @@ static t_room	*traverse(t_room *start, t_room *room, unsigned offset)
 	}
 	else
 	{
-		++cost;
 		room = ROOMS + LINK_ARR[offset];
 		room->pre[OLD] = room->pre[CUR];
 		room->cost[OLD] = room->cost[CUR];
@@ -97,8 +96,6 @@ int		dfs(t_room *start, t_room *target, t_byte type)
 				break ;
 		}
 		offset = choose_link(room);
-		/* ft_printf("while: %u/%u -> %s:%u\n", i + 1, LINK_SIZE, */
-			/* ROOMS[LINK_ARR[i]].name, ROOMS[LINK_ARR[i]].cost[CUR]); */
 		if ((room = traverse(start, room, offset)) == NULL)
 			break ;
 		/* ft_printf("=================\n"); */
