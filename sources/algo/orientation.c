@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 20:15:42 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/16 14:46:54 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/17 19:05:44 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,17 @@ void	orient_path_to(t_room *target)
 		i = 0;
 		while (LINK_ARR[i] != room->pre[CUR])
 			++i;
-		if (LINK_DIR[i] == INWARD)
-			LINK_DIR[i] = UNSET;
+		if (LINK_DIR[i] == BLOCKED)
+			LINK_DIR[i] = DUPLEX;
 		else
-		{
-			j = 0;
-			while (prev->link.arr[j] != room->index)
-				++j;
-			prev->link.dir[j] = INWARD;
-			room = prev;
-		}
+			LINK_DIR[i] = ALLOWED;
+		j = 0;
+		while (prev->link.arr[j] != room->index)
+			++j;
+		if (prev->link.dir[j] == ALLOWED)
+			prev->link.dir[j] = DUPLEX;
+		else
+			prev->link.dir[j] = BLOCKED;
+		room = prev;
 	}
-	print_paths_from(room);
 }

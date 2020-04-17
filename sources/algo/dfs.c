@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:11:29 by abosch            #+#    #+#             */
-/*   Updated: 2020/04/17 15:55:00 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/17 18:47:55 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static unsigned	choose_link(t_room *room)
 		&& (ROOMS[LINK_ARR[i]].flags & F_DEAD
 		|| room->cost[CUR] + 1 > ROOMS[LINK_ARR[i]].cost[CUR]
 		|| ROOMS[LINK_ARR[i]].pre[CUR] == room->index
-		|| LINK_DIR[i] == INWARD))
+		|| LINK_DIR[i] == BLOCKED))
 		++i;
 	/* ft_printf("while: %u/%u -> %s:%u\n", i + 1, LINK_SIZE, */
 	/* 	ROOMS[LINK_ARR[i]].name, ROOMS[LINK_ARR[i]].cost[CUR]); */

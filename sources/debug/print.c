@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 16:10:47 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/17 17:17:55 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/17 19:13:00 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,13 @@ void		print_paths_from(t_room *start)
 
 	begin = -1;
 	while (++begin < start->LINK_LEN)
-		if (start->link.dir[begin] == INWARD)
+		if (start->link.dir[begin] == BLOCKED)
 		{
 			i = -1;
 			room = ROOMS + start->link.arr[begin];
 			ft_printf("%s -> %s ", start->name, room->name);
 			while (++i < room->LINK_LEN)
-				if (LINK_DIR[i] == INWARD)
+				if (LINK_DIR[i] == BLOCKED)
 				{
 					room = ROOMS + LINK_ARR[i];
 					ft_printf("-> %s ", room->name);
