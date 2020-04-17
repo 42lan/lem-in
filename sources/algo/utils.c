@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 14:47:17 by abosch            #+#    #+#             */
-/*   Updated: 2020/04/16 18:34:30 by abosch           ###   ########.fr       */
+/*   Updated: 2020/04/17 17:14:42 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	remove_deadend(void)
 	t_byte	con;
 
 	con = 1;
-	debug_deadend();
 	while (con)
 	{
 		i = -1;
@@ -66,5 +65,4 @@ void	remove_deadend(void)
 			}
 		}
 	}
-	debug_deadend();
 }

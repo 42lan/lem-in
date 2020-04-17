@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 16:10:47 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/16 13:54:14 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/17 17:17:55 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,9 @@ void	dbg_hmap_print(t_list *hmap)
 
 static char *room_type(t_byte flags)
 {
-	if (flags & F_START)
+	if (flags & F_DEAD)
+		return ("DEAD-");
+	else if (flags & F_START)
 		return ("START");
 	else if (flags & F_END)
 		return ("END");
