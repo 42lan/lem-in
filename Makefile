@@ -6,7 +6,7 @@
 #    By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/13 11:54:38 by abaisago          #+#    #+#              #
-#    Updated: 2020/04/16 22:05:55 by abaisago         ###   ########.fr        #
+#    Updated: 2020/04/17 19:36:40 by abosch           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,7 +82,8 @@ SRC_PARSE      := ant.c         \
                   hmap.c        \
                   link.c        \
                   parsing.c     \
-                  room.c
+                  room.c		\
+				  del.c
 SRC_PARSE      := $(addprefix parsing/, $(SRC_PARSE))
 
 SRC_TOOLS      := tools.c \
