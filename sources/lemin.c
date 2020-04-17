@@ -6,14 +6,14 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:30:46 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/17 17:17:06 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/17 19:58:45 by abosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
 #include "parsing.h"
-
+#include "del.h"
 #include "algo.h"
 #include "debug.h"
 #include "tools.h"
@@ -32,5 +32,6 @@ int		lemin(int ac, char **av)
 	remove_deadend();
 	dbg_farm_print(&g_farm);
 	resolve();
+	final_free();
 	return (SUCCESS);
 }

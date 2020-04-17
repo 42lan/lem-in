@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 19:35:09 by abosch            #+#    #+#             */
-/*   Updated: 2020/04/17 19:37:47 by abosch           ###   ########.fr       */
+/*   Updated: 2020/04/17 19:57:41 by abosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@
 #include <stddef.h>
 
 void	del_link(void *no, size_t u);
+void	final_free(void);
 
 #endif
