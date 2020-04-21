@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 19:17:30 by abosch            #+#    #+#             */
-/*   Updated: 2020/04/19 23:12:53 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/21 19:02:08 by abosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ void	del_room(void *content)
 
 void	final_free(void)
 {
-	int	i;
+	unsigned	i;
 
-	i = -1;
-	while ((unsigned)++i < g_farm.size)
-		del_room(&ROOMS[i]);
+	i = 0;
+	while (i < g_farm.size)
+		del_room(&ROOMS[i++]);
 	free(ROOMS);
 }

@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 14:47:17 by abosch            #+#    #+#             */
-/*   Updated: 2020/04/17 17:14:42 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/21 19:08:53 by abosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	debug_deadend(void)
 {
-	int	i;
+	unsigned	i;
 
 	ft_printf("\n== ALIVE ROOMS ==\n");
 	i = -1;
-	while ((unsigned)++i < g_farm.size)
+	while (++i < g_farm.size)
 	{
 		if (!(ROOMS[i].flags & F_DEAD))
 			ft_printf("%s is alive\n", ROOMS[i].name);
@@ -26,7 +26,7 @@ void	debug_deadend(void)
 	ft_printf("==================\n");
 	ft_printf("\n== DEAD ROOMS ==\n");
 	i = -1;
-	while ((unsigned)++i < g_farm.size)
+	while (++i < g_farm.size)
 	{
 		if (ROOMS[i].flags & F_DEAD)
 			ft_printf("%s is dead\n", ROOMS[i].name);
@@ -36,9 +36,9 @@ void	debug_deadend(void)
 
 void	remove_deadend(void)
 {
-	int		i;
-	int		j;
-	int		k;
+	unsigned	i;
+	unsigned	j;
+	int			k;
 	t_room	*room;
 	t_byte	con;
 
@@ -47,14 +47,14 @@ void	remove_deadend(void)
 	{
 		i = -1;
 		con = 0;
-		while ((unsigned)++i < g_farm.size)
+		while (++i < g_farm.size)
 		{
 			j = -1;
 			room = &ROOMS[i];
 			k = 0;
 			if (room != START && room != END && !(room->flags & F_DEAD))
 			{
-				while ((unsigned)++j < room->LINK_LEN)
+				while (++j < room->LINK_LEN)
 					if (!(ROOMS[LINK_ARR[j]].flags & F_DEAD))
 						k++;
 				if (k < 2)
