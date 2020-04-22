@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:17:58 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/18 19:50:10 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/22 21:04:52 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@ static int		read_room(t_room *room, char *line)
 	room->name = ft_strsub(line, 0, ft_strclen(line, ' '));
 	while (ft_isprint(*line) && *line != ' ' && *line != '-')
 		++line;
-	if (ft_isspace(*line) && !ft_isdigit(*(line + 1)))
+	if (!ft_isspace(*line) || !ft_isdigit(*(line + 1)))
 		return (FAILURE);
 	++line;
 	room->coord.x = ft_atoll(line);
 	if (overflowed(line, room->coord.x))
 		return (FAILURE);
 	line += ft_strspn(line, "0123456789");
-	if (ft_isspace(*line) && !ft_isdigit(*(line + 1)))
+	if (!ft_isspace(*line) || !ft_isdigit(*(line + 1)))
 		return (FAILURE);
 	++line;
 	room->coord.y = ft_atoll(line);
