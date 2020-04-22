@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:11:29 by abosch            #+#    #+#             */
-/*   Updated: 2020/04/17 20:27:24 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/22 23:47:47 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,16 @@ static t_room	*traverse(t_room *start, t_room *room, unsigned offset)
 	return (room);
 }
 
+unsigned		cost_by_path(unsigned nb_vertix)
+{
+	unsigned	cost;
+
+	cost = (g_farm.ants_total + nb_vertix) - 1;
+	ft_printf("For %u ants the number of moves on this path"\
+		"will be equal to %u\n", g_farm.ants_total, cost);
+	return (cost);
+}
+
 static int		finish(t_room *target)
 {
 	if (target->pre[CUR] == UINT_MAX)
@@ -69,6 +79,7 @@ static int		finish(t_room *target)
 	{
 		ft_printf("\nDFS: success, target :|%s|: (%u steps)\n",
 			target->name, target->cost[CUR]);
+		cost_by_path(target->cost[CUR]);
 		return (SUCCESS);
 	}
 }
