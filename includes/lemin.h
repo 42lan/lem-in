@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/17 18:24:10 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/04/28 17:33:21 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ struct			s_room
 extern t_farm g_farm;
 
 int		lemin(int ac, char **av);
+void	send_ants(void);
 
 /*
 ************
