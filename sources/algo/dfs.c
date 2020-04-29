@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:11:29 by abosch            #+#    #+#             */
-/*   Updated: 2020/04/22 23:47:47 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/04/29 16:18:37 by abosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ unsigned		cost_by_path(unsigned nb_vertix)
 	unsigned	cost;
 
 	cost = (g_farm.ants_total + nb_vertix) - 1;
-	ft_printf("For %u ants the number of moves on this path"\
+	ft_printf("For %u ants the number of moves on this path "\
 		"will be equal to %u\n", g_farm.ants_total, cost);
 	return (cost);
 }

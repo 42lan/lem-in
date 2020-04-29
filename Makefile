@@ -6,7 +6,7 @@
 #    By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/13 11:54:38 by abaisago          #+#    #+#              #
-#    Updated: 2020/04/17 19:49:43 by abosch           ###   ########.fr        #
+#    Updated: 2020/04/28 17:47:37 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -100,6 +100,7 @@ SRC_ALGO       := $(addprefix algo/, $(SRC_ALGO))
 SRC_NAME       := main.c \
                   lemin.c \
 				  del.c \
+				  send_ants.c \
                   $(SRC_DBG) \
                   $(SRC_LIB) \
                   $(SRC_PARSE) \
