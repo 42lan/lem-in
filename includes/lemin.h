@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/28 17:33:21 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/01 17:57:54 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ struct			s_room
 	unsigned	cost[2];
 	unsigned	pre[2];
 	unsigned	ant_id;
+	unsigned	rtil;
 };
 
 extern t_farm g_farm;
