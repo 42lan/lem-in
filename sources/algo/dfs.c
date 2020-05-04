@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:11:29 by abosch            #+#    #+#             */
-/*   Updated: 2020/05/02 16:46:19 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/04 16:18:16 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,31 +57,6 @@ static t_room	*traverse(t_room *start, t_room *room, unsigned offset)
 		/* ft_printf("We go deeper\n"); */
 	}
 	return (room);
-}
-
-unsigned		cost_by_path(t_room *target)
-{
-	unsigned	i;
-	unsigned	j;
-	unsigned	total_rooms;
-	unsigned	cost;
-	t_room		*room;
-
-	i = -1;
-	total_rooms = 0;
-	while (++i < target->LINK_LEN)
-	{
-		j = -1;
-		room = ROOMS + target->link.arr[i];
-		while (++j < room->LINK_LEN)
-			if (room->link.dir[j] == BLOCKED)
-				total_rooms += room->rtil;
-	}
-	total_rooms += 1;
-	cost = (g_farm.ants_total + total_rooms) - 1;
-	ft_printf("TOTAL TRAVERSABLE ROOMS ON MAP = %d\n", total_rooms);
-	ft_printf("For %u ants the number of moves on this path will be equal to %u\n", g_farm.ants_total, cost);
-	return (cost);
 }
 
 static int		finish(t_room *target)
