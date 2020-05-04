@@ -6,7 +6,7 @@
 #    By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/13 11:54:38 by abaisago          #+#    #+#              #
-#    Updated: 2020/05/04 16:15:43 by amalsago         ###   ########.fr        #
+#    Updated: 2020/05/04 17:50:30 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,8 @@ SRC_LIB        := ft_arraysize.c \
                   ft_strcspn.c \
                   ft_strspn.c \
                   ft_strtok.c \
-                  ft_uilen.c
+                  ft_uilen.c \
+				  ft_swap_xor.c
 SRC_LIB        := $(addprefix lib/, $(SRC_LIB))
 
 SRC_PARSE      := ant.c         \
