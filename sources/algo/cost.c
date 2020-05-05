@@ -6,15 +6,17 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 10:03:09 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/04 18:30:28 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/05 19:07:43 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "algo.h"
 
+#include <stdlib.h>
 #include <string.h>
 #include <errno.h>
 
+#include "lib.h"
 #include "lemin.h"
 
 static unsigned		get_nb_paths(void)
@@ -37,19 +39,21 @@ static unsigned		get_nb_paths(void)
 	return (paths);
 }
 
-static unsigned		get_max_cost(unsigned *ants_by_path, unsigned nb_paths)
+static unsigned		get_max_cost(unsigned *ants_by_path, unsigned *paths_len, unsigned nb_paths)
 {
 	unsigned	i;
 	unsigned	cost;
 
 	i = -1;
 	cost = 0;
+	ft_printf("-------------------------------------\n");
 	while (++i < nb_paths)
 	{
-		ft_printf("On path %d - send %d ants\n", i, ants_by_path[i]);
-		if (ants_by_path[i] > cost)
-			cost = ants_by_path[i];
+		cost = (ants_by_path[i] + paths_len[i]) - 1;
+		ft_printf("| SENDING %d ANTS ON PATH %d (WITH %d ROOMS) WILL COST %d\n",
+			ants_by_path[i], i, paths_len[i] + 2, cost + 1);
 	}
+	ft_printf("-------------------------------------\n");
 	return (cost + 1);
 }
 
@@ -66,6 +70,19 @@ static void			fill_remain_ants(unsigned ants, unsigned *ants_by_path, unsigned n
 		ants -= 1;
 		k++;
 	}
+}
+
+static void			sort_paths_len(unsigned *paths_len, unsigned nb_paths)
+{
+	unsigned	i;
+
+	i = -1;
+	while (++i < nb_paths - 1)
+		if (paths_len[i] > paths_len[i + 1])
+		{
+			ft_swap_xor(&paths_len[i], &paths_len[i + 1]);
+			i = -1;
+		}
 }
 
 static unsigned		*get_paths_len(unsigned nb_paths)
@@ -91,22 +108,32 @@ static unsigned		*get_paths_len(unsigned nb_paths)
 				k++;
 			}
 	}
+	sort_paths_len(paths_len, nb_paths);
 	return (paths_len);
 }
 
-static void			dispatch_ants(unsigned *ants, unsigned *ants_by_path, unsigned nb_paths)
+static void			dispatch_ants(unsigned *ants, unsigned *ants_by_path, unsigned *paths_len, unsigned nb_paths)
 {
+	unsigned	j;
 	unsigned	k;
 	unsigned	diff;
-	unsigned	*paths_len;
 
 	k = 0;
-	diff = 0;
-	paths_len = get_paths_len(nb_paths);
-	while (k < nb_paths && *ants > 0)
+	while (nb_paths > 1 && k < nb_paths && *ants > 0)
 	{
 		if (k + 1 < nb_paths)
+		{
 			diff = paths_len[k + 1] - paths_len[k];
+			if (k != 0)
+			{
+				j = -1;
+				while (++j < k)
+				{
+					ants_by_path[j] += diff;
+					*ants -= diff;
+				}
+			}
+		}
 		else
 			diff = 1;
 		ants_by_path[k] += diff;
@@ -120,6 +147,7 @@ unsigned	get_cost(void)
 	unsigned	ants;
 	unsigned	cost;
 	unsigned	nb_paths;
+	unsigned	*paths_len;
 	unsigned	*ants_by_path;
 
 	cost = 0;
@@ -127,8 +155,11 @@ unsigned	get_cost(void)
 	ants = g_farm.ants_total;
 	if (!(ants_by_path = (unsigned*)ft_memalloc(sizeof(unsigned) * nb_paths)))
 		ft_printerr("lem-in: get_cost(malloc): %s\n", strerror(errno));
-	dispatch_ants(&ants, ants_by_path, nb_paths);
+	paths_len = get_paths_len(nb_paths);
+	dispatch_ants(&ants, ants_by_path, paths_len, nb_paths);
 	fill_remain_ants(ants, ants_by_path, nb_paths);
-	cost = get_max_cost(ants_by_path, nb_paths);
+	cost = get_max_cost(ants_by_path, paths_len, nb_paths);
+	free(paths_len);
+	free(ants_by_path);
 	return (cost);
 }
