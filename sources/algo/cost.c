@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 10:03:09 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/05 19:07:43 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/05 22:18:17 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ static void			dispatch_ants(unsigned *ants, unsigned *ants_by_path, unsigned *pa
 	unsigned	diff;
 
 	k = 0;
-	while (nb_paths > 1 && k < nb_paths && *ants > 0)
+	while (nb_paths > 1 && *ants > 0 && k < nb_paths)
 	{
 		if (k + 1 < nb_paths)
 		{
@@ -127,8 +127,10 @@ static void			dispatch_ants(unsigned *ants, unsigned *ants_by_path, unsigned *pa
 			if (k != 0)
 			{
 				j = -1;
-				while (++j < k)
+				while (*ants > 0 && ++j < k)
 				{
+					if ((int)(*ants - diff) < 0)
+						break ;
 					ants_by_path[j] += diff;
 					*ants -= diff;
 				}
@@ -136,6 +138,8 @@ static void			dispatch_ants(unsigned *ants, unsigned *ants_by_path, unsigned *pa
 		}
 		else
 			diff = 1;
+		if ((int)(*ants - diff) < 0)
+			break ;
 		ants_by_path[k] += diff;
 		*ants -= diff;
 		k++;
