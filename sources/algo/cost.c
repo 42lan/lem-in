@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 10:03:09 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/05 22:18:17 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/06 14:15:45 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static unsigned		get_nb_paths(void)
 		j = -1;
 		room = ROOMS + END->link.arr[i];
 		while (++j < LINK_SIZE)
-			if (LINK_DIR[j] == BLOCKED)
+			if (ROOMS + LINK_ARR[j] == END && LINK_DIR[j] == BLOCKED)
 				paths++;
 	}
 	return (paths);
@@ -53,7 +53,7 @@ static unsigned		get_max_cost(unsigned *ants_by_path, unsigned *paths_len,
 	{
 		cost = (ants_by_path[i] + paths_len[i]) - 1;
 		/* ft_printf("| SENDING %d ANTS ON PATH %d (WITH %d ROOMS) WILL COST %d\n", */
-		/* 	ants_by_path[i], i, paths_len[i] + 2, cost + 1); */
+		/* 	ants_by_path[i], i, paths_len[i] + 1, cost + 1); */
 	}
 	/* ft_printf("-------------------------------------\n"); */
 	return (cost + 1);
