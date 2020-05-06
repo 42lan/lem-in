@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/01 17:57:54 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/06 17:31:55 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 # define BLOCKED	0x04
 # define CUR		0
 # define OLD		1
+# define REV_NO		0
+# define REV_YES	1
 
 # define START		g_farm.start
 # define END		g_farm.end
