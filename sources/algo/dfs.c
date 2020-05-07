@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:11:29 by abosch            #+#    #+#             */
-/*   Updated: 2020/05/04 16:18:16 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/07 18:32:03 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ static int		finish(t_room *target)
 {
 	if (target->pre[CUR] == UINT_MAX)
 	{
-		ft_printf("\nDFS: failure, target :|%s|: not found\n", target->name);
+		/* ft_printf("\nDFS: failure, target :|%s|: not found\n", target->name); */
 		return (FAILURE);
 	}
 	else
 	{
-		ft_printf("\nDFS: success, target :|%s|: (%u steps)\n",
-			target->name, target->cost[CUR]);
+		/* ft_printf("\nDFS: success, target :|%s|: (%u steps)\n", */
+		/* 	target->name, target->cost[CUR]); */
 		return (SUCCESS);
 	}
 }
