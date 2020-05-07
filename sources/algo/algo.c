@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 22:01:45 by abaisago          #+#    #+#             */
-/*   Updated: 2020/05/07 18:41:33 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/08 00:55:18 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,8 @@ void	resolve()
 
 	curr_cost = 0;
 	last_cost = UINT_MAX;
-	/* if (dfs(g_farm.start, g_farm.end, FULL) == FAILURE) */
-	/* 	ft_printerr("Invalid map: No path between Start and End\n"); */
-	/* orient_path_to(g_farm.end, REV_NO); */
-	/* print_paths_from(g_farm.start); */
-	/* reset_info(); */
+	if (dfs(g_farm.start, g_farm.end, FULL) == FAILURE)
+		ft_printerr(E_MAP);
 	while (dfs(g_farm.start, g_farm.end, FULL) == SUCCESS)
 	{
 		orient_path_to(END, REV_NO);
