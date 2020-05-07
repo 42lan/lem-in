@@ -76,12 +76,12 @@ static int		get_rooms(t_list *hmap, t_list *room_list, char **line)
 {
 	t_room		room;
 	unsigned	index;
-	int			ret;
 
 	index = 0;
 	ft_bzero(&room, sizeof(room));
-	while ((ret = get_next_line(0, line)) > 0)
+	while (readline(line))
 	{
+		ft_printf("%s\n", *line);
 		if (*line[0] == 'L')
 			return (FAILURE);
 		if (handle_comments(&room, *line) == SUCCESS)
@@ -93,10 +93,6 @@ static int		get_rooms(t_list *hmap, t_list *room_list, char **line)
 		ft_bzero(&room, sizeof(room));
 		ft_strdel(line);
 	}
-	if (ret == 0)
-		ft_printerr(ERROR);
-	if (ret < 0)
-		ft_printerr("lem-in: get_rooms(read): %s\n", strerror(errno));
 	return (SUCCESS);
 }
 

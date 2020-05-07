@@ -87,8 +87,6 @@ static int		add_links(t_list *hmap, char *line)
 
 int			get_links(t_list *hmap, char *line)
 {
-	int		ret;
-
 	if (!line)
 		return (FAILURE);
 	if (line[0] != '#')
@@ -98,7 +96,7 @@ int			get_links(t_list *hmap, char *line)
 			return (SUCCESS);
 		}
 	ft_strdel(&line);
-	while ((ret = get_next_line(0, &line)) > 0)
+	while (readline(&line))
 	{
 		if (line[0] == '#')
 			continue ;
@@ -109,7 +107,5 @@ int			get_links(t_list *hmap, char *line)
 		}
 		ft_strdel(&line);
 	}
-	if (ret < 0)
-		ft_printerr("lem-in: get_links(read): %s\n", strerror(errno));
 	return (SUCCESS);
 }

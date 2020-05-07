@@ -24,12 +24,8 @@ unsigned	get_ants(void)
 	char		*line;
 	char		*p_line;
 	long long	ants;
-	int			ret;
 
-	if ((ret = get_next_line(0, &line)) < 0)
-		ft_printerr("lem-in: get_ants(read): %s\n", strerror(errno));
-	if (ret == 0)
-		ft_printerr(ERROR);
+	readline(&line);
 	p_line = line;
 	ants = ft_atoll(line);
 	if (overflowed(line, ants))
