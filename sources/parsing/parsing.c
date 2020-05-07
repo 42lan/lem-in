@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 09:32:10 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/18 19:54:00 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/08 01:21:22 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void		links_to_array(t_room *rooms, unsigned size)
+static void		links_to_array(t_room *rooms, unsigned size)
 {
 	unsigned	i;
 
