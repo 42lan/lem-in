@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 10:03:09 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/06 14:15:45 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/07 18:30:56 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,18 +158,17 @@ unsigned	get_cost(void)
 	unsigned	cost;
 	unsigned	nb_paths;
 	unsigned	*paths_len;
-	unsigned	*ants_by_path;
 
 	cost = 0;
 	nb_paths = get_nb_paths();
 	ants = g_farm.ants_total;
-	if (!(ants_by_path = (unsigned*)ft_memalloc(sizeof(unsigned) * nb_paths)))
+	if (!(g_farm.ants_by_path = (unsigned*)ft_memalloc(sizeof(unsigned) * nb_paths)))
 		ft_printerr("lem-in: get_cost(malloc): %s\n", strerror(errno));
 	paths_len = get_paths_len(nb_paths);
-	dispatch_ants(&ants, ants_by_path, paths_len, nb_paths);
-	fill_remain_ants(ants, ants_by_path, nb_paths);
-	cost = get_max_cost(ants_by_path, paths_len, nb_paths);
-	free(paths_len);
-	free(ants_by_path);
+	dispatch_ants(&ants, g_farm.ants_by_path, paths_len, nb_paths);
+	fill_remain_ants(ants, g_farm.ants_by_path, nb_paths);
+	cost = get_max_cost(g_farm.ants_by_path, paths_len, nb_paths);
+	/* free(paths_len); */
+	/* free(ants_by_path); */
 	return (cost);
 }
