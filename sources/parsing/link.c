@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:54:45 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/18 19:50:01 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/08 01:14:30 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,6 @@
 #include "lib.h"
 #include "debug.h"
 #include "tools.h"
-
-#include <errno.h>
-#include <stddef.h>
-#include <string.h>
-
 
 static void		get_room_names_index(char *line, char *room_name[2],
 					unsigned *room_index)

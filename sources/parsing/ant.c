@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:22:27 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/19 21:14:26 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/08 01:15:50 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 #include "lib.h"
 
 #include "predicates.h"
-
-#include <errno.h>
-#include <string.h>
 
 unsigned	get_ants(void)
 {

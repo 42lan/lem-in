@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 11:44:35 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/10 14:04:13 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/05/08 01:19:03 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 #include "lemin.h"
 
 #include "tools.h"
-
-#include <errno.h>
-#include <stddef.h>
-#include <string.h>
 
 void		hmap_init(t_list *hmap)
 {

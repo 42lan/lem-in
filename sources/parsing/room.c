@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:17:58 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/22 21:04:52 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/08 01:17:28 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@
 #include "predicates.h"
 #include "tools.h"
 #include "lib.h"
-
-#include <errno.h>
-#include <string.h>
 
 //TODO Redo with strtoll
 static int		read_room(t_room *room, char *line)
