@@ -6,49 +6,57 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/28 17:33:06 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/28 17:35:09 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/07 19:09:13 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-void	move_ant_forward(unsigned ant, t_room *room)
+void	move_ant(t_room *prev, t_room *curr)
 {
-	if (room == END)
-		g_farm.ants_end += 1;
-	room->ant_id = ant;
-	/* ft_printf("%s received #%u\n", room->name, room->ant_id); */
-	ft_printf("L%d-%s ", room->ant_id, room->name);
+	prev->ant_id = curr->ant_id;
+	if (prev->ant_id != 0)
+		ft_printf("L%d-%s ", prev->ant_id, prev->name);
 }
 
 void	send_ants(void)
 {
 	unsigned	i;
-	unsigned	ant;
+	unsigned	j;
+	unsigned	ant_id;
+	t_room		*curr;
+	t_room		*prev;
 
-	ant = 0;
-	while (g_farm.ants_end <= g_farm.ants_total)
+	i = -1;
+	ant_id = 0;
+	while (g_farm.ants_end != g_farm.ants_total)
 	{
-		if (g_farm.ants_start == 0)
-		{
-			ft_printf("No ants left in start room\n");
-		}
+		while (++i < END->LINK_LEN && g_farm.ants_end != g_farm.ants_total)
+			if (END->link.dir[i] == ALLOWED)
+			{
+				j = -1;
+				prev = END;
+				curr = ROOMS + END->link.arr[i];
+				move_ant(prev, curr);
+				if (prev == END)
+					if (prev->ant_id != 0)
+						g_farm.ants_end += 1;
+				while (++j < curr->LINK_LEN)
+					if (curr->link.dir[j] == ALLOWED)
+					{
+						prev = curr;
+						curr = ROOMS + curr->link.arr[j];
+						if (curr == START && g_farm.ants_start > 0)
+						{
+							ant_id += 1;
+							g_farm.ants_start -= 1;
+							curr->ant_id = ant_id;
+						}
+						move_ant(prev, curr);
+						j = -1;
+					}
+			}
+		ft_putchar('\n');
 		i = -1;
-		while (++i < g_farm.size) // Loop through all rooms
-		{
-			if (&ROOMS[i] == START && g_farm.ants_start > 0)
-			{
-				ant += 1;
-				ROOMS[i].ant_id = ant;
-				g_farm.ants_start--;
-			}
-			if (ROOMS[i].flags != F_DEAD && ROOMS[i].flags != F_END) // Move ants between only non-dead rooms
-			{
-				/* ft_printf("%s have ants #%u\n", ROOMS[i].name, ROOMS[i].ant_id); */
-				move_ant_forward(ROOMS[i].ant_id, &ROOMS[i + 1]);
-				ROOMS[i].ant_id = 0;
-			}
-			ft_printf("\n");
-		}
 	}
 }

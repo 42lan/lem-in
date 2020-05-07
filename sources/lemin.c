@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:30:46 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/17 19:58:45 by abosch           ###   ########.fr       */
+/*   Updated: 2020/05/07 19:08:44 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int		lemin(int ac, char **av)
 	remove_deadend();
 	dbg_farm_print(&g_farm);
 	resolve();
+	send_ants();
 	final_free();
 	return (SUCCESS);
 }
