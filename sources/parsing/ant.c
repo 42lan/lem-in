@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:22:27 by abaisago          #+#    #+#             */
-/*   Updated: 2020/05/08 01:15:50 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/08 02:04:41 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ unsigned	get_ants(void)
 	char		*p_line;
 	long long	ants;
 
-	readline(&line);
+	readline(&line, 0);
 	p_line = line;
 	ants = ft_atoll(line);
 	if (overflowed(line, ants))

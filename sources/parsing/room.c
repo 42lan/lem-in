@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:17:58 by abaisago          #+#    #+#             */
-/*   Updated: 2020/05/08 01:17:28 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/08 02:04:30 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,8 @@ static int		get_rooms(t_list *hmap, t_list *room_list, char **line)
 
 	index = 0;
 	ft_bzero(&room, sizeof(room));
-	while (readline(line))
+	while (readline(line, 0))
 	{
-		ft_printf("%s\n", *line);
 		if (*line[0] == 'L')
 			return (FAILURE);
 		if (handle_comments(&room, *line) == SUCCESS)
