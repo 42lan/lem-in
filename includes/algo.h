@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 18:25:39 by abosch            #+#    #+#             */
-/*   Updated: 2020/05/06 17:43:09 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/08 18:32:05 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,9 @@ void		orient_path_to(t_room *target, t_byte rev);
 void		resolve();
 unsigned	get_cost(void);
 unsigned	cost_by_path(t_room *target);
+void		recount_cost(void);
+unsigned	get_nb_paths(void);
+unsigned	get_max_cost(unsigned *ants_by_path, unsigned *paths_len,
+				unsigned nb_paths);
 
 #endif
