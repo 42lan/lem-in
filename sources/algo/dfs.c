@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:11:29 by abosch            #+#    #+#             */
-/*   Updated: 2020/05/07 18:32:03 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/08 19:12:26 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ static t_room	*traverse(t_room *start, t_room *room, unsigned offset)
 		room->cost[OLD] = room->cost[CUR];
 		room->pre[CUR] = prev->index;
 		room->cost[CUR] = prev->cost[CUR] + 1;
-		room->rtil = room->cost[CUR];
 		/* ft_printf("We go deeper\n"); */
 	}
 	return (room);
