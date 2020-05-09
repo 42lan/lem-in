@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:54:45 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/08 02:03:16 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/09 11:48:57 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ static void		set_room_links(t_list_link *room_link[2])
 	if (ft_list_find(room1->link.list, &(room2->index), room_indexcmp)
 		&& ft_list_find(room2->link.list, &(room1->index), room_indexcmp))
 	{
-		ft_printf("WARN: link \"%s-%s\" was already set. get_links() stops\n",
-			room1->name, room2->name);
+		/* ft_printf("WARN: link \"%s-%s\" was already set. get_links() stops\n", */
+		/* 	room1->name, room2->name); */
 		return ;
 	}
 	ft_list_push(room1->link.list,
@@ -71,7 +71,7 @@ static int		add_links(t_list *hmap, char *line)
 	get_room_names_index(line, room_name, room_index);
 	if (ft_strequ(room_name[0], room_name[1]))
 	{
-		ft_printf("WARN: link to itself is skipped to avoid infinite loop\n");
+		/* ft_printf("WARN: link to itself is skipped to avoid infinite loop\n"); */
 		return (SUCCESS);
 	}
 	if (get_room_link(hmap, room_link, room_index, room_name) == FAILURE)
