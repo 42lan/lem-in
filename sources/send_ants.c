@@ -6,18 +6,19 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/28 17:33:06 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/08 01:34:24 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/09 11:42:24 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 #include "colors.h"
 
+#include <unistd.h>
 static void		move_ant(t_room *prev, t_room *curr)
 {
 	static unsigned	ant_id = 0;
 
-	if (curr == START)
+	if (curr == START && g_farm.ants_start > 0)
 	{
 		if (g_farm.ants_start > 0)
 			ant_id += 1;
