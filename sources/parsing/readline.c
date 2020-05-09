@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 01:00:23 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/08 02:16:32 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/08 22:27:03 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ int		readline(char **line, int eof)
 		ft_printerr("lem-in(read): %s\n", strerror(errno));
 	if (ret == 0 && eof != 1)
 		ft_printerr(ERROR);
-	ft_printf("%s\n", *line);
-	if (ret == 0 && eof == 1)
+	else if (ret == 0 && eof == 1)
 		ft_printf("\n");
+	else
+		ft_printf("%s\n", *line);
 	return (ret);
 }
