@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/08 19:12:33 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/17 13:09:28 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 # define F_START	0x01
 # define F_END		0x02
 # define F_DEAD		0x04
-# define DUPLEX		0x01
-# define ALLOWED	0x02
-# define BLOCKED	0x04
+# define DUPLEX		0x00
+# define ALLOWED	0x01
+# define BLOCKED	0x02
 # define CUR		0
 # define OLD		1
 # define REV_NO		0

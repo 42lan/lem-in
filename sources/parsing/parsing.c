@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 09:32:10 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/08 01:21:22 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/17 13:32:02 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void		links_to_array(t_room *rooms, unsigned size)
 			sizeof(unsigned), NULL)))
 			ft_printerr("lem-in: links_to_array(arr malloc): %s\n",
 				strerror(errno));
-		if (!(rooms[i].link.dir = (t_byte*)malloc(rooms[i].link.list->len)))
+		if (!(rooms[i].link.dir = (t_byte*)ft_memalloc(rooms[i].LINK_LEN)))
 			ft_printerr("lem-in: links_to_array(dir malloc): %s\n",
 				strerror(errno));
 		if (rooms[i].flags & F_START)
