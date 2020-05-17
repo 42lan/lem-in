@@ -69,6 +69,7 @@ struct			s_room
 	unsigned	cost[2];
 	unsigned	pre[2];
 	unsigned	ant_id;
+	unsigned	ex;
 };
 
 extern t_farm g_farm;

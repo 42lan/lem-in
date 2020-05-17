@@ -58,6 +58,7 @@ static int		handle_room(t_list *hmap, t_list *room_list, t_room *room,
 {
 	room->link.list = ft_list_init();	//TODO: Needs to be freed
 	room->index = index;
+	room->ex = -1;
 	ft_memset(room->pre, -1, sizeof(room->pre));
 	ft_memset(room->cost, -1, sizeof(room->cost));
 	if (hmap_add(hmap, room) == FAILURE)
