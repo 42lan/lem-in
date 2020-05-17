@@ -28,6 +28,7 @@ void	resolve()
 	last_cost = UINT_MAX;
 	if (dfs(g_farm.start, g_farm.end, FIRST) == FAILURE)
 		ft_printerr(E_MAP);
+	reset_info();
 	while (dfs(g_farm.start, g_farm.end, FULL) == SUCCESS)
 	{
 		orient_path_to(END, REV_NO);
