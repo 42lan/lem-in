@@ -30,7 +30,7 @@ int		lemin(int ac, char **av)
 	if (parse_input(hmap) == FAILURE)
 		exit(EXIT_FAILURE);
 	remove_deadend();
-	dbg_farm_print(&g_farm);
+//	dbg_farm_print(&g_farm);
 	resolve();
 	send_ants();
 	final_free();

@@ -36,9 +36,9 @@ void	resolve()
 		if (curr_cost < last_cost)
 		{
 			/* ft_printf(SGR_FG_GREEN"CURR COST : %u\n"SGR_NORMAL, curr_cost); */
-			ft_printf("==========\n");
-			print_paths_from(g_farm.start);
-			ft_printf("==========\n\n");
+//			ft_printf("==========\n");
+//			print_paths_from(g_farm.start);
+//			ft_printf("==========\n\n");
 			last_cost = curr_cost;
 		}
 		else

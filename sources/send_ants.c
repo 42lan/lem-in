@@ -34,7 +34,8 @@ static void		move_ant(t_room *prev, t_room *curr)
 		if (prev == END)
 		{
 			g_farm.ants_end += 1;
-			ft_printf(SGR_FG_RED"L%d-%s "SGR_NORMAL, prev->ant_id, prev->name);
+//			ft_printf(SGR_FG_RED"L%d-%s "SGR_NORMAL, prev->ant_id, prev->name);
+			ft_printf("L%d-%s ", prev->ant_id, prev->name);
 		}
 		else
 			ft_printf("L%d-%s ", prev->ant_id, prev->name);
@@ -75,5 +76,5 @@ void			send_ants(void)
 		moves += 1;
 		i = -1;
 	}
-	ft_printf(SGR_INVERSE" Total moves: %d \n"SGR_NORMAL, moves);
+//	ft_printf(SGR_INVERSE" Total moves: %d \n"SGR_NORMAL, moves);
 }
