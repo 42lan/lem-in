@@ -48,6 +48,8 @@ lem-in
 *.su
 *.idb
 *.pdb
+debug
+lem-in.infected
 
 # Kernel Module Compile Results
 *.mod*
