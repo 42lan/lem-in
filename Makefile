@@ -65,7 +65,7 @@ RM             := /bin/rm
 
 SRC_PATH       := sources
 
-SRC_DBG        := print.c
+SRC_DBG        := print.c print2.c
 SRC_DBG        := $(addprefix debug/, $(SRC_DBG))
 
 SRC_LIB        := ft_arraysize.c \

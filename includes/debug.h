@@ -20,6 +20,7 @@ int		dbg_print_room(void *content, size_t size, unsigned pos, unsigned max);
 void	dbg_hmap_print(t_list *hmap);
 void	dbg_farm_print(t_farm *farm);
 void	print_paths_from(t_room *start);
+void	show_orien(t_room *room);
 
 /*
 ** DEBUG_H
