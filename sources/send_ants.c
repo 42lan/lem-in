@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/28 17:33:06 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/09 11:42:24 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/19 20:08:14 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,23 @@ static void		send_ants_helper(t_room *prev, t_room *curr)
 	}
 }
 
-void			send_ants(void)
+static unsigned		start_end_connected(void)
 {
-	unsigned	i;
-	unsigned	moves;
+	unsigned		i;
 
 	i = -1;
+
+static void			one_move(void)
+{
+	ft_printf(SGR_BOLD SGR_FG_YELLOW"%-5d"SGR_NORMAL, 1);
+	while (g_farm.ants_end != g_farm.ants_total)
+		move_ant(END, START, 0);
+	ft_printf("\n");
+}
+
 	moves = 0;
+	if (start_end_connected() == SUCCESS)
+		one_move();
 	while (g_farm.ants_end != g_farm.ants_total)
 	{
 		while (g_farm.ants_end != g_farm.ants_total && ++i < END->LINK_LEN)
