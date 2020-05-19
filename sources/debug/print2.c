@@ -20,3 +20,15 @@ void	show_orien(t_room *room)
 		i++;
 	}
 }
+
+void	print_map_cost(void)
+{
+	unsigned	i;
+
+	i = 0;
+	while (i < g_farm.size)
+	{
+		ft_printf("%s cur : %u - old : %u\n", ROOMS[i].name, ROOMS[i].cost[CUR],  ROOMS[i].cost[OLD]);
+		i++;
+	}
+}
