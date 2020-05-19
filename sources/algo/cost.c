@@ -117,6 +117,7 @@ unsigned	get_cost(void)
 
 	cost = 0;
 	nb_paths = get_nb_paths();
+	g_farm.nb_paths = nb_paths;
 	ants = g_farm.ants_total;
 	if (!(g_farm.ants_by_path = (unsigned*)ft_memalloc(sizeof(unsigned) * nb_paths)))
 		ft_printerr("lem-in: get_cost(malloc): %s\n", strerror(errno));
@@ -125,7 +126,6 @@ unsigned	get_cost(void)
 	dispatch_ants(&ants, g_farm.ants_by_path, paths_len, nb_paths);
 	fill_remain_ants(ants, g_farm.ants_by_path, nb_paths);
 	cost = get_max_cost(g_farm.ants_by_path, paths_len, nb_paths);
-	/* free(paths_len); */
-	/* free(ants_by_path); */
+	free(paths_len);
 	return (cost);
 }

@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/17 13:09:28 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/05/19 11:23:56 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ struct			s_farm
 	unsigned	ants_start;
 	t_room		*end;
 	unsigned	ants_end;
+	unsigned	nb_paths;
 	unsigned	*ants_by_path;
 };
 
