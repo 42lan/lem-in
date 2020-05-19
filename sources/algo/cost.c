@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 10:03:09 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/08 18:24:22 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/19 19:58:57 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static unsigned		*get_paths_len(unsigned nb_paths)
 		room = ROOMS + END->link.arr[i];
 		while (++j < LINK_SIZE)
 			if (LINK_DIR[j] == BLOCKED)
-				paths_len[++k] = room->cost[CUR];
+				paths_len[++k] = room->cost[CUR] + 1;
 	}
 	sort_paths_len(paths_len, nb_paths);
 	return (paths_len);
