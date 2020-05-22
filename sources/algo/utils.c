@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 14:47:17 by abosch            #+#    #+#             */
-/*   Updated: 2020/05/08 18:35:25 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/22 13:12:39 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,5 @@ unsigned		get_max_cost(unsigned *ants_by_path, unsigned *paths_len,
 	cost = 0;
 	while (++i < nb_paths)
 		cost = ants_by_path[i] + paths_len[i] - 1;
-	return (cost + 1);
+	return (cost);
 }
