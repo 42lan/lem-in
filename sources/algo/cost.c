@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 10:03:09 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/23 03:59:10 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/23 04:03:31 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,31 +87,21 @@ static void			dispatch_ants(unsigned *ants, unsigned *ants_by_path,
 	unsigned	diff;
 
 	k = 0;
-	while (nb_paths > 1 && *ants > 0 && k < nb_paths)
+	diff = 0;
+	while (nb_paths > 1 && *ants > diff && k < nb_paths)
 	{
-		if (k + 1 < nb_paths)
+		j = -1;
+		diff = paths_len[k + 1] - paths_len[k];
+		if (diff > *ants)
+			diff = *ants;
+		while (*ants > diff && ++j < k + 1)
 		{
-			diff = paths_len[k + 1] - paths_len[k];
-			if (k != 0)
-			{
-				j = -1;
-				while (*ants > 0 && ++j < k)
-				{
-					if ((int)(*ants - diff) < 0)
-						break ;
-					ants_by_path[j] += diff;
-					*ants -= diff;
-				}
-			}
+			ants_by_path[j] += diff;
+			*ants -= diff;
 		}
-		else
-			diff = 1;
-		if ((int)(*ants - diff) < 0)
-			break ;
-		ants_by_path[k] += diff;
-		*ants -= diff;
 		k++;
 	}
+	fill_remain_ants(*ants, g_farm.ants_by_path, nb_paths);
 }
 
 unsigned	get_cost(void)
