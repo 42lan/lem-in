@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:17:58 by abaisago          #+#    #+#             */
-/*   Updated: 2020/05/08 02:04:30 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/23 03:52:37 by abosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 #include "predicates.h"
 #include "tools.h"
 #include "lib.h"
+
+#include <errno.h>
+#include <string.h>
 
 //TODO Redo with strtoll
 static int		read_room(t_room *room, char *line)
@@ -97,7 +100,9 @@ t_list			*get_room_list(t_list *hmap)
 	t_list		*room_list;		//TODO: Needs to be freed
 	char		*line;
 
-	room_list = ft_list_init();
+	if ((room_list = ft_list_init()) == NULL)
+		ft_printerr("lem-in: get_room_list(t_list malloc): \
+			%s\n", strerror(errno));
 	if (get_rooms(hmap, room_list, &line) == FAILURE)
 		if (!ft_strchr(line, '-'))
 			ft_printerr(E_ROOMS);
