@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/28 17:33:06 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/19 20:12:10 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/23 04:15:51 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,14 @@ static void			send_ants_helper(t_room *prev, t_room *curr, unsigned k)
 	}
 }
 
-static unsigned		start_end_connected(void)
+static void			send_onemove(void)
+{
+	ft_printf(SGR_BOLD SGR_FG_YELLOW"%-5d"SGR_NORMAL, 1);
+	while (g_farm.ants_end != g_farm.ants_total)
+		move_ant(END, START, 0);
+	ft_printf("\n");
+}
+
 {
 	unsigned		i;
 
@@ -78,13 +85,6 @@ static unsigned		start_end_connected(void)
 		}
 	return (FAILURE);
 }
-
-static void			one_move(void)
-{
-	ft_printf(SGR_BOLD SGR_FG_YELLOW"%-5d"SGR_NORMAL, 1);
-	while (g_farm.ants_end != g_farm.ants_total)
-		move_ant(END, START, 0);
-	ft_printf("\n");
 }
 
 void				send_ants(void)
@@ -94,8 +94,8 @@ void				send_ants(void)
 	unsigned		moves;
 
 	moves = 0;
-	if (start_end_connected() == SUCCESS)
-		one_move();
+	if (start_links_end() == SUCCESS)
+		send_onemove();
 	while (g_farm.ants_end != g_farm.ants_total)
 	{
 		i = -1;
