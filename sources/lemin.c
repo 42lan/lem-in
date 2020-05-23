@@ -33,6 +33,9 @@ t_byte		start_links_end(void)
 	return (FAILURE);
 }
 
+int			lemin(int ac, char **av)
+{
+	t_list		hmap[HMAP_SIZE];
 
 	hmap_init(hmap);
 	if (parse_input(hmap) == FAILURE)
@@ -40,6 +43,9 @@ t_byte		start_links_end(void)
 	remove_deadend();
 	/* dbg_farm_print(&g_farm); */
 	if (start_links_end() == SUCCESS)
+		resolve_onemove();
+	else
+		resolve();
 	send_ants();
 	final_free();
 	return (SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 22:01:45 by abaisago          #+#    #+#             */
-/*   Updated: 2020/05/20 20:35:45 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/23 03:26:16 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,26 @@
 #include "debug.h"
 #include "lemin.h"
 #include "tools.h"
-#include "colors.h"
 
+#include <errno.h>
 #include <limits.h>
+#include <string.h>
 
-void	resolve()
+void	resolve_onemove(void)
+{
+	unsigned	i;
+
+	i = -1;
+	while (++i < END->link.list->len)
+		if (ROOMS + END->link.arr[i] == START)
+			END->link.dir[i] = ALLOWED;
+	g_farm.nb_paths = 1;
+	if (!(g_farm.ants_by_path = (unsigned*)ft_memalloc(sizeof(unsigned) * 1)))
+		ft_printerr("lem-in: resolve_onemove(malloc): %s\n", strerror(errno));
+	g_farm.ants_by_path[0] = g_farm.ants_total;
+}
+
+void	resolve(void)
 {
 	unsigned	curr_cost;
 	unsigned	last_cost;
@@ -33,19 +48,13 @@ void	resolve()
 	{
 		orient_path_to(END, REV_NO);
 		curr_cost = get_cost();
-		if (curr_cost < last_cost)
+		if (curr_cost > last_cost)
 		{
-			/* ft_printf(SGR_FG_GREEN"CURR COST : %u\n"SGR_NORMAL, curr_cost); */
-			/* print_paths_from(g_farm.start); */
-			last_cost = curr_cost;
-		}
-		else
-		{
-			/* ft_printf(SGR_FG_RED"LAST ORIENT_PATH_TO WILL BE REVERTED\n"SGR_NORMAL); */
 			orient_path_to(END, REV_YES);
-			get_cost();
+			curr_cost = get_cost();
 			break ;
 		}
+		last_cost = curr_cost;
 		reset_info();
 	}
 }
