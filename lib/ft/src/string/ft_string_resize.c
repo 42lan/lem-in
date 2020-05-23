@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 15:34:27 by abaisago          #+#    #+#             */
-/*   Updated: 2020/01/22 21:07:56 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/05/11 15:39:07 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_string	*ft_string_resize(t_string *string, size_t size)
 	char	*old;
 
 	old = string->buf;
-	if ((string->buf = malloc(sizeof *string->buf * size)) == NULL)
+	if ((string->buf = malloc(sizeof(*string->buf) * size)) == NULL)
 		return (NULL);
 	string->size = size;
 	if (old == NULL)

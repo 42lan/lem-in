@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/23 12:02:25 by abaisago          #+#    #+#             */
-/*   Updated: 2020/01/24 16:53:30 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/05/11 15:31:43 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ t_array2	*ft_array2_resize(t_array2 *array, size_t size)
 		return (array);
 	}
 	else if (size > array->len)
-		ft_memcpy(array->arr, old, sizeof *array->arr * (array->len + 1));
+		ft_memcpy(array->arr, old, sizeof(*array->arr) * (array->len + 1));
 	else
 	{
-		ft_memcpy(array->arr, old, sizeof *array->arr * (size - 1));
+		ft_memcpy(array->arr, old, sizeof(*array->arr) * (size - 1));
 		array->len = size - 1;
 		array->arr[array->len] = NULL;
 	}

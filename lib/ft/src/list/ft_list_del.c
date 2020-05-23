@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 15:49:20 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/04 14:19:19 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/05/10 21:40:55 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@
 void	ft_list_del(t_list **alist, void (*del)(void *, size_t))
 {
 	ft_list_clear(*alist, del);
+	free(*alist);
 	*alist = NULL;
 }

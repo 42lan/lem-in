@@ -6,10 +6,9 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 16:46:22 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/04 14:23:05 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/05/11 15:41:12 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef LIBFT_H
 # define LIBFT_H
@@ -26,12 +25,12 @@
 typedef	unsigned char	t_byte;
 typedef	float_t	t_float;
 
-typedef struct	s_array2 t_array2;
-typedef struct	s_ivec2 t_ivec2;
-typedef struct	s_ivec3 t_ivec3;
-typedef struct	s_list_link t_list_link;
-typedef struct	s_list t_list;
-typedef struct	s_string t_string;
+typedef struct s_array2		t_array2;
+typedef struct s_ivec2		t_ivec2;
+typedef struct s_ivec3		t_ivec3;
+typedef struct s_list_link	t_list_link;
+typedef struct s_list		t_list;
+typedef struct s_string		t_string;
 
 struct			s_array2
 {

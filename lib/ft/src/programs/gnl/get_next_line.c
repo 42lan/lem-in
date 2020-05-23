@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:25:22 by abaisago          #+#    #+#             */
-/*   Updated: 2019/03/06 22:59:29 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/05/11 14:03:10 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,14 @@
 #include <sys/uio.h>
 #include <unistd.h>
 
-static t_gnl	*gnlnew(char *s, int fd, t_gnl *begin)
+static t_gnl	*gnlnew(int fd, t_gnl *begin)
 {
 	t_gnl			*list;
 
 	if (!(list = (t_gnl*)malloc(sizeof(*list))))
 		return (NULL);
-	list->rest = s;
+	if ((list->rest = ft_strnew(0)) == NULL)
+		return (NULL);
 	list->fd = fd;
 	list->next = begin;
 	return (list);
@@ -40,7 +41,7 @@ static t_gnl	*get_file(t_gnl **begin, int fd)
 		lst = lst->next;
 	if (lst == NULL)
 	{
-		if (!(lst = gnlnew(ft_strnew(0), fd, *begin)))
+		if (!(lst = gnlnew(fd, *begin)))
 			return (NULL);
 		*begin = lst;
 	}

@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 21:40:08 by abaisago          #+#    #+#             */
-/*   Updated: 2020/01/23 19:02:49 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/05/11 15:30:23 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@
 
 void	ft_array2_del(t_array2 **address)
 {
-	t_array2	*array = *address;
+	t_array2	*array;
 
+	array = *address;
 	free(array->arr);
 	array->arr = NULL;
 	array->len = 0;

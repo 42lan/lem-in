@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 15:57:38 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/30 14:01:14 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/05/11 15:34:22 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	*ft_list_to_arr(t_list *list, unsigned term_size, void (*f)())
 	link = list->head;
 	acc = 0;
 	i = -1;
-	while(++i < list->len)
+	while (++i < list->len)
 	{
 		ft_memcpy(tab + acc, link->content, link->content_size);
 		if (f != NULL)

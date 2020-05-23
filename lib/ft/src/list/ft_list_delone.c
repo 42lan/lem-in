@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 15:15:33 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/30 12:40:41 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/05/10 21:20:56 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	ft_list_delone(t_list *list, t_list_link *link,
 	link->next->prev = link->prev;
 	link->prev = NULL;
 	link->next = NULL;
+	free(link->content);
 	link->content = 0;
 	link->content_size = 0;
 	free(link);

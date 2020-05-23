@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 15:30:05 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/01 13:57:58 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/05/11 15:37:45 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@
 
 void	ft_string_del(t_string **address)
 {
-	t_string		*string = *address;
+	t_string		*string;
 
+	string = *address;
 	ft_bzero(string->buf, string->size);
 	string->len = 0;
 	free(string->buf);

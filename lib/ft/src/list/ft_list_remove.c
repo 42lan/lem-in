@@ -6,13 +6,14 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 17:05:51 by abaisago          #+#    #+#             */
-/*   Updated: 2020/03/30 13:44:35 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/05/11 15:36:19 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-/* The ft_list_remove() function removes the link
+/*
+** The ft_list_remove() function removes the link
 ** __link__ from the list __list__ using the __del__
 ** function.
 **

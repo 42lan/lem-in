@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 15:20:34 by abaisago          #+#    #+#             */
-/*   Updated: 2020/01/23 21:07:16 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/05/11 15:38:37 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ t_string		*ft_string_init(void)
 {
 	t_string *string;
 
-	if ((string = malloc(sizeof *string)) == NULL)
+	if ((string = malloc(sizeof(*string))) == NULL)
 		return (NULL);
-	if ((string->buf = malloc(sizeof *string->buf * FT_STRING_SIZE)) == NULL)
+	if ((string->buf = malloc(sizeof(*string->buf) * FT_STRING_SIZE)) == NULL)
 		return (NULL);
 	string->size = FT_STRING_SIZE;
 	string->buf[0] = '\0';
