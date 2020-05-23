@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:17:58 by abaisago          #+#    #+#             */
-/*   Updated: 2020/05/23 03:52:37 by abosch           ###   ########.fr       */
+/*   Updated: 2020/05/24 16:03:02 by abosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static int		handle_comments(t_room *room, char *line)
 static int		handle_room(t_list *hmap, t_list *room_list, t_room *room,
 					unsigned index)
 {
-	room->link.list = ft_list_init();	//TODO: Needs to be freed
+	room->link.list = ft_list_init();
 	room->index = index;
 	ft_memset(room->pre, -1, sizeof(room->pre));
 	ft_memset(room->cost, -1, sizeof(room->cost));
@@ -84,9 +84,15 @@ static int		get_rooms(t_list *hmap, t_list *room_list, char **line)
 		if (*line[0] == 'L')
 			return (FAILURE);
 		if (handle_comments(&room, *line) == SUCCESS)
+		{
+			ft_strdel(line);
 			continue ;
+		}
 		if (read_room(&room, *line) == FAILURE)
+		{
+			ft_strdel(&room.name);
 			return (FAILURE);
+		}
 		if (handle_room(hmap, room_list, &room, index++) == FAILURE)
 			return (FAILURE);
 		ft_bzero(&room, sizeof(room));

@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 09:32:10 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/17 13:32:02 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/05/24 15:38:46 by abosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "lemin.h"
 #include "predicates.h"
 #include "tools.h"
+#include "del.h"
 
 #include <errno.h>
 #include <stddef.h>
@@ -52,12 +53,12 @@ int			parse_input(t_list *hmap)
 	g_farm.ants_start = g_farm.ants_total;
 	g_farm.ants_end = 0;
 	room_list = get_room_list(hmap);
-	// TODO: Needs to be freed
 	if ((g_farm.rooms = (t_room*)ft_list_to_arr(room_list,
 		sizeof (t_room), NULL)) == NULL)
 		ft_printerr("lem-in: get_rooms(list_to_arr): %s\n", strerror(errno));
 	g_farm.size = room_list->len;
 	links_to_array(g_farm.rooms, g_farm.size);
+	ft_list_del(&room_list, &del_link_list);
 	if (!g_farm.start || !g_farm.end)
 		ft_printerr(E_SE_DEF);
 	if (!g_farm.start->link.list->len || !g_farm.end->link.list->len)

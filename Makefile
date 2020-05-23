@@ -6,7 +6,7 @@
 #    By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/13 11:54:38 by abaisago          #+#    #+#              #
-#    Updated: 2020/05/22 16:48:21 by amalsago         ###   ########.fr        #
+#    Updated: 2020/05/24 18:06:05 by abosch           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -132,7 +132,7 @@ REL_CFLAGS     := $(CFLAGS)
 DBG_PATH       := debug
 DBG  	       := $(DBG_PATH)/$(NAME)
 DBG_OBJ	       := $(addprefix $(DBG_PATH)/,$(OBJ))
-DBG_CFLAGS     := $(CFLAGS) -g -fsanitize=address,undefined
+DBG_CFLAGS     := $(CFLAGS) -fsanitize=address
 
 #------------------------------------------------#
 #                     EXTRA                      |

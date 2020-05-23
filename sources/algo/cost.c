@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 10:03:09 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/23 04:03:31 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/24 17:25:43 by abosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,8 @@ unsigned	get_cost(void)
 	nb_paths = get_nb_paths();
 	g_farm.nb_paths = nb_paths;
 	ants = g_farm.ants_total;
+	if (g_farm.ants_by_path != NULL)
+		free(g_farm.ants_by_path);
 	if (!(g_farm.ants_by_path = (unsigned*)ft_memalloc(
 		sizeof(unsigned) * nb_paths)))
 		ft_printerr("lem-in: get_cost(malloc): %s\n", strerror(errno));

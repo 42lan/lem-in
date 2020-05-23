@@ -50,6 +50,7 @@ lem-in
 *.pdb
 debug
 lem-in.infected
+vgcore.*
 
 # Kernel Module Compile Results
 *.mod*

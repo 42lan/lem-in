@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:30:46 by abaisago          #+#    #+#             */
-/*   Updated: 2020/05/23 02:52:41 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/24 17:31:19 by abosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ int			lemin(int ac, char **av)
 	else
 		resolve();
 	send_ants();
-	final_free();
+	final_free(hmap);
 	return (SUCCESS);
 }

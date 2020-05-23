@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:54:45 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/22 16:48:40 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/24 17:44:26 by abosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,10 @@ int			get_links(t_list *hmap, char *line)
 	while (readline(&line, 1))
 	{
 		if (line[0] == '#')
+		{
+			ft_strdel(&line);
 			continue ;
+		}
 		if (add_links(hmap, line) == FAILURE)
 		{
 			ft_strdel(&line);
