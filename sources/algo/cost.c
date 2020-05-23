@@ -25,14 +25,14 @@ static void			fill_remain_ants(unsigned ants, unsigned *ants_by_path,
 {
 	unsigned	k;
 
-	k = 0;
 	while (ants > 0)
 	{
-		if (k == nb_paths)
-			k = 0;
-		ants_by_path[k] += 1;
-		ants -= 1;
-		k++;
+		k = -1;
+		while (++k < nb_paths && ants > 0)
+		{
+			ants_by_path[k] += 1;
+			ants -= 1;
+		}
 	}
 }
 
