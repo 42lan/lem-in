@@ -11,25 +11,26 @@
 /* ************************************************************************** */
 
 #include "lemin.h"
+#include "lib.h"
 #include "colors.h"
 
 #include <unistd.h>
+
 static void			move_ant(t_room *prev, t_room *curr, unsigned k)
 {
 	static unsigned	ant_id = 0;
 
 	if (curr == START && g_farm.ants_start > 0)
 	{
-		if (g_farm.ants_start > 0)
+		if (g_farm.ants_start > 0 && g_farm.ants_by_path[k] > 0)
 		{
-			if (g_farm.ants_by_path[k] > 0)
-				g_farm.ants_by_path[k] -= 1;
 			ant_id += 1;
+			g_farm.ants_start -= 1;
+			g_farm.ants_by_path[k] -= 1;
+			curr->ant_id = ant_id;
 		}
 		else
-			ant_id = 0;
-		g_farm.ants_start -= 1;
-		curr->ant_id = ant_id;
+			curr->ant_id = 0;
 	}
 	prev->ant_id = curr->ant_id;
 	curr->ant_id = 0;
@@ -38,9 +39,8 @@ static void			move_ant(t_room *prev, t_room *curr, unsigned k)
 		if (prev == END)
 		{
 			g_farm.ants_end += 1;
-			/* ft_printf(SGR_FG_RED"L%d-%s "SGR_NORMAL, prev->ant_id, prev->name); */
-			/* ft_printf("L%d-%s ", prev->ant_id, prev->name); */
-			ft_printf(SGR_BOLD"L%d-%s "SGR_NORMAL, prev->ant_id, prev->name);
+			/* ft_printf(SGR_FG_GREEN"L%d-%s "SGR_NORMAL, prev->ant_id, prev->name); */
+			ft_printf("L%d-%s ", prev->ant_id, prev->name);
 		}
 		else
 			ft_printf("L%d-%s ", prev->ant_id, prev->name);
@@ -54,7 +54,6 @@ static void			send_ants_helper(t_room *prev, t_room *curr, unsigned k)
 	j = -1;
 	move_ant(prev, curr, k);
 	while (++j < curr->LINK_LEN)
-	{
 		if (curr->link.dir[j] == ALLOWED)
 		{
 			prev = curr;
@@ -62,7 +61,6 @@ static void			send_ants_helper(t_room *prev, t_room *curr, unsigned k)
 			move_ant(prev, curr, k);
 			j = -1;
 		}
-	}
 }
 
 static void			send_onemove(void)
@@ -73,18 +71,26 @@ static void			send_onemove(void)
 	ft_printf("\n");
 }
 
+void				sort_paths_len_graph(void)
 {
 	unsigned		i;
+	unsigned		j;
 
 	i = -1;
-	while (++i < START->LINK_LEN)
-		if (ROOMS + START->link.arr[i] == END)
+	while (++i < END->LINK_LEN)
+		if (END->link.dir[i] == ALLOWED)
 		{
-			ft_printf("Connected\n");
-			return (SUCCESS);
+			j = i;
+			while (++j < END->LINK_LEN - 1)
+				if (END->link.dir[j] == ALLOWED)
+					break ;
+			if ((ROOMS + END->link.arr[i])->cost[CUR]
+				> (ROOMS + END->link.arr[j])->cost[CUR])
+			{
+				ft_swap_xor(&END->link.arr[i], &END->link.arr[j]);
+				i = -1;
+			}
 		}
-	return (FAILURE);
-}
 }
 
 void				send_ants(void)
@@ -93,9 +99,11 @@ void				send_ants(void)
 	unsigned		k;
 	unsigned		moves;
 
+	i = -1;
 	moves = 0;
 	if (start_links_end() == SUCCESS)
 		send_onemove();
+	sort_paths_len_graph();
 	while (g_farm.ants_end != g_farm.ants_total)
 	{
 		i = -1;
@@ -103,12 +111,8 @@ void				send_ants(void)
 		moves += 1;
 		ft_printf(SGR_BOLD SGR_FG_YELLOW"%-5d"SGR_NORMAL, moves);
 		while (g_farm.ants_end != g_farm.ants_total && ++i < END->LINK_LEN)
-			if (END->link.dir[i] == ALLOWED)// && g_farm.ants_by_path[++k] > 0)
+			if (END->link.dir[i] == ALLOWED)
 				send_ants_helper(END, ROOMS + END->link.arr[i], ++k);
-		ft_putchar('\n');
+		ft_printf("\n");
 	}
-	/* i = -1; */
-	/* while (++i < g_farm.nb_paths) */
-	/* 		ft_printf("%i path have %d ants\n", i, g_farm.ants_by_path[i]); */
-//	ft_printf(SGR_INVERSE" Total moves: %d \n"SGR_NORMAL, moves);
 }
