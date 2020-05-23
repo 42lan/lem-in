@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 22:01:45 by abaisago          #+#    #+#             */
-/*   Updated: 2020/05/23 03:26:16 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/23 15:49:49 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,10 @@ void	resolve(void)
 		if (curr_cost > last_cost)
 		{
 			orient_path_to(END, REV_YES);
-			curr_cost = get_cost();
 			break ;
 		}
 		last_cost = curr_cost;
 		reset_info();
 	}
+	get_cost();
 }
