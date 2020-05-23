@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/28 17:33:06 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/23 11:17:35 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/23 15:56:51 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,24 +73,30 @@ static void			send_onemove(void)
 
 void				sort_paths_len_graph(void)
 {
+	t_byte			sorted;
 	unsigned		i;
 	unsigned		j;
 
-	i = -1;
-	while (++i < END->LINK_LEN)
-		if (END->link.dir[i] == ALLOWED)
-		{
-			j = i;
-			while (++j < END->LINK_LEN - 1)
-				if (END->link.dir[j] == ALLOWED)
-					break ;
-			if ((ROOMS + END->link.arr[i])->cost[CUR]
-				> (ROOMS + END->link.arr[j])->cost[CUR])
+	sorted = 0;
+	while (!sorted)
+	{
+		i = -1;
+		sorted = 1;
+		while (++i < END->LINK_LEN - 1)
+			if (END->link.dir[i] == ALLOWED)
 			{
-				ft_swap_xor(&END->link.arr[i], &END->link.arr[j]);
-				i = -1;
+				j = i;
+				while (++j < END->LINK_LEN - 1)
+					if (END->link.dir[j] == ALLOWED)
+						break ;
+				if ((ROOMS + END->link.arr[i])->cost[CUR]
+					> (ROOMS + END->link.arr[j])->cost[CUR])
+				{
+					ft_swap_xor(&END->link.arr[i], &END->link.arr[j]);
+					sorted = 0;
+				}
 			}
-		}
+	}
 }
 
 void				send_ants(void)
@@ -102,7 +108,7 @@ void				send_ants(void)
 	i = -1;
 	moves = 0;
 	(start_links_end() == SUCCESS) ? send_onemove() : 0;
-	(g_farm.nb_paths > 1) ? sort_paths_len_graph() : 0;
+	sort_paths_len_graph();
 	while (g_farm.ants_end != g_farm.ants_total)
 	{
 		i = -1;
