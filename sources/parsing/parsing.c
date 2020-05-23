@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 09:32:10 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/23 12:18:52 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/17 13:32:02 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,7 @@ int			parse_input(t_list *hmap)
 {
 	t_list	*room_list; //TODO Needs to be freed
 
-	if ((g_farm.ants_total = get_ants()) == 0)
-		ft_printerr(E_NOANT);
+	g_farm.ants_total = get_ants();
 	g_farm.ants_start = g_farm.ants_total;
 	g_farm.ants_end = 0;
 	room_list = get_room_list(hmap);
