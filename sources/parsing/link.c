@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:54:45 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/09 11:48:57 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/22 16:48:40 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ static int		add_links(t_list *hmap, char *line)
 	unsigned	room_index[2];
 	t_list_link	*room_link[2];
 
-	if (!ft_strchr(line, '-') || !ft_strrchr(line, '-')[1])
+	if (!ft_strchr(line, '-') || !ft_strrchr(line, '-')[1]
+		|| ft_strccnt(line, '-') != 1)
 		return (FAILURE);
 	if (contains_whitespace(line) == SUCCESS)
 		ft_printerr(E_WSPACE);
