@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 19:17:30 by abosch            #+#    #+#             */
-/*   Updated: 2020/04/21 19:02:08 by abosch           ###   ########.fr       */
+/*   Updated: 2020/05/23 14:57:53 by abosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@
 
 void	del_link_list(void *content, size_t size)
 {
-	t_list	*list;
-
-	list = (t_list*)content;
-	ft_memdel((void**)&list);
+	(void)content;
+	(void)size;
 }
 
 void	del_link(void *content, size_t size)
