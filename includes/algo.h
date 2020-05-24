@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 18:25:39 by abosch            #+#    #+#             */
-/*   Updated: 2020/05/22 17:35:27 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/24 22:50:36 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@
 void		remove_deadend(void);
 int			dfs(t_room *start, t_room *target, t_byte type);
 void		orient_path_to(t_room *target, t_byte rev);
-void		resolve();
-void		resolve_onemove(void);
+int			resolve(void);
+int			resolve_onemove(void);
 unsigned	get_cost(void);
 unsigned	cost_by_path(t_room *target);
 void		recount_cost(void);
