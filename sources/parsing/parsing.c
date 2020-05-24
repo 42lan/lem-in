@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 09:32:10 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/24 22:51:05 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/24 23:23:30 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 #include "debug.h"
 #include "lemin.h"
-#include "predicates.h"
 #include "tools.h"
 #include "del.h"
 
@@ -64,5 +63,6 @@ int			parse_input(t_list *hmap)
 		return (ft_dprintf(STDERR_FILENO, E_SE_DEF));
 	if (!g_farm.start->link.list->len || !g_farm.end->link.list->len)
 		return (ft_dprintf(STDERR_FILENO, E_SE_LINK));
+	remove_deadend();
 	return (SUCCESS);
 }

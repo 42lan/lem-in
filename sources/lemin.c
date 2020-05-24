@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:30:46 by abaisago          #+#    #+#             */
-/*   Updated: 2020/05/24 22:57:20 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/24 23:20:30 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,35 +22,14 @@
 
 t_farm	g_farm;
 
-t_byte		start_links_end(void)
+int		lemin(int ac, char **av)
 {
-	unsigned	i;
-
-	i = -1;
-	while (++i < START->LINK_LEN)
-		if (ROOMS + START->link.arr[i] == END)
-			return (SUCCESS);
-	return (FAILURE);
-}
-
-int			lemin(int ac, char **av)
-{
-	t_list		hmap[HMAP_SIZE];
+	t_list	hmap[HMAP_SIZE];
 
 	hmap_init(hmap);
 	if (parse_input(hmap) == SUCCESS)
-	{
-		remove_deadend();
-		/* dbg_farm_print(&g_farm); */
-		if (start_links_end() == SUCCESS)
-		{
-			if (resolve_onemove() == SUCCESS)
-				send_ants();
-		}
-		else
-			if (resolve() == SUCCESS)
-				send_ants();
-	}
+		if (resolve() == SUCCESS)
+			send_ants();
 	final_free(hmap);
 	return (SUCCESS);
 }

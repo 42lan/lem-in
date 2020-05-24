@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 22:01:45 by abaisago          #+#    #+#             */
-/*   Updated: 2020/05/24 22:59:38 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/24 23:13:51 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #include <limits.h>
 #include <string.h>
 
-int		resolve_onemove(void)
+static int		resolve_trivial(void)
 {
 	unsigned	i;
 
@@ -36,7 +36,7 @@ int		resolve_onemove(void)
 	return (SUCCESS);
 }
 
-int		resolve(void)
+static int		resolve_nontrivial(void)
 {
 	unsigned	curr_cost;
 	unsigned	last_cost;
@@ -60,4 +60,12 @@ int		resolve(void)
 	}
 	get_cost();
 	return (SUCCESS);
+}
+
+int		resolve(void)
+{
+	if (start_links_end() == SUCCESS)
+		return (resolve_trivial());
+	else
+		return (resolve_nontrivial());
 }

@@ -6,14 +6,13 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:17:58 by abaisago          #+#    #+#             */
-/*   Updated: 2020/05/24 16:03:02 by abosch           ###   ########.fr       */
+/*   Updated: 2020/05/24 23:28:40 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include "del.h"
 #include "debug.h"
-#include "predicates.h"
 #include "tools.h"
 #include "lib.h"
 
@@ -30,14 +29,14 @@ static int		read_room(t_room *room, char *line)
 		return (FAILURE);
 	++line;
 	room->coord.x = ft_atoll(line);
-	if (overflowed(line, room->coord.x))
+	if (overflowed(line, room->coord.x) == SUCCESS)
 		return (FAILURE);
 	line += ft_strspn(line, "0123456789");
 	if (!ft_isspace(*line) || !ft_isdigit(*(line + 1)))
 		return (FAILURE);
 	++line;
 	room->coord.y = ft_atoll(line);
-	if (overflowed(line, room->coord.x))
+	if (overflowed(line, room->coord.x) == SUCCESS)
 		return (FAILURE);
 	line += ft_strspn(line, "0123456789");
 	if (*line != '\0')
