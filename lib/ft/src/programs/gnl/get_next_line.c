@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 11:25:22 by abaisago          #+#    #+#             */
-/*   Updated: 2020/05/11 14:03:10 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/05/25 13:09:12 by abosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int				get_next_line(const int fd, char **line)
 	int				ret;
 	char			*tmp;
 
+	ret = 0;
 	if (fd < 0 || !line || BUFF_SIZE <= 0 || read(fd, buf, 0) < 0)
 		return (-1);
 	if ((lst = get_file(&files, fd)) == NULL)
