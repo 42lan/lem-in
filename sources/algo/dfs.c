@@ -23,18 +23,18 @@ static unsigned	choose_link(t_room *room)
 	unsigned	j;
 
 	i = 0;
-	j = 0;
 	if (DEBUGP)
 		show_orien(room);
 	while (i < LINK_SIZE && LINK_DIR[i] != ALLOWED)
 		++i;
 	if (DEBUGP)
 		ft_printf("i = %d\n", i);
-	while (j < ROOMS[room->pre[CUR]].link.list->len && ROOMS[room->pre[CUR]].link.dir[j] == DUPLEX)
+	j = 0;
+	while (j < LINK_SIZE && LINK_ARR[j] != room->pre[CUR])
 		++j;
 	if (DEBUGP)
 		ft_printf("j = %d\n", j);
-	if (i == LINK_SIZE || j < ROOMS[room->pre[CUR]].link.list->len)
+	if (i == LINK_SIZE || LINK_DIR[j] != DUPLEX)
 	{
 		if (DEBUGP)
 			ft_printf("cas standard\n");
@@ -47,13 +47,10 @@ static unsigned	choose_link(t_room *room)
 		/* ft_printf("while: %u/%u -> %s:%u\n", i + 1, LINK_SIZE, */
 		/* 	ROOMS[LINK_ARR[i]].name, ROOMS[LINK_ARR[i]].cost[CUR]); */
 	}
-	else if (ROOMS[LINK_ARR[i]].cost[CUR] != UINT_MAX)
-	{
+	else if (ROOMS[LINK_ARR[i]].cost[CUR] <= room->cost[CUR] + 1)
 		return (LINK_SIZE);
-	}
-	else
-		if (DEBUGP)
-			ft_printf("On arrive sur un path on doit le remonter\n");
+	else if (DEBUGP)
+		ft_printf("On arrive sur un path on doit le remonter\n");
 	return (i);
 }
 

@@ -49,6 +49,12 @@ static int		resolve_nontrivial(void)
 	while (dfs(g_farm.start, g_farm.end, FULL) == SUCCESS)
 	{
 		orient_path_to(END, REV_NO);
+		if (DEBUGP)
+		{
+			ft_printf("=================================\n");
+			print_paths_from(g_farm.start);
+			ft_printf("=================================\n");
+		}
 		curr_cost = get_cost();
 		if (curr_cost > last_cost)
 		{
