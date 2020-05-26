@@ -6,19 +6,16 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:11:29 by abosch            #+#    #+#             */
-/*   Updated: 2020/05/08 19:12:26 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/26 16:55:26 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "algo.h"
 
 #include "lemin.h"
-
 #include "debug.h"
 
 #include <limits.h>
-
-#define DEBUGP 0
 
 static unsigned	choose_link(t_room *room)
 {
