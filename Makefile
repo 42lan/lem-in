@@ -6,7 +6,7 @@
 #    By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/13 11:54:38 by abaisago          #+#    #+#              #
-#    Updated: 2020/05/24 18:06:05 by abosch           ###   ########.fr        #
+#    Updated: 2020/05/26 14:40:25 by abaisago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -132,7 +132,7 @@ REL_CFLAGS     := $(CFLAGS)
 DBG_PATH       := debug
 DBG  	       := $(DBG_PATH)/$(NAME)
 DBG_OBJ	       := $(addprefix $(DBG_PATH)/,$(OBJ))
-DBG_CFLAGS     := $(CFLAGS) -fsanitize=address
+DBG_CFLAGS     := $(CFLAGS) -g3
 
 #------------------------------------------------#
 #                     EXTRA                      |
@@ -205,7 +205,7 @@ $(LIB_FT): FORCE
 libft_clean:
 	make -sC $(LIB_FT_DIR) clean
 
-libft_dbgclean:
+libft_cleandbg:
 	make -sC $(LIB_FT_DIR) dbgclean
 
 libft_fclean:
@@ -214,7 +214,7 @@ libft_fclean:
 ### Library Clean Rules
 
 libclean: libft_clean
-libdbgclean: libft_dbgclean
+libcleandbg: libft_cleandbg
 libfclean: libft_fclean
 
 #------------------------------------------------#
@@ -228,7 +228,7 @@ thisclean:
 		&& $(PRINTF) $(DEL)"[ $(PROJECT): All object files cleaned ]"$(END); \
 	fi
 
-thisdbgclean:
+thiscleandbg:
 	@if [ -d $(DBG_PATH)/$(OBJ_PATH) ]; then \
 		$(RM) -f $(DBG_OBJ) \
 		&& $(RM) -rf $(DBG_PATH)/$(OBJ_PATH) \
@@ -236,9 +236,9 @@ thisdbgclean:
 	fi
 
 clean: libclean thisclean
-dbgclean: libclean thisdbgclean
+cleandbg: libclean thiscleandbg
 
-fclean: libfclean thisclean thisdbgclean
+fclean: libfclean thisclean thiscleandbg
 	@for TARGET in $(NAME) $(DBG); do \
 		if [ -e "$$TARGET" ]; then \
 			$(RM) -f $$TARGET \
@@ -257,14 +257,14 @@ endif
 #------------------------------------------------#
 
 soft: thisclean all
-softdbg: thisdbgclean dbg
+softdbg: thiscleandbg dbg
 shallow: soft softdbg
 re: fclean all
 redbg: fclean dbg
 full: fclean all dbg
 
 clear: all clean
-cleardbg: dbg dbgclean
+cleardbg: dbg cleandbg
 pure: clear cleardbg
 whole: all dbg
 
