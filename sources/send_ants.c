@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/28 17:33:06 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/23 15:56:51 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/26 16:56:14 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static void			send_ants_helper(t_room *prev, t_room *curr, unsigned k)
 
 static void			send_onemove(void)
 {
-	ft_printf(SGR_BOLD SGR_FG_YELLOW"%-5d"SGR_NORMAL, 1);
+	/* ft_printf(SGR_BOLD SGR_FG_YELLOW"%-5d"SGR_NORMAL, 1); */
 	while (g_farm.ants_end != g_farm.ants_total)
 		move_ant(END, START, 0);
 	ft_printf("\n");
@@ -114,7 +114,7 @@ void				send_ants(void)
 		i = -1;
 		k = -1;
 		moves += 1;
-		ft_printf(SGR_BOLD SGR_FG_YELLOW"%-5d"SGR_NORMAL, moves);
+		/* ft_printf(SGR_BOLD SGR_FG_YELLOW"%-5d"SGR_NORMAL, moves); */
 		while (g_farm.ants_end != g_farm.ants_total && ++i < END->LINK_LEN)
 			if (END->link.dir[i] == ALLOWED)
 				send_ants_helper(END, ROOMS + END->link.arr[i], ++k);

@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 19:50:23 by abaisago          #+#    #+#             */
-/*   Updated: 2020/05/26 14:38:10 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/05/26 16:55:34 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "lemin.h"
 # include <stddef.h>
 
-# define DEBUGP 1
+# define DEBUGP 0
 
 int		dbg_print_room(void *content, size_t size, unsigned pos, unsigned max);
 void	dbg_hmap_print(t_list *hmap);
