@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/28 17:33:06 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/26 16:56:14 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/05/27 23:25:50 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,8 @@ void				send_ants(void)
 
 	i = -1;
 	moves = 0;
-	(start_links_end() == SUCCESS) ? send_onemove() : 0;
-	sort_paths_len_graph();
+	(start_links_end() == SUCCESS) ? send_onemove() : sort_paths_len_graph();
+	improve_paths();
 	while (g_farm.ants_end != g_farm.ants_total)
 	{
 		i = -1;

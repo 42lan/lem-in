@@ -6,7 +6,7 @@
 #    By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/13 11:54:38 by abaisago          #+#    #+#              #
-#    Updated: 2020/05/26 14:40:25 by abaisago         ###   ########.fr        #
+#    Updated: 2020/05/27 23:29:07 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,6 +105,7 @@ SRC_NAME       := main.c \
                   lemin.c \
 				  del.c \
 				  send_ants.c \
+				  improve_paths.c \
                   $(SRC_DBG) \
                   $(SRC_LIB) \
                   $(SRC_PARSE) \
