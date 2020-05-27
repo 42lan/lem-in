@@ -77,6 +77,7 @@ extern t_farm g_farm;
 int		lemin(int ac, char **av);
 t_byte	start_links_end(void);
 void	send_ants();
+void	improve_paths(void);
 
 /*
 ************

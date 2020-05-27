@@ -75,9 +75,15 @@ static void				end_side(t_room *room)
 	while (++i < LINK_SIZE && LINK_DIR[i] != BLOCKED)
 		cost2 = getcostfrom(ROOMS + LINK_ARR[i]);
 	if (cost1 > cost2)
+	{
+		return2destroy(ROOMS + LINK_ARR[j]);
 		LINK_DIR[j] = DUPLEX;
+	}
 	else
+	{
+		return2destroy(ROOMS + LINK_ARR[i]);
 		LINK_DIR[i] = DUPLEX;
+	}
 }
 
 static void				start_side(t_room *room)
@@ -104,15 +110,13 @@ void				improve_paths(void)
 	unsigned	j;
 	unsigned	k;
 	t_room		*room = NULL;
-	t_room		*prev = NULL;
-	t_room		*from = NULL;
 
 	i = -1;
+	k = 0;
 	while (++i < END->LINK_LEN)
 	{
 		if (END->link.dir[i] == ALLOWED)
 		{
-			from = ROOMS + END->link.arr[i];
 			room = ROOMS + END->link.arr[i];
 			while (room != START)
 			{
@@ -128,11 +132,10 @@ void				improve_paths(void)
 					// TODO remove link
 					start_side(room);
 					end_side(room);
-					break ;
+					return ;
 				}
 				else
 				{
-					prev = room;
 					room = ROOMS + room->pre[CUR];
 				}
 			}
