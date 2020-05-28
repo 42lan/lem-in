@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 22:01:45 by abaisago          #+#    #+#             */
-/*   Updated: 2020/05/24 23:13:51 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/28 09:54:45 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,23 @@
 #include <limits.h>
 #include <string.h>
 
+static void		update_link(t_room *room, t_room *target, t_byte state)
+{
+	unsigned	i;
+
+	i = -1;
+	while (++i < LINK_SIZE)
+		if (ROOMS + LINK_ARR[i] == target)
+			LINK_DIR[i] = state;
+}
+
 static int		resolve_trivial(void)
 {
 	unsigned	i;
 
 	i = -1;
-	while (++i < END->link.list->len)
-		if (ROOMS + END->link.arr[i] == START)
-			END->link.dir[i] = ALLOWED;
+	update_link(START, END, BLOCKED);
+	update_link(END, START, ALLOWED);
 	g_farm.nb_paths = 1;
 	if (!(g_farm.ants_by_path = (unsigned*)ft_memalloc(sizeof(unsigned) * 1)))
 		return (ft_dprintf(STDERR_FILENO, "lem-in: resolve_onemove(malloc)\n"));
