@@ -6,25 +6,39 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/30 01:16:37 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/30 01:19:55 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/30 01:48:23 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 #include "lib.h"
+
 #include <limits.h>
 
-void			sort_paths(void)
+static void		spot_no_path(void)
 {
 	unsigned	i;
-	unsigned	j;
-	t_byte		tmp;
 
 	i = -1;
 	while (++i < END->LINK_LEN)
 		if (END->link.dir[i] != ALLOWED)
 			(ROOMS + END->link.arr[i])->cost[CUR] = UINT_MAX;
+}
+
+static void		ft_swap_byte(t_byte *a, t_byte *b)
+{
+	*a = *a ^ *b;
+	*b = *b ^ *a;
+	*a = *a ^ *b;
+}
+
+void			sort_paths(void)
+{
+	unsigned	i;
+	unsigned	j;
+
 	i = -1;
+	spot_no_path();
 	while (++i < END->LINK_LEN - 1)
 	{
 		j = -1;
@@ -33,9 +47,7 @@ void			sort_paths(void)
 				> (ROOMS + END->link.arr[j + 1])->cost[CUR])
 			{
 				ft_swap_xor(&END->link.arr[j], &END->link.arr[j + 1]);
-				tmp = END->link.dir[j];
-				END->link.dir[j] = END->link.dir[j + 1];
-				END->link.dir[j + 1] = tmp;
+				ft_swap_byte(&END->link.dir[j], &END->link.dir[j + 1]);
 			}
-		}
+	}
 }
