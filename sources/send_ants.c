@@ -6,13 +6,14 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/28 17:33:06 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/27 23:25:50 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/29 13:18:13 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 #include "lib.h"
 #include "colors.h"
+#include "algo.h"
 
 #include <unistd.h>
 
@@ -37,13 +38,8 @@ static void			move_ant(t_room *prev, t_room *curr, unsigned k)
 	if (prev->ant_id != 0)
 	{
 		if (prev == END)
-		{
 			g_farm.ants_end += 1;
-			/* ft_printf(SGR_FG_GREEN"L%d-%s "SGR_NORMAL, prev->ant_id, prev->name); */
-			ft_printf("L%d-%s ", prev->ant_id, prev->name);
-		}
-		else
-			ft_printf("L%d-%s ", prev->ant_id, prev->name);
+		ft_printf("L%d-%s ", prev->ant_id, prev->name);
 	}
 }
 
@@ -77,25 +73,26 @@ void				sort_paths_len_graph(void)
 	unsigned		i;
 	unsigned		j;
 
-	sorted = 0;
-	while (!sorted)
+	i = -1;
+	while (++i < END->LINK_LEN - 1)
 	{
-		i = -1;
-		sorted = 1;
-		while (++i < END->LINK_LEN - 1)
-			if (END->link.dir[i] == ALLOWED)
-			{
-				j = i;
-				while (++j < END->LINK_LEN - 1)
-					if (END->link.dir[j] == ALLOWED)
-						break ;
-				if ((ROOMS + END->link.arr[i])->cost[CUR]
-					> (ROOMS + END->link.arr[j])->cost[CUR])
+		if (END->link.dir[i] == ALLOWED)
+		{
+			sorted = 0;
+			j = 0;
+			/* while (++j < i - END->LINK_LEN - 1) */
+			while (++j < END->LINK_LEN - 1)
+				if (END->link.dir[j] == ALLOWED)
 				{
-					ft_swap_xor(&END->link.arr[i], &END->link.arr[j]);
-					sorted = 0;
+					if ((ROOMS + END->link.arr[j])->cost[CUR]
+						> (ROOMS + END->link.arr[j + 1])->cost[CUR])
+					{
+						ft_swap_xor(&END->link.arr[j], &END->link.arr[j + 1]);
+						sorted = 0;
+					}
+
 				}
-			}
+		}
 	}
 }
 
@@ -107,8 +104,18 @@ void				send_ants(void)
 
 	i = -1;
 	moves = 0;
-	(start_links_end() == SUCCESS) ? send_onemove() : sort_paths_len_graph();
-	improve_paths();
+	if (start_links_end() == SUCCESS)
+		send_onemove();
+	else
+	{
+		if (g_farm.nb_paths > 1)
+		{
+			improve_paths();
+			get_cost();
+			sort_paths_len_graph();
+			get_cost();
+		}
+	}
 	while (g_farm.ants_end != g_farm.ants_total)
 	{
 		i = -1;
@@ -118,6 +125,8 @@ void				send_ants(void)
 		while (g_farm.ants_end != g_farm.ants_total && ++i < END->LINK_LEN)
 			if (END->link.dir[i] == ALLOWED)
 				send_ants_helper(END, ROOMS + END->link.arr[i], ++k);
+		/* if (moves == 2) */
+		/* 	return; */
 		ft_printf("\n");
 	}
 }
