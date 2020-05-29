@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 17:16:30 by abaisago          #+#    #+#             */
-/*   Updated: 2020/05/24 23:21:31 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/30 01:17:35 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "lemin.h"
 
+void		sort_paths(void);
 t_byte		contains_whitespace(char *line);
 t_byte		overflowed(char *str, long long num);
 t_byte		start_links_end(void);

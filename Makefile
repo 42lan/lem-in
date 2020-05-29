@@ -91,7 +91,8 @@ SRC_PARSE      := $(addprefix parsing/, $(SRC_PARSE))
 SRC_TOOLS      := tools.c \
                   predicates.c \
                   print_help.c \
-				  reset_info.c
+				  reset_info.c \
+				  sort.c
 SRC_TOOLS      := $(addprefix tools/, $(SRC_TOOLS))
 
 SRC_ALGO       := algo.c \
