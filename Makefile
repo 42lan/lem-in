@@ -44,7 +44,9 @@ LDLIBS         := $(LIB_FT_FLAGS)
 CC             := gcc
 CFLAGS         := -Wall -Wextra -Werror          \
                   -Wno-unused-parameter          \
-                  -Wno-unused-but-set-variable
+	     		  -Wno-unused-but-set-variable   \
+			      -Wno-unused-value
+
 CPPFLAGS       := -Iincludes                     \
                   -Ilib/ft/include
 
@@ -89,6 +91,7 @@ SRC_PARSE      := ant.c \
 SRC_PARSE      := $(addprefix parsing/, $(SRC_PARSE))
 
 SRC_TOOLS      := tools.c \
+				  tools_2.c \
                   predicates.c \
                   print_help.c \
 				  reset_info.c

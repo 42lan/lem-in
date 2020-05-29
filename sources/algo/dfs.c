@@ -22,7 +22,6 @@
 */
 void	update_info(t_room **curr, t_room *prev, unsigned offset)
 {
-	ft_printf("UPDATE INFO\n");
 	(DEBUGP) ? ft_printf("We go deeper\n") : 0;
 	t_room	*room;
 
@@ -40,7 +39,6 @@ void	update_info(t_room **curr, t_room *prev, unsigned offset)
 */
 void	backtrace_passive(t_room **room)
 {
-	ft_printf("BACKTRACE PASSIVE\n");
 	(DEBUGP) ? ft_printf("we go back\n") : 0;
 	*room = ROOMS + (*room)->pre[CUR];
 }
@@ -52,7 +50,6 @@ void	backtrace_destructive(t_room **curr, t_room *prev)
 {
 	/* * garder dans la memoire d'ou on est venu en faisant backtrace_destructiv() */
 	/* * verifier que dans le nodes connectes il n'y a pas de pre[CUR]+cost[CUR+1](nom de node en question + 1) */
-	ft_printf("__________BACKTRACE DESTRUCTIVE__________\n");
 	t_room		*room;
 	unsigned	offset;
 	unsigned	i;

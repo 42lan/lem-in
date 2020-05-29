@@ -14,6 +14,7 @@
 #include "lib.h"
 #include "colors.h"
 #include "algo.h"
+#include "debug.h"
 
 #include <unistd.h>
 
@@ -67,34 +68,53 @@ static void			send_onemove(void)
 	ft_printf("\n");
 }
 
-void				sort_paths_len_graph(void)
+static void         spot_no_path(void)
 {
-	t_byte			sorted;
-	unsigned		i;
-	unsigned		j;
+    unsigned        i;
 
-	i = -1;
-	while (++i < END->LINK_LEN - 1)
-	{
-		if (END->link.dir[i] == ALLOWED)
-		{
-			sorted = 0;
-			j = 0;
-			/* while (++j < i - END->LINK_LEN - 1) */
-			while (++j < END->LINK_LEN - 1)
-				if (END->link.dir[j] == ALLOWED)
-				{
-					if ((ROOMS + END->link.arr[j])->cost[CUR]
-						> (ROOMS + END->link.arr[j + 1])->cost[CUR])
-					{
-						ft_swap_xor(&END->link.arr[j], &END->link.arr[j + 1]);
-						sorted = 0;
-					}
-
-				}
-		}
-	}
+    i = -1;
+    while (++i < END->LINK_LEN) 
+        if (END->link.dir[i] != ALLOWED)
+            (ROOMS + END->link.arr[i])->cost[CUR] = -1;
 }
+
+void                sort_paths_len_graph(void)
+{
+    unsigned        i;
+    unsigned        len;
+    t_byte          swapped;
+    unsigned        tmp;
+
+    spot_no_path();
+    swapped = 1;
+    len = END->LINK_LEN;
+    while (swapped)
+    {
+        swapped = 0;
+        i = -1;
+        while (++i < len - 1)
+        {
+            if((ROOMS + END->link.arr[i])->cost[CUR] > (ROOMS + END->link.arr[i + 1])->cost[CUR])
+            {
+                tmp = END->link.arr[i];
+                END->link.arr[i] = END->link.arr[i + 1];
+                END->link.arr[i + 1] = tmp;
+                swapped = 1;
+            }
+        }
+        len--;
+    }
+    if (DEBUGP)
+    {   
+        i = -1;
+        while (++i < END->LINK_LEN)
+        {
+            ft_printf("%s : %u |", (ROOMS + END->link.arr[i])->name, (ROOMS + END->link.arr[i])->cost[CUR]);
+            ft_printf("\n");
+        }
+    }
+}
+
 
 void				send_ants(void)
 {
@@ -108,25 +128,19 @@ void				send_ants(void)
 		send_onemove();
 	else
 	{
-		if (g_farm.nb_paths > 1)
+		improve_paths();
+		sort_paths_len_graph();
+		while (g_farm.ants_end != g_farm.ants_total)
 		{
-			improve_paths();
-			get_cost();
-			sort_paths_len_graph();
-			get_cost();
-		}
-	}
-	while (g_farm.ants_end != g_farm.ants_total)
-	{
-		i = -1;
-		k = -1;
-		moves += 1;
-		/* ft_printf(SGR_BOLD SGR_FG_YELLOW"%-5d"SGR_NORMAL, moves); */
-		while (g_farm.ants_end != g_farm.ants_total && ++i < END->LINK_LEN)
-			if (END->link.dir[i] == ALLOWED)
+			i = -1;
+			k = -1;
+			moves += 1;
+			/* ft_printf(SGR_BOLD SGR_FG_YELLOW"%-5d"SGR_NORMAL, moves); */
+			while (g_farm.ants_end != g_farm.ants_total && ++i < g_farm.nb_paths)
 				send_ants_helper(END, ROOMS + END->link.arr[i], ++k);
-		/* if (moves == 2) */
-		/* 	return; */
-		ft_printf("\n");
+			/* if (moves == 2) */
+			/* 	return; */
+			ft_printf("\n");
+		}
 	}
 }
