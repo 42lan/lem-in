@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 16:10:47 by abaisago          #+#    #+#             */
-/*   Updated: 2020/04/17 19:13:00 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/05/30 02:01:48 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,3 +100,18 @@ void		print_paths_from(t_room *start)
 		}
 }
 
+void	print_cost(void)
+{
+	unsigned i = -1;
+	while (++i < END->LINK_LEN)
+	{
+		/* if (END->link.dir[i] == ALLOWED) */
+			ft_printf("{fred}%s cost %d{}\n",
+					(ROOMS + END->link.arr[i])->name,
+					(ROOMS + END->link.arr[i])->cost[CUR]);
+		/* else */
+		/* 	ft_printf("%s cost %d\n", */
+		/* 			(ROOMS + END->link.arr[i])->name, */
+		/* 			(ROOMS + END->link.arr[i])->cost[CUR]); */
+	}
+}

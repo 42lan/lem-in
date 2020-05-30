@@ -1,5 +1,35 @@
 #include "lemin.h"
 
+void	show_orien_name(const char *name)
+{
+	unsigned	i;
+	unsigned	j;
+	t_room		*room;
+
+	i = 0;
+	j = -1;
+	ft_printf("~~~~~~~ Orientation de la piece par nom %s ~~~~~~~\n", name);
+	while (++j < g_farm.size)
+	{
+		room = &g_farm.rooms[i];
+		if (ft_strequ(room->name, name))
+			while (i < LINK_SIZE)
+			{
+				ft_printf("%s - ", ROOMS[LINK_ARR[i]].name);
+				if (LINK_DIR[i] == DUPLEX)
+					ft_printf("DUPLEX\n");
+				else if (LINK_DIR[i] == BLOCKED)
+					ft_printf("BLOCKED\n");
+				else if (LINK_DIR[i] == ALLOWED)
+					ft_printf("ALLOWED\n");
+				else
+					ft_printf("NO ORIENTATION\n");
+				i++;
+			}
+	}
+	ft_printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+}
+
 void	show_orien(t_room *room)
 {
 	unsigned	i;
@@ -8,7 +38,7 @@ void	show_orien(t_room *room)
 	ft_printf("~~~~~~~ Orientation de la piece %s ~~~~~~~\n", room->name);
 	while (i < LINK_SIZE)
 	{
-		ft_printf("n-%d : %s - ", i, ROOMS[LINK_ARR[i]].name);
+		ft_printf("%s - ", ROOMS[LINK_ARR[i]].name);
 		if (LINK_DIR[i] == DUPLEX)
 			ft_printf("DUPLEX\n");
 		else if (LINK_DIR[i] == BLOCKED)
@@ -19,6 +49,7 @@ void	show_orien(t_room *room)
 			ft_printf("NO ORIENTATION\n");
 		i++;
 	}
+	ft_printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 }
 
 void	print_map_cost(void)
