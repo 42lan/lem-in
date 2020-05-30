@@ -6,78 +6,107 @@
 #    By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/30 19:34:26 by amalsago          #+#    #+#              #
-#    Updated: 2020/05/30 22:28:04 by amalsago         ###   ########.fr        #
+#    Updated: 2020/05/31 00:59:48 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+#!/bin/bash
+
+NC='\033[0m'
+GREEN='\033[1;32m'
+WHITE='\033[1;37m'
+
 clear
+echo "$GREEN
+      __                     _                                     __           
+     / /__  ____ ___        (_)___     ________  ____  ___  ____ _/ /____  _____
+    / / _ \/ __ \`__ \______/ / __ \   / ___/ _ \/ __ \/ _ \/ __ \`/ __/ _ \/ ___/
+   / /  __/ / / / / /_____/ / / / /  / /  /  __/ /_/ /  __/ /_/ / /_/  __/ /    
+  /_/\___/_/ /_/ /_/     /_/_/ /_/  /_/   \___/ .___/\___/\__,_/\__/\___/_/     
+                                             /_/$WHITE 61 6D 61 6C 73 61 67 6F 
+  
+  
+$NC"
 
-echo '
-    __                     _                                     __           
-   / /__  ____ ___        (_)___     ________  ____  ___  ____ _/ /____  _____
-  / / _ \/ __ `__ \______/ / __ \   / ___/ _ \/ __ \/ _ \/ __ `/ __/ _ \/ ___/
- / /  __/ / / / / /_____/ / / / /  / /  /  __/ /_/ /  __/ /_/ / /_/  __/ /    
-/_/\___/_/ /_/ /_/     /_/_/ /_/  /_/   \___/ .___/\___/\__,_/\__/\___/_/     
-                                           /_/  61 6D 61 6C 73 61 67 6F 
-'
-read -p "Give path to your lem-in binary:       " lemin
-read -p "Give path to verifier:                 " verifier
-read -p "Give path to generator:                " generator
-read -p "How many time you want to repeat test  " nbrep
-
-echo "\nChoose one of the available maps"
-options=("flow-one" "flow-ten" "flow-thousand" "big" "big-superposition")
+function clear_line()
+{
+	tput cuu $1
+	tput el
+}
 
 lemin=../lem-in
 verifier=../verifier
 generator=../maps/generator_mac
-
-refresh_prompt()
+function get_executables()
 {
-	tput cuu1
-	tput el
-	tput cuu1
-	tput el
-	tput cuu1
-	tput el
-	tput cuu1
-	tput el
+	while [ -z $lemin ]; do
+		read -p "Give path to your lem-in binary:       " lemin
+		if [ ! -x $lemin ]; then
+			clear_line 1
+			lemin=""
+		fi
+	done
+	while [ -z $verifier ]; do
+		read -p "Give path to verifier:                 " verifier
+		if [ ! -x $verifier ]; then
+			clear_line 1
+			verifier=""
+		fi
+	done
+	while [ -z $generator ]; do
+		read -p "Give path to generator:                " generator
+		if [ ! -x $generator ]; then
+			clear_line 1
+			generator=""
+		fi
+	done
 }
 
 launch_repeater()
 {
 	mkdir -p trash
-	for i in {1..42};
-	do
+	i=0
+	while [[ $i -le $2 ]]; do
 		$generator --$1 > trash/$i
 		tail -n1 trash/$i | awk '{printf("\nRequired moves: %-2d\n", $8)}'
 		printf " Lem-in result: "
 		$lemin < trash/$i | $verifier
 		sleep 1
-		refresh_prompt
+		clear_line 3
+		(( i = i + 1 ))
 	done
 	rm -rf trash
 }
 
+get_executables
+
+read -p "How many time you want to repeat test  " nbrep
+
+echo "\nChoose one of the available maps"
+options=("flow-one" "flow-ten" "flow-thousand" "big" "big-superposition")
 select opt in "${options[@]}"
 do
 	case $opt in
 		"flow-one")
-			launch_repeater $opt
+			launch_repeater $opt $nbrep
+			exit
 			;;
 		"flow-ten")
-			launch_repeater $opt
+			launch_repeater $opt $nbrep
+			exit
 			;;
 		"flow-thousand")
-			launch_repeater $opt
+			launch_repeater $opt $nbrep
+			exit
 			;;
 		"big")
-			launch_repeater $opt
+			launch_repeater $opt $nbrep
+			exit
 			;;
 		"big-superposition")
-			launch_repeater $opt
+			launch_repeater $opt $nbrep
+			exit
 			;;
 		*) echo "Invalid option $REPLY";;
 	esac
 done
-
