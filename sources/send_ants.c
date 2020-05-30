@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/28 17:33:06 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/29 13:18:13 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/30 02:02:59 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,53 +66,6 @@ static void			send_onemove(void)
 	while (g_farm.ants_end != g_farm.ants_total)
 		move_ant(END, START, 0);
 	ft_printf("\n");
-}
-
-static void         spot_no_path(void)
-{
-    unsigned        i;
-
-    i = -1;
-    while (++i < END->LINK_LEN) 
-        if (END->link.dir[i] != ALLOWED)
-            (ROOMS + END->link.arr[i])->cost[CUR] = -1;
-}
-
-void                sort_paths_len_graph(void)
-{
-    unsigned        i;
-    unsigned        len;
-    t_byte          swapped;
-    unsigned        tmp;
-
-    spot_no_path();
-    swapped = 1;
-    len = END->LINK_LEN;
-    while (swapped)
-    {
-        swapped = 0;
-        i = -1;
-        while (++i < len - 1)
-        {
-            if((ROOMS + END->link.arr[i])->cost[CUR] > (ROOMS + END->link.arr[i + 1])->cost[CUR])
-            {
-                tmp = END->link.arr[i];
-                END->link.arr[i] = END->link.arr[i + 1];
-                END->link.arr[i + 1] = tmp;
-                swapped = 1;
-            }
-        }
-        len--;
-    }
-    if (DEBUGP)
-    {   
-        i = -1;
-        while (++i < END->LINK_LEN)
-        {
-            ft_printf("%s : %u |", (ROOMS + END->link.arr[i])->name, (ROOMS + END->link.arr[i])->cost[CUR]);
-            ft_printf("\n");
-        }
-    }
 }
 
 

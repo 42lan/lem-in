@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 22:01:45 by abaisago          #+#    #+#             */
-/*   Updated: 2020/05/28 09:54:45 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/05/30 02:06:22 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,17 @@ static int		resolve_trivial(void)
 	return (SUCCESS);
 }
 
+static void		resolve_nontrivial_helper(void)
+{
+	get_cost();
+	if (g_farm.nb_paths > 1)
+	{
+		improve_paths();
+		get_cost();
+		sort_paths();
+	}
+}
+
 static int		resolve_nontrivial(void)
 {
 	unsigned	curr_cost;
@@ -58,12 +69,6 @@ static int		resolve_nontrivial(void)
 	while (dfs(g_farm.start, g_farm.end, FULL) == SUCCESS)
 	{
 		orient_path_to(END, REV_NO);
-		if (DEBUGP)
-		{
-			ft_printf("=================================\n");
-			print_paths_from(g_farm.start);
-			ft_printf("=================================\n");
-		}
 		curr_cost = get_cost();
 		if (curr_cost > last_cost)
 		{
@@ -73,7 +78,7 @@ static int		resolve_nontrivial(void)
 		last_cost = curr_cost;
 		reset_info();
 	}
-	get_cost();
+	resolve_nontrivial_helper();
 	return (SUCCESS);
 }
 
