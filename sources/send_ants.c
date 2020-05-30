@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "lemin.h"
-#include "lib.h"
 #include "colors.h"
 #include "algo.h"
 #include "debug.h"
@@ -79,21 +78,17 @@ void				send_ants(void)
 	moves = 0;
 	if (start_links_end() == SUCCESS)
 		send_onemove();
-	else
+	while (g_farm.ants_end != g_farm.ants_total)
 	{
-		improve_paths();
-		sort_paths_len_graph();
-		while (g_farm.ants_end != g_farm.ants_total)
-		{
-			i = -1;
-			k = -1;
-			moves += 1;
-			/* ft_printf(SGR_BOLD SGR_FG_YELLOW"%-5d"SGR_NORMAL, moves); */
-			while (g_farm.ants_end != g_farm.ants_total && ++i < g_farm.nb_paths)
+		i = -1;
+		k = -1;
+		moves += 1;
+		/* ft_printf(SGR_BOLD SGR_FG_YELLOW"%-5d"SGR_NORMAL, moves); */
+		while (g_farm.ants_end != g_farm.ants_total && ++i < END->LINK_LEN)
+			if (END->link.dir[i] == ALLOWED)
 				send_ants_helper(END, ROOMS + END->link.arr[i], ++k);
-			/* if (moves == 2) */
-			/* 	return; */
-			ft_printf("\n");
-		}
+		/* if (moves == 2) */
+		/* 	return; */
+		ft_printf("\n");
 	}
 }
