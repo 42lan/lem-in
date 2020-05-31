@@ -6,7 +6,7 @@
 #    By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/30 19:34:26 by amalsago          #+#    #+#              #
-#    Updated: 2020/05/31 00:59:48 by amalsago         ###   ########.fr        #
+#    Updated: 2020/05/31 17:23:48 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,9 +34,6 @@ function clear_line()
 	tput el
 }
 
-lemin=../lem-in
-verifier=../verifier
-generator=../maps/generator_mac
 function get_executables()
 {
 	while [ -z $lemin ]; do
@@ -65,19 +62,25 @@ function get_executables()
 launch_repeater()
 {
 	mkdir -p trash
-	i=0
+	i=1
 	while [[ $i -le $2 ]]; do
 		$generator --$1 > trash/$i
 		tail -n1 trash/$i | awk '{printf("\nRequired moves: %-2d\n", $8)}'
 		printf " Lem-in result: "
 		$lemin < trash/$i | $verifier
 		sleep 1
-		clear_line 3
+		if [[ ! i -eq $2 ]]; then
+			clear_line 3
+		fi
 		(( i = i + 1 ))
 	done
+	clear_line 4
 	rm -rf trash
 }
 
+#lemin=./lem-in
+#verifier=./verifier
+#generator=./generator
 get_executables
 
 read -p "How many time you want to repeat test  " nbrep
@@ -89,23 +92,18 @@ do
 	case $opt in
 		"flow-one")
 			launch_repeater $opt $nbrep
-			exit
 			;;
 		"flow-ten")
 			launch_repeater $opt $nbrep
-			exit
 			;;
 		"flow-thousand")
 			launch_repeater $opt $nbrep
-			exit
 			;;
 		"big")
 			launch_repeater $opt $nbrep
-			exit
 			;;
 		"big-superposition")
 			launch_repeater $opt $nbrep
-			exit
 			;;
 		*) echo "Invalid option $REPLY";;
 	esac
