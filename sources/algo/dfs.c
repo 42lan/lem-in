@@ -16,48 +16,6 @@
 
 #include <limits.h>
 /*
-** Destructive backtrace overwrite pre/cost data
-*
-void	backtrace_destructive(t_room **curr, t_room *prev)
-{
-	(DEBUGP) ? ft_printf("{fblack}{bwhite}-------BACK TRACK DESTRUCTIVE AT %s ------{}\n", (*curr)->name) : 0;
-	* * garder dans la memoire d'ou on est venu en faisant backtrace_destructiv() *
-	* * verifier que dans le nodes connectes il n'y a pas de pre[CUR]+cost[CUR+1](nom de node en question + 1) *
-	t_room		*room;
-	unsigned	offset;
-	unsigned	i;
-
-	i = 0;
-	room = *curr;
-	offset = room->pre[CUR];
-	if (room->pre[OLD] != UINT_MAX)
-		room->pre[CUR] = room->pre[OLD];
-	if (room->cost[OLD] != UINT_MAX)
-		room->cost[CUR] = room->cost[OLD];
-	prev = room;
-	room = ROOMS + LINK_ARR[offset];
-	*curr = room;
-	while (i < LINK_SIZE && ROOMS + LINK_ARR[i] != prev
-			&& (ROOMS[LINK_ARR[i]].flags & F_DEAD
-			|| room->cost[CUR] + 1 >= ROOMS[LINK_ARR[i]].cost[CUR]
-			|| LINK_DIR[i] == BLOCKED))
-		i++;
-	if (i == LINK_SIZE || (room->index == ROOMS[LINK_ARR[i]].pre[CUR]
-			&& room->cost[CUR] + 1 >= ROOMS[LINK_ARR[i]].cost[CUR]))
-	{
-		backtrace_passive(&room);
-		* *curr = room; *
-	}
-	else
-	{
-		if (*curr != START)
-			backtrace_destructive(curr, prev);
-		*curr = ROOMS + room->pre[CUR];
-		return ;
-	}
-}
-*/
-/*
 ** Update pre/cost data after
 */
 void	update_info(t_room **curr, t_room *prev, unsigned offset)
@@ -79,7 +37,7 @@ void	update_info(t_room **curr, t_room *prev, unsigned offset)
 */
 void	backtrace_passive(t_room **room)
 {
-	(BACKT) ? ft_printf("{byellow}{fred}we go back{}\n") : 0;
+	(BACKT) ? ft_printf("{byellow}{fred}we go back{} (PEACE)\n") : 0;
 	*room = ROOMS + (*room)->pre[CUR];
 }
 
@@ -87,7 +45,7 @@ t_room	*backtrace_destructive(t_room *room)
 {
 	unsigned	goback;
 
-	(BACKT) ? ft_printf("{bblue}{fred}we go back{}\n") : 0;
+	(BACKT) ? ft_printf("{bblue}{fred}we go back{} (BOOM)\n") : 0;
 	goback = room->pre[CUR];
 	if (room->pre[OLD] != UINT_MAX)
 	{
