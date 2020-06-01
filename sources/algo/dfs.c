@@ -121,7 +121,8 @@ static unsigned	choose_link(t_room *room)
 		i = 0;
 		while (i < LINK_SIZE && (ROOMS[LINK_ARR[i]].flags & F_DEAD
 			|| room->cost[CUR] + 1 >= ROOMS[LINK_ARR[i]].cost[CUR]
-			|| LINK_DIR[i] == BLOCKED))
+			|| LINK_DIR[i] == BLOCKED
+			|| (room->index == ROOMS[LINK_ARR[i]].pre[OLD])))
 			++i;
 		/* ft_printf("while: %u/%u -> %s:%u\n", i + 1, LINK_SIZE, */
 		/* 	ROOMS[LINK_ARR[i]].name, ROOMS[LINK_ARR[i]].cost[CUR]); */
