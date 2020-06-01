@@ -18,27 +18,24 @@
 /*
 ** Update pre/cost data after
 */
-void	update_info(t_room **curr, t_room *prev, unsigned offset)
+t_room	*update_info(t_room *room, t_room *prev, unsigned offset)
 {
 	(DEBUGP) ? ft_printf("We go deeper\n") : 0;
-	t_room	*room;
-
-	room = *curr;
 	room = ROOMS + LINK_ARR[offset];
 	room->pre[OLD] = room->pre[CUR];
 	room->cost[OLD] = room->cost[CUR];
 	room->pre[CUR] = prev->index;
 	room->cost[CUR] = prev->cost[CUR] + 1;
-	*curr = room;
+	return (room);
 }
 
 /*
 ** Passive backtrace do not overwrite pre/cost data
 */
-void	backtrace_passive(t_room **room)
+t_room	*backtrace_passive(t_room *room)
 {
 	(BACKT) ? ft_printf("{byellow}{fred}we go back{} (PEACE)\n") : 0;
-	*room = ROOMS + (*room)->pre[CUR];
+	return (ROOMS + room->pre[CUR]);
 }
 
 t_room	*backtrace_destructive(t_room *room)
@@ -114,10 +111,10 @@ static t_room	*traverse(t_room *start, t_room *room, unsigned offset, t_byte *de
 		if (*destruc == 1 && room->pre[OLD] != UINT_MAX)
 			room = backtrace_destructive(room);
 		else
-			backtrace_passive(&room);
+			room = backtrace_passive(room);
 	}
 	else
-		update_info(&room, prev, offset);
+		room = update_info(&room, prev, offset);
 	return (room);
 }
 
