@@ -49,7 +49,7 @@ static void		resolve_nontrivial_helper(void)
 	get_cost();
 	if (g_farm.nb_paths > 1)
 	{
-	//	improve_paths();
+		improve_paths();
 		get_cost();
 		sort_paths();
 	}

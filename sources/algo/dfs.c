@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:11:29 by abosch            #+#    #+#             */
-/*   Updated: 2020/06/01 21:50:02 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/06/01 23:43:27 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,12 @@ t_room	*backtrace_destructive(t_room *room)
 
 	(BACKT) ? ft_printf("{bblue}{fred}we go back{} (BOOM)\n") : 0;
 	goback = room->pre[CUR];
-	room->pre[CUR] = room->pre[OLD];
-	room->pre[OLD] = goback;
-	room->cost[CUR] = room->cost[OLD];
+	if (room->pre[OLD] != UINT_MAX)
+	{
+		room->pre[CUR] = room->pre[OLD];
+		room->pre[OLD] = goback;
+		room->cost[CUR] = room->cost[OLD];
+	}
 	return (ROOMS + goback);
 }
 
@@ -83,12 +86,13 @@ static unsigned	choose_link(t_room *room)
 	return (i);
 }
 
-static t_room	*traverse(t_room *start, t_room *room, unsigned offset, t_byte *destruc)
+static t_room	*traverse(t_room *start, t_room *room, unsigned offset, t_byte *destruc, unsigned *exploration)
 {
 	unsigned	i;
 	t_room		*prev;
 
 	prev = room;
+	/* ft_printf("{bgreen}{fblack}EXPLOTATION %d{}\n", *exploration); */
 	if (offset == LINK_SIZE)
 	{
 		if (room == start)
@@ -98,24 +102,28 @@ static t_room	*traverse(t_room *start, t_room *room, unsigned offset, t_byte *de
 		{
 			if (room->index == ROOMS[LINK_ARR[i]].pre[OLD])
 			{
-				ft_printf("****** %s, %s\n", room->name, ROOMS[LINK_ARR[i]].name);
+				/* ft_printf("****** %s, %s\n", room->name, ROOMS[LINK_ARR[i]].name); */
 				continue ;
 			}
 			if (room->index == ROOMS[LINK_ARR[i]].pre[CUR]
 					&& room->cost[CUR] + 1 == ROOMS[LINK_ARR[i]].cost[CUR])
 				break ;
 		}
-		if (i != LINK_SIZE)
-			*destruc = 1;
-		else
-			*destruc = 0;
-		if (*destruc == 1 && room->pre[OLD] != UINT_MAX)
+		*destruc = (i != LINK_SIZE) ? 1 : 0;
+		/* ft_printf("{bgreen}{fblack}DESTRUCT %d{}\n", *destruc); */
+		if (*exploration == 1 && *destruc == 1)
 			room = backtrace_destructive(room);
 		else
+		{
 			room = backtrace_passive(room);
+			*exploration = 0;
+		}
 	}
 	else
+	{
 		room = dig_deeper(room, prev, offset);
+		*exploration = 1;
+	}
 	return (room);
 }
 
@@ -138,11 +146,13 @@ int		dfs(t_room *start, t_room *target, t_byte type)
 	t_room		*room;
 	unsigned	offset;
 	t_byte		destruc;
+	unsigned	exploration;
 
 	room = start;
 	room->pre[CUR] = room->index;
 	room->cost[CUR] = 0;
 	destruc = 0;
+	exploration = 1;
 	while (1)
 	{
 		(DFS) ? ft_printf("\n===| %s || %u |=====< %s\n", room->name, room->cost[CUR], ROOMS[room->pre[CUR]].name) : 0;
@@ -150,6 +160,7 @@ int		dfs(t_room *start, t_room *target, t_byte type)
 		{
 			room = ROOMS + room->pre[CUR];
 			(DFS) ? ft_printf("we go back at end\n=======================\n") : 0;
+			exploration = 0;
 			if (type == FULL)
 				continue ;
 			else
@@ -157,7 +168,7 @@ int		dfs(t_room *start, t_room *target, t_byte type)
 		}
 		offset = choose_link(room);
 		(DFS) ? ft_printf("offset = %u\n", offset) : 0;
-		if ((room = traverse(start, room, offset, &destruc)) == NULL)
+		if ((room = traverse(start, room, offset, &destruc, &exploration)) == NULL)
 		{
 			start->cost[CUR] = 0;
 			break ;
