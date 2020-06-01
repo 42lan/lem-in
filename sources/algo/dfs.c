@@ -1,11 +1,12 @@
 /* ************************************************************************** */
-/*                                                                            */ /*                                                        :::      ::::::::   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
 /*   dfs.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 16:11:29 by abosch            #+#    #+#             */
-/*   Updated: 2020/06/01 19:25:19 by abosch           ###   ########.fr       */
+/*   Updated: 2020/06/01 21:50:02 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +19,7 @@
 /*
 ** Update pre/cost data after
 */
-t_room	*update_info(t_room *room, t_room *prev, unsigned offset)
+t_room	*dig_deeper(t_room *room, t_room *prev, unsigned offset)
 {
 	(DEBUGP) ? ft_printf("We go deeper\n") : 0;
 	room = ROOMS + LINK_ARR[offset];
@@ -114,7 +115,7 @@ static t_room	*traverse(t_room *start, t_room *room, unsigned offset, t_byte *de
 			room = backtrace_passive(room);
 	}
 	else
-		room = update_info(&room, prev, offset);
+		room = dig_deeper(room, prev, offset);
 	return (room);
 }
 
