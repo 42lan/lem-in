@@ -47,15 +47,9 @@ t_room	*backtrace_destructive(t_room *room)
 
 	(BACKT) ? ft_printf("{bblue}{fred}we go back{} (BOOM)\n") : 0;
 	goback = room->pre[CUR];
-	if (room->pre[OLD] != UINT_MAX)
-	{
-		room->pre[CUR] = room->pre[OLD];
-		room->pre[OLD] = goback;
-	}
-	else
-		ft_printf("but we do nothing\n");
-	if (room->cost[OLD] != UINT_MAX)
-		room->cost[CUR] = room->cost[OLD];
+	room->pre[CUR] = room->pre[OLD];
+	room->pre[OLD] = goback;
+	room->cost[CUR] = room->cost[OLD];
 	return (ROOMS + goback);
 }
 
@@ -117,7 +111,7 @@ static t_room	*traverse(t_room *start, t_room *room, unsigned offset, t_byte *de
 			*destruc = 1;
 		else
 			*destruc = 0;
-		if (*destruc == 1)
+		if (*destruc == 1 && room->pre[OLD] != UINT_MAX)
 			room = backtrace_destructive(room);
 		else
 			backtrace_passive(&room);
