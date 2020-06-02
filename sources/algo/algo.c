@@ -44,13 +44,52 @@ static int		resolve_trivial(void)
 	return (SUCCESS);
 }
 
+static t_byte	is_mixed_path(void)
+{
+	unsigned	i;
+	unsigned	j;
+	unsigned	k;
+	t_room		*room;
+	t_room		*next;
+
+	i = -1;
+	room = NULL;
+	next = NULL;
+	while (++i < END->LINK_LEN)
+		if (END->link.dir[i] == ALLOWED)
+		{
+			room = ROOMS + END->link.arr[i];
+			while (room != START)
+			{
+				/* ft_printf("actual room = %s\n", room->name); */
+				j = -1;
+				k = 0;
+				while (++j < LINK_SIZE)
+					if (LINK_DIR[j] == ALLOWED)
+					{
+						k++;
+						/* ft_printf("link = %s\n", (ROOMS+LINK_ARR[j])->name); */
+						next = ROOMS + LINK_ARR[j];
+					}
+				/* ft_printf("k = %d\n", k); */
+				if (k > 1)
+					return (1);
+				/* ft_printf("next room = %s\n", room->name); */
+				room = next;
+				/* ft_printf("\n"); */
+			}
+		}
+	return (0);
+}
+
 static void		resolve_nontrivial_helper(void)
 {
+
 	get_cost();
 	if (g_farm.nb_paths > 1)
 	{
-		improve_paths();
-		get_cost();
+		if (is_mixed_path() == 1)
+			ft_printf("We have a problem\n");
 		sort_paths();
 	}
 }
