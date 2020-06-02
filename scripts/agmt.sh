@@ -6,19 +6,19 @@
 #    By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/23 15:05:25 by amalsago          #+#    #+#              #
-#    Updated: 2020/06/02 19:51:04 by amalsago         ###   ########.fr        #
+#    Updated: 2020/06/03 00:58:20 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #!/bin/bash
 
 NC='\033[0m'
+GREY='\033[1;30m'
 RED='\033[1;31m'
 YELLOW='\033[1;33m'
 GREEN='\033[1;36m'
 WHITE='\033[1;37m'
 
-clear
 function header
 {
 clear
@@ -66,16 +66,25 @@ function get_executables()
 
 function agmt_helper()
 {
+	i=1
 	folder=$1
 	type=$2
-	for i in {1..10}; do
-		printf "%s/%d\n" $folder $i
+	read -p "How many time perform test? (default 1 time) "
+	[[ -z $REPLY ]] && times=1 || times=$REPLY
+	while [[ $i -le $times ]]; do
+		printf $GREY"Current file: %s/%d\n"$NC $folder $i
 		$generator --$type > $folder/$i
 		tail -n1 $folder/$i | awk '{printf("  Required: %d\n", $8)}'
-		echo "  Lem-in:   " | tr -d "\n"
+		printf "  Lem-in:   " | tr -d "\n"
 		$lemin < $folder/$i | $verifier
 		echo
+		sleep 1
+		if [[ ! $i -eq $times ]]; then
+			clear_line 4
+		fi
+		(( i = i + 1 ))
 	done
+	clear_line 1
 }
 
 declare -a maps=("flow-one" "flow-ten" "flow-thousand" "big" "big-superposition")
@@ -86,22 +95,36 @@ function agmt()
 	make
 	if [ -d "trash" ]; then
 		echo "Delete trash folder"
-		exit
+		read -p "Do you want to delete it? (y/N) "
+		if [[ $REPLY = y ]]; then
+			rm -rf trash
+		else
+			header
+			clear_line 1
+			echo "Bye bye"
+			exit
+		fi
 	fi
 	mkdir trash
 	get_executables
 	for i in "${maps[@]}"; do
 		header
 		mkdir trash/$i
-		echo $RED"Testing $i\n"$NC
+		printf $RED"GENERATING $i with 1 sec. laps\n\n"$NC
 		agmt_helper trash/$i $i
-		echo $YELLOW
-		read -p "Continue? (hit Enter) "
-		echo $NC
+		echo
+		if [[ ! $i -gt ${#maps[@]} ]]; then
+			read -p "[1;33mContinue?0"
+		fi
 	done
 }
 
-lemin=""
-verifier=""
-genarator=""
+lemin="./lem-in"
+verifier="./verifier"
+generator="./maps/generator_mac"
+
+# Hide terminal cursor
+tput civis
 agmt
+# Show terminal cursor
+tput cnorm
