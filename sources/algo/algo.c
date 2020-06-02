@@ -82,19 +82,20 @@ static t_byte	is_mixed_path(void)
 	return (0);
 }
 
-static void		resolve_nontrivial_helper(void)
+static int		resolve_nontrivial_helper(void)
 {
 
 	get_cost();
 	if (g_farm.nb_paths > 1)
 	{
 		if (is_mixed_path() == 1)
-			ft_printf("We have a problem\n");
+			return (FAILURE);
 		sort_paths();
 	}
+	return (SUCCESS);
 }
 
-static int		resolve_nontrivial(void)
+static int		resolve_nontrivial(t_byte type)
 {
 	unsigned	curr_cost;
 	unsigned	last_cost;
@@ -104,7 +105,7 @@ static int		resolve_nontrivial(void)
 	if (dfs(g_farm.start, g_farm.end, FIRST) == FAILURE)
 		return (ft_dprintf(STDERR_FILENO, E_MAP));
 	reset_info();
-	while (dfs(g_farm.start, g_farm.end, FULL) == SUCCESS)
+	while (dfs(g_farm.start, g_farm.end, type) == SUCCESS)
 	{
 		orient_path_to(END, REV_NO);
 		curr_cost = get_cost();
@@ -116,14 +117,25 @@ static int		resolve_nontrivial(void)
 		last_cost = curr_cost;
 		reset_info();
 	}
-	resolve_nontrivial_helper();
-	return (SUCCESS);
+	return (resolve_nontrivial_helper());
 }
 
 int		resolve(void)
 {
+	unsigned	status;
 	if (start_links_end() == SUCCESS)
 		return (resolve_trivial());
 	else
-		return (resolve_nontrivial());
+	{
+		status = resolve_nontrivial(FULL);
+		if (status == FAILURE)
+		{
+			reset_all();
+			return (resolve_nontrivial(SIMPLE));
+		}
+		else if (status != SUCCESS)
+			return (FAILURE);
+		else
+			return (SUCCESS);
+	}
 }

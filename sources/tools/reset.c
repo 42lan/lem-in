@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   reset_info.c                                       :+:      :+:    :+:   */
+/*   reset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
+/*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/15 19:28:16 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/01 20:24:36 by abaisago         ###   ########.fr       */
+/*   Created: 2020/06/02 19:30:43 by abaisago          #+#    #+#             */
+/*   Updated: 2020/06/02 19:49:31 by abaisago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lemin.h"
+#include "tools.h"
 
 void	reset_info(void)
 {
@@ -23,5 +23,25 @@ void	reset_info(void)
 		ROOMS[i].pre[CUR] = -1;
 		ROOMS[i].cost[OLD] = -1;
 		ROOMS[i].cost[CUR] = -1;
+	}
+}
+
+void	reset_all(void)
+{
+	unsigned	i;
+	unsigned	j;
+	t_room		*room;
+
+	i = -1;
+	while (++i < g_farm.size)
+	{
+		room = ROOMS + i;
+		room->pre[OLD] = -1;
+		room->pre[CUR] = -1;
+		room->cost[OLD] = -1;
+		room->cost[CUR] = -1;
+		j = -1;
+		while (++j < LINK_SIZE)
+			LINK_DIR[j] = DUPLEX;
 	}
 }

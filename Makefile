@@ -6,7 +6,7 @@
 #    By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/13 11:54:38 by abaisago          #+#    #+#              #
-#    Updated: 2020/05/27 23:29:07 by amalsago         ###   ########.fr        #
+#    Updated: 2020/06/02 19:31:12 by abaisago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -94,7 +94,7 @@ SRC_TOOLS      := tools.c \
 				  tools_2.c \
                   predicates.c \
                   print_help.c \
-				  reset_info.c \
+				  reset.c \
 				  sort.c
 SRC_TOOLS      := $(addprefix tools/, $(SRC_TOOLS))
 
