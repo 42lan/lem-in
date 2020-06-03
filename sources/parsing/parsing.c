@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 09:32:10 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/24 23:23:30 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 02:57:47 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ static int		links_to_array(t_room *rooms, unsigned size)
 	{
 		if (!(rooms[i].link.arr = (unsigned*)ft_list_to_arr(rooms[i].link.list,
 			sizeof(unsigned), NULL)))
-			return (ft_dprintf(STDERR_FILENO, "lem-in: links_to_array(arr malloc)\n"));
+			return (ft_dprintf(STDERR_FILENO, "lem-in: link.arr malloc\n"));
 		if (!(rooms[i].link.dir = (t_byte*)ft_memalloc(rooms[i].LINK_LEN)))
-			return (ft_dprintf(STDERR_FILENO, "lem-in: links_to_array(dir malloc)\n"));
+			return (ft_dprintf(STDERR_FILENO, "lem-in: link.dir malloc\n"));
 		if (rooms[i].flags & F_START)
 			g_farm.start = rooms + i;
 		if (rooms[i].flags & F_END)
@@ -44,9 +44,9 @@ static int		links_to_array(t_room *rooms, unsigned size)
 	return (SUCCESS);
 }
 
-int			parse_input(t_list *hmap)
+int				parse_input(t_list *hmap)
 {
-	t_list	*room_list; //TODO Needs to be freed
+	t_list		*room_list;
 
 	g_farm.ants_total = get_ants();
 	g_farm.ants_start = g_farm.ants_total;

@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:54:45 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/24 23:23:08 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 03:59:43 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,7 @@ static void		set_room_links(t_list_link *room_link[2])
 	room2 = room_link[1]->content;
 	if (ft_list_find(room1->link.list, &(room2->index), room_indexcmp)
 		&& ft_list_find(room2->link.list, &(room1->index), room_indexcmp))
-	{
-		/* ft_printf("WARN: link \"%s-%s\" was already set. get_links() stops\n", */
-		/* 	room1->name, room2->name); */
 		return ;
-	}
 	ft_list_push(room1->link.list,
 		ft_list_link_new(&room2->index, sizeof(unsigned)));
 	ft_list_push(room2->link.list,
@@ -59,8 +55,8 @@ static void		set_room_links(t_list_link *room_link[2])
 
 static int		add_links(t_list *hmap, char *line)
 {
-	char		*room_name[2];
 	unsigned	room_index[2];
+	char		*room_name[2];
 	t_list_link	*room_link[2];
 
 	if (!ft_strchr(line, '-') || !ft_strrchr(line, '-')[1]
@@ -70,17 +66,14 @@ static int		add_links(t_list *hmap, char *line)
 		ft_printerr(E_WSPACE);
 	get_room_names_index(line, room_name, room_index);
 	if (ft_strequ(room_name[0], room_name[1]))
-	{
-		/* ft_printf("WARN: link to itself is skipped to avoid infinite loop\n"); */
 		return (SUCCESS);
-	}
 	if (get_room_link(hmap, room_link, room_index, room_name) == FAILURE)
 		return (FAILURE);
 	set_room_links(room_link);
 	return (SUCCESS);
 }
 
-int			get_links(t_list *hmap, char *line)
+int				get_links(t_list *hmap, char *line)
 {
 	if (!line)
 		return (FAILURE);

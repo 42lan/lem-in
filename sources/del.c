@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 19:17:30 by abosch            #+#    #+#             */
-/*   Updated: 2020/05/24 16:34:35 by abosch           ###   ########.fr       */
+/*   Updated: 2020/06/03 03:52:46 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 
 #include <stdlib.h>
 
-void	del_link_list(void *content, size_t size)
+void			del_link_list(void *content, size_t size)
 {
 	(void)content;
 	(void)size;
 }
 
-void	del_link(void *content, size_t size)
+void			del_link(void *content, size_t size)
 {
-	t_link *link;
+	t_link		*link;
 
 	link = (t_link*)content;
 	ft_list_del(&link->list, &del_link_list);
@@ -32,17 +32,26 @@ void	del_link(void *content, size_t size)
 	ft_memdel((void**)&link->dir);
 }
 
-void	del_room(void *content, size_t size)
+static void		del_room(void *content, size_t size)
 {
-	t_room *room;
+	t_room		*room;
 
 	room = (t_room*)content;
 	ft_strdel(&room->name);
 	del_link(&room->link, 0);
 }
 
+static void		free_hmap(t_list *hmap)
+{
+	unsigned	i;
 
-void	final_free(t_list *hmap)
+	i = -1;
+	while (++i < HMAP_SIZE)
+		if (hmap[i].head != NULL)
+			ft_list_clear(hmap + i, &del_link_list);
+}
+
+void			final_free(t_list *hmap)
 {
 	unsigned	i;
 
@@ -54,11 +63,5 @@ void	final_free(t_list *hmap)
 	}
 	free(g_farm.rooms);
 	free(g_farm.ants_by_path);
-	i = 0;
-	while (i < HMAP_SIZE)
-	{
-		if (hmap[i].head != NULL)
-			ft_list_clear(hmap + i, &del_link_list);
-		i++;
-	}
+	free_hmap(hmap);
 }

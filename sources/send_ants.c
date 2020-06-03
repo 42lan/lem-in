@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/28 17:33:06 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/30 02:02:59 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 03:54:11 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,6 @@ void				send_ants(void)
 		while (g_farm.ants_end != g_farm.ants_total && ++i < END->LINK_LEN)
 			if (END->link.dir[i] == ALLOWED)
 				send_ants_helper(END, ROOMS + END->link.arr[i], ++k);
-		/* if (moves == 2) */
-		/* 	return; */
 		ft_printf("\n");
 	}
 }

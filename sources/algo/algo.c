@@ -1,11 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo.c                                             :+:      :+:    :+:   */ /*                                                    +:+ +:+         +:+     */
+/*   algo.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 22:01:45 by abaisago          #+#    #+#             */
-/*   Updated: 2020/06/01 14:47:03 by abosch           ###   ########.fr       */
+/*   Updated: 2020/06/03 03:26:52 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,43 +45,6 @@ static int		resolve_trivial(void)
 	return (SUCCESS);
 }
 
-static t_byte	is_mixed_path(void)
-{
-	unsigned	i;
-	unsigned	j;
-	unsigned	k;
-	t_room		*room;
-	t_room		*next;
-
-	i = -1;
-	room = NULL;
-	next = NULL;
-	while (++i < END->LINK_LEN)
-		if (END->link.dir[i] == ALLOWED)
-		{
-			room = ROOMS + END->link.arr[i];
-			while (room != START)
-			{
-				/* ft_printf("actual room = %s\n", room->name); */
-				j = -1;
-				k = 0;
-				while (++j < LINK_SIZE)
-					if (LINK_DIR[j] == ALLOWED)
-					{
-						k++;
-						/* ft_printf("link = %s\n", (ROOMS+LINK_ARR[j])->name); */
-						next = ROOMS + LINK_ARR[j];
-					}
-				/* ft_printf("k = %d\n", k); */
-				if (k > 1)
-					return (1);
-				/* ft_printf("next room = %s\n", room->name); */
-				room = next;
-				/* ft_printf("\n"); */
-			}
-		}
-	return (0);
-}
 
 static int		resolve_nontrivial_helper(void)
 {
@@ -88,7 +52,7 @@ static int		resolve_nontrivial_helper(void)
 	get_cost();
 	if (g_farm.nb_paths > 1)
 	{
-		if (is_mixed_path() == 1)
+		if (is_mixed_path() == SUCCESS)
 			return (FAILURE);
 		sort_paths();
 	}
@@ -120,9 +84,10 @@ static int		resolve_nontrivial(t_byte type)
 	return (resolve_nontrivial_helper());
 }
 
-int		resolve(void)
+int				resolve(void)
 {
 	unsigned	status;
+
 	if (start_links_end() == SUCCESS)
 		return (resolve_trivial());
 	else
@@ -133,9 +98,6 @@ int		resolve(void)
 			reset_all();
 			return (resolve_nontrivial(SIMPLE));
 		}
-		else if (status != SUCCESS)
-			return (FAILURE);
-		else
-			return (SUCCESS);
+		return ((status != SUCCESS) ? FAILURE : SUCCESS);
 	}
 }

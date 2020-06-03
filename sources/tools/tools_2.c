@@ -6,26 +6,32 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 13:12:51 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/29 22:58:37 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 04:18:25 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 #include "debug.h"
 
-void	print_state(void)
+void			print_state(void)
 {
-	unsigned j=-1;
-	while (++j < END->LINK_LEN)
-		if (END->link.dir[j] == ALLOWED)
-			ft_printf("room %s, costs %d\n", (ROOMS + END->link.arr[j])->name, (ROOMS+END->link.arr[j])->cost[CUR]);
+	unsigned	i;
+
+	i = 1;
+	while (++i < END->LINK_LEN)
+		if (END->link.dir[i] == ALLOWED)
+			ft_printf("room %s, costs %d\n", (ROOMS + END->link.arr[i])->name,
+				(ROOMS+END->link.arr[i])->cost[CUR]);
 }
 
-void	print_ant_by_path(void)
+void			print_ant_by_path(void)
 {
+	unsigned	i;
+	unsigned	total;
+
+	i = -1;
+	total = 0;
 	ft_printf("\n-----------------------\n");
-	unsigned i = -1;
-	unsigned total = 0;
 	while (++i < g_farm.nb_paths)
 	{
 		ft_printf("%d %d\n", i, g_farm.ants_by_path[i]);
@@ -35,17 +41,17 @@ void	print_ant_by_path(void)
 	ft_printf("-----------------------\n");
 }
 
-void		print_from_start2end(void)
+void			print_from_start2end(void)
 {
-	unsigned i = -1;
-	unsigned j = -1;
-	t_room *room;
+	unsigned	i;
+	unsigned	j;
+	t_room		*room;
 
+	i = -1;
+	j = -1;
 	while (++i < START->LINK_LEN)
-	{
 		if (START->link.dir[i] == BLOCKED)
 		{
-			/* ft_printf("{fred}%s - %s (%d) {}", START->name, (ROOMS+START->link.arr[i])->name, g_farm.ants_by_path[++k]); */
 			ft_printf("{fred}%s{} ", START->name);
 			room = ROOMS + START->link.arr[i];
 			j = -1;
@@ -60,5 +66,4 @@ void		print_from_start2end(void)
 					j = -1;
 				}
 		}
-	}
 }

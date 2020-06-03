@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 10:03:09 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/25 13:16:13 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 03:41:00 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 static void			fill_remain_ants(unsigned ants, unsigned *ants_by_path,
 						unsigned nb_paths)
 {
-	unsigned	k;
+	unsigned		k;
 
 	while (ants > 0)
 	{
@@ -38,7 +38,7 @@ static void			fill_remain_ants(unsigned ants, unsigned *ants_by_path,
 
 static void			sort_paths_len(unsigned *paths_len, unsigned nb_paths)
 {
-	unsigned	i;
+	unsigned		i;
 
 	i = -1;
 	while (++i < nb_paths - 1)
@@ -51,11 +51,11 @@ static void			sort_paths_len(unsigned *paths_len, unsigned nb_paths)
 
 static unsigned		*get_paths_len(unsigned nb_paths)
 {
-	unsigned	i;
-	unsigned	j;
-	unsigned	k;
-	unsigned	*paths_len;
-	t_room		*room;
+	unsigned		i;
+	unsigned		j;
+	unsigned		k;
+	unsigned		*paths_len;
+	t_room			*room;
 
 	i = -1;
 	k = -1;
@@ -82,9 +82,9 @@ static unsigned		*get_paths_len(unsigned nb_paths)
 static void			dispatch_ants(unsigned *ants, unsigned *ants_by_path,
 						unsigned *paths_len, unsigned nb_paths)
 {
-	unsigned	j;
-	unsigned	k;
-	unsigned	diff;
+	unsigned		j;
+	unsigned		k;
+	unsigned		diff;
 
 	k = 0;
 	diff = 0;
@@ -104,12 +104,12 @@ static void			dispatch_ants(unsigned *ants, unsigned *ants_by_path,
 	fill_remain_ants(*ants, g_farm.ants_by_path, nb_paths);
 }
 
-unsigned	get_cost(void)
+unsigned			get_cost(void)
 {
-	unsigned	ants;
-	unsigned	cost;
-	unsigned	nb_paths;
-	unsigned	*paths_len;
+	unsigned		ants;
+	unsigned		cost;
+	unsigned		nb_paths;
+	unsigned		*paths_len;
 
 	cost = 0;
 	nb_paths = get_nb_paths();

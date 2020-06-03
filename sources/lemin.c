@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:30:46 by abaisago          #+#    #+#             */
-/*   Updated: 2020/06/02 19:50:12 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/06/03 03:54:00 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 
 #include <stdlib.h>
 
-t_farm	g_farm;
+t_farm		g_farm;
 
-int		lemin(int ac, char **av)
+int			lemin(int ac, char **av)
 {
 	t_list	hmap[HMAP_SIZE];
 

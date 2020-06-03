@@ -6,13 +6,13 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/02 19:30:43 by abaisago          #+#    #+#             */
-/*   Updated: 2020/06/02 19:49:31 by abaisago         ###   ########.fr       */
+/*   Updated: 2020/06/03 03:01:49 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "tools.h"
 
-void	reset_info(void)
+void			reset_info(void)
 {
 	unsigned	i;
 
@@ -26,7 +26,7 @@ void	reset_info(void)
 	}
 }
 
-void	reset_all(void)
+void			reset_all(void)
 {
 	unsigned	i;
 	unsigned	j;

@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/08 01:00:23 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/08 22:27:03 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 02:58:01 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 #include <stddef.h>
 #include <string.h>
 
-int		readline(char **line, int eof)
+int			readline(char **line, int eof)
 {
-	int	ret;
+	int		ret;
 
 	if ((ret = get_next_line(0, line)) < 0)
 		ft_printerr("lem-in(read): %s\n", strerror(errno));

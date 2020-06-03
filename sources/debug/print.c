@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 16:10:47 by abaisago          #+#    #+#             */
-/*   Updated: 2020/05/30 02:01:48 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 03:58:28 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@
 #include "lemin.h"
 #include "parsing.h"
 
-int		dbg_print_room(void *content, size_t size, unsigned pos, unsigned max)
+int				dbg_print_room(void *content, size_t size, unsigned pos,
+					unsigned max)
 {
-	t_room	*room;
-	int		ret;
+	int			ret;
+	t_room		*room;
 
 	room = content;
 	ret = ft_printf("=%u: [%-5s %d,%d]", room->index, room->name,
@@ -30,9 +31,9 @@ int		dbg_print_room(void *content, size_t size, unsigned pos, unsigned max)
 	return (ret);
 }
 
-void	dbg_hmap_print(t_list *hmap)
+void			dbg_hmap_print(t_list *hmap)
 {
-	int				i;
+	int			i;
 
 	i = -1;
 	while (++i < HMAP_SIZE)
@@ -43,7 +44,7 @@ void	dbg_hmap_print(t_list *hmap)
 		}
 }
 
-static char *room_type(t_byte flags)
+static char		*room_type(t_byte flags)
 {
 	if (flags & F_DEAD)
 		return ("DEAD-");
@@ -54,7 +55,7 @@ static char *room_type(t_byte flags)
 	return ("");
 }
 
-void	dbg_farm_print(t_farm *farm)
+void			dbg_farm_print(t_farm *farm)
 {
 	unsigned	i;
 	unsigned	j;
@@ -76,11 +77,11 @@ void	dbg_farm_print(t_farm *farm)
 	}
 }
 
-void		print_paths_from(t_room *start)
+void			print_paths_from(t_room *start)
 {
-	t_room		*room;
-	unsigned	begin;
 	unsigned	i;
+	unsigned	begin;
+	t_room		*room;
 
 	begin = -1;
 	while (++begin < start->LINK_LEN)
@@ -100,18 +101,12 @@ void		print_paths_from(t_room *start)
 		}
 }
 
-void	print_cost(void)
+void			print_cost(void)
 {
-	unsigned i = -1;
+	unsigned	i;
+
+	i = -1;
 	while (++i < END->LINK_LEN)
-	{
-		/* if (END->link.dir[i] == ALLOWED) */
-			ft_printf("{fred}%s cost %d{}\n",
-					(ROOMS + END->link.arr[i])->name,
-					(ROOMS + END->link.arr[i])->cost[CUR]);
-		/* else */
-		/* 	ft_printf("%s cost %d\n", */
-		/* 			(ROOMS + END->link.arr[i])->name, */
-		/* 			(ROOMS + END->link.arr[i])->cost[CUR]); */
-	}
+		ft_printf("{fred}%s cost %d{}\n", (ROOMS + END->link.arr[i])->name,
+			(ROOMS + END->link.arr[i])->cost[CUR]);
 }

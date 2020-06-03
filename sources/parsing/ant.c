@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:22:27 by abaisago          #+#    #+#             */
-/*   Updated: 2020/05/24 23:28:12 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 03:59:51 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 
 unsigned		get_ants(void)
 {
+	long long	ants;
 	char		*line;
 	char		*p_line;
-	long long	ants;
 
 	readline(&line, 0);
 	p_line = line;

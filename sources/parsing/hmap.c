@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/21 11:44:35 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/08 01:19:03 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 02:53:52 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 #include "tools.h"
 
-void		hmap_init(t_list *hmap)
+void			hmap_init(t_list *hmap)
 {
-	int		i;
+	int			i;
 
 	i = -1;
 	while (++i < HMAP_SIZE)
@@ -28,7 +28,7 @@ void		hmap_init(t_list *hmap)
 	}
 }
 
-int			hmap_index(const char *key)
+int				hmap_index(const char *key)
 {
 	size_t		i;
 	uint32_t	hash;
@@ -40,7 +40,7 @@ int			hmap_index(const char *key)
 	return (hash % HMAP_SIZE);
 }
 
-int			hmap_add(t_list *hmap, t_room *room)
+int				hmap_add(t_list *hmap, t_room *room)
 {
 	int			index;
 

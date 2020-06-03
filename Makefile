@@ -6,7 +6,7 @@
 #    By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/13 11:54:38 by abaisago          #+#    #+#              #
-#    Updated: 2020/06/02 19:31:12 by abaisago         ###   ########.fr        #
+#    Updated: 2020/06/03 04:24:03 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,8 +44,8 @@ LDLIBS         := $(LIB_FT_FLAGS)
 CC             := gcc
 CFLAGS         := -Wall -Wextra -Werror          \
                   -Wno-unused-parameter          \
-	     		  -Wno-unused-but-set-variable   \
 			      -Wno-unused-value
+	     		  #-Wno-unused-but-set-variable   \
 
 CPPFLAGS       := -Iincludes                     \
                   -Ilib/ft/include
@@ -87,13 +87,13 @@ SRC_PARSE      := ant.c \
                   link.c \
                   parsing.c \
                   room.c \
+				  comments.c \
 				  readline.c
 SRC_PARSE      := $(addprefix parsing/, $(SRC_PARSE))
 
 SRC_TOOLS      := tools.c \
 				  tools_2.c \
                   predicates.c \
-                  print_help.c \
 				  reset.c \
 				  sort.c
 SRC_TOOLS      := $(addprefix tools/, $(SRC_TOOLS))
@@ -102,14 +102,14 @@ SRC_ALGO       := algo.c \
                   dfs.c \
                   orientation.c \
 				  utils.c \
-				  cost.c
+				  cost.c \
+				  deadend.c
 SRC_ALGO       := $(addprefix algo/, $(SRC_ALGO))
 
 SRC_NAME       := main.c \
                   lemin.c \
 				  del.c \
 				  send_ants.c \
-				  improve_paths.c \
                   $(SRC_DBG) \
                   $(SRC_LIB) \
                   $(SRC_PARSE) \

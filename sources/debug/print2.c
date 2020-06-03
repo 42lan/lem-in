@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/06/03 03:15:37 by amalsago          #+#    #+#             */
+/*   Updated: 2020/06/03 03:16:01 by amalsago         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lemin.h"
 
-void	show_orien_name(const char *name)
+void			show_orien_name(const char *name)
 {
 	unsigned	i;
 	unsigned	j;
@@ -30,13 +42,13 @@ void	show_orien_name(const char *name)
 	ft_printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 }
 
-void	show_orien(t_room *room)
+void			show_orien(t_room *room)
 {
 	unsigned	i;
 
-	i = 0;
+	i = -1;
 	ft_printf("~~~~~~~ Orientation de la piece %s ~~~~~~~\n", room->name);
-	while (i < LINK_SIZE)
+	while (++i < LINK_SIZE)
 	{
 		ft_printf("%s - ", ROOMS[LINK_ARR[i]].name);
 		if (LINK_DIR[i] == DUPLEX)
@@ -47,19 +59,17 @@ void	show_orien(t_room *room)
 			ft_printf("ALLOWED\n");
 		else
 			ft_printf("NO ORIENTATION\n");
-		i++;
 	}
 	ft_printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 }
 
-void	print_map_cost(void)
+void			print_map_cost(void)
 {
 	unsigned	i;
 
-	i = 0;
-	while (i < g_farm.size)
-	{
-		ft_printf("%-7s pre: %3u/%-10u | cost: %3u/%-10u\n", ROOMS[i].name, ROOMS[i].pre[CUR],  ROOMS[i].pre[OLD], ROOMS[i].cost[CUR], ROOMS[i].cost[OLD] );
-		i++;
-	}
+	i = -1;
+	while (++i < g_farm.size)
+		ft_printf("%-7s pre: %3u/%-10u | cost: %3u/%-10u\n", ROOMS[i].name,
+				ROOMS[i].pre[CUR], ROOMS[i].pre[OLD],
+				ROOMS[i].cost[CUR], ROOMS[i].cost[OLD]);
 }

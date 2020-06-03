@@ -6,44 +6,11 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 14:47:17 by abosch            #+#    #+#             */
-/*   Updated: 2020/05/22 13:12:39 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 03:39:52 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "algo.h"
-
-void			remove_deadend(void)
-{
-	unsigned	i;
-	unsigned	j;
-	unsigned	k;
-	t_room		*room;
-	t_byte		con;
-
-	con = 1;
-	while (con)
-	{
-		i = -1;
-		con = 0;
-		while (++i < g_farm.size)
-		{
-			j = -1;
-			k = 0;
-			room = &ROOMS[i];
-			if (room != START && room != END && !(room->flags & F_DEAD))
-			{
-				while (++j < room->LINK_LEN)
-					if (!(ROOMS[LINK_ARR[j]].flags & F_DEAD))
-						k++;
-				if (k < 2)
-				{
-					room->flags |= F_DEAD;
-					con = 1;
-				}
-			}
-		}
-	}
-}
 
 void			recount_cost(void)
 {
@@ -101,4 +68,36 @@ unsigned		get_max_cost(unsigned *ants_by_path, unsigned *paths_len,
 	while (++i < nb_paths)
 		cost = ants_by_path[i] + paths_len[i] - 1;
 	return (cost);
+}
+
+
+t_byte			is_mixed_path(void)
+{
+	unsigned	i;
+	unsigned	j;
+	unsigned	k;
+	t_room		*room;
+	t_room		*next;
+
+	i = -1;
+	while (++i < END->LINK_LEN)
+		if (END->link.dir[i] == ALLOWED)
+		{
+			room = ROOMS + END->link.arr[i];
+			while (room != START)
+			{
+				j = -1;
+				k = 0;
+				while (++j < LINK_SIZE)
+					if (LINK_DIR[j] == ALLOWED)
+					{
+						k++;
+						next = ROOMS + LINK_ARR[j];
+					}
+				if (k > 1)
+					return (SUCCESS);
+				room = next;
+			}
+		}
+	return (FAILURE);
 }
