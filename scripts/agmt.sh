@@ -6,7 +6,7 @@
 #    By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/23 15:05:25 by amalsago          #+#    #+#              #
-#    Updated: 2020/06/03 00:58:20 by amalsago         ###   ########.fr        #
+#    Updated: 2020/06/03 01:52:27 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ function agmt_helper()
 	i=1
 	folder=$1
 	type=$2
-	read -p "How many time perform test? (default 1 time) "
+	read -p "How many times perform the test? (default 1 time) "
 	[[ -z $REPLY ]] && times=1 || times=$REPLY
 	while [[ $i -le $times ]]; do
 		printf $GREY"Current file: %s/%d\n"$NC $folder $i
@@ -107,15 +107,17 @@ function agmt()
 	fi
 	mkdir trash
 	get_executables
+	j=1;
 	for i in "${maps[@]}"; do
 		header
 		mkdir trash/$i
 		printf $RED"GENERATING $i with 1 sec. laps\n\n"$NC
 		agmt_helper trash/$i $i
 		echo
-		if [[ ! $i -gt ${#maps[@]} ]]; then
+		if [[ $j -lt ${#maps[@]} ]]; then
 			read -p "[1;33mContinue?0"
 		fi
+		(( j = j + 1 ))
 	done
 }
 
