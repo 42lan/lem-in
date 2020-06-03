@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/28 17:33:06 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/03 03:54:11 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 04:52:39 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ static void			send_onemove(void)
 		move_ant(END, START, 0);
 	ft_printf("\n");
 }
-
 
 void				send_ants(void)
 {

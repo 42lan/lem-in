@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 09:32:10 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/03 02:57:47 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 05:01:20 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int				parse_input(t_list *hmap)
 	g_farm.ants_end = 0;
 	room_list = get_room_list(hmap);
 	if ((g_farm.rooms = (t_room*)ft_list_to_arr(room_list,
-		sizeof (t_room), NULL)) == NULL)
+		sizeof(t_room), NULL)) == NULL)
 		return (ft_dprintf(STDERR_FILENO, "lem-in: get_rooms(list_to_arr)\n"));
 	g_farm.size = room_list->len;
 	if (links_to_array(g_farm.rooms, g_farm.size) != SUCCESS)

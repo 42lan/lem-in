@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/29 13:12:51 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/03 04:18:25 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 05:15:32 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void			print_state(void)
 	while (++i < END->LINK_LEN)
 		if (END->link.dir[i] == ALLOWED)
 			ft_printf("room %s, costs %d\n", (ROOMS + END->link.arr[i])->name,
-				(ROOMS+END->link.arr[i])->cost[CUR]);
+				(ROOMS + END->link.arr[i])->cost[CUR]);
 }
 
 void			print_ant_by_path(void)

@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/28 17:17:58 by abaisago          #+#    #+#             */
-/*   Updated: 2020/06/03 04:16:02 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 05:03:06 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,14 +60,16 @@ static int		handle_room(t_list *hmap, t_list *room_list, t_room *room,
 }
 
 static int		get_rooms_helper(t_list *hmap, t_list *room_list, t_room *room,
-					char **line, unsigned *index)
+					char **line)
 {
+	static unsigned	index = 0;
+
 	if (read_room(room, *line) == FAILURE)
 	{
 		ft_strdel(&room->name);
 		return (FAILURE);
 	}
-	if (handle_room(hmap, room_list, room, (*index)++) == FAILURE)
+	if (handle_room(hmap, room_list, room, index++) == FAILURE)
 	{
 		ft_strdel(&room->name);
 		return (FAILURE);
@@ -77,10 +79,8 @@ static int		get_rooms_helper(t_list *hmap, t_list *room_list, t_room *room,
 
 static int		get_rooms(t_list *hmap, t_list *room_list, char **line)
 {
-	unsigned	index;
 	t_room		room;
 
-	index = 0;
 	ft_bzero(&room, sizeof(room));
 	while (readline(line, 0))
 	{
@@ -91,7 +91,7 @@ static int		get_rooms(t_list *hmap, t_list *room_list, char **line)
 			ft_strdel(line);
 			continue ;
 		}
-		if (get_rooms_helper(hmap, room_list, &room, line, &index) == FAILURE)
+		if (get_rooms_helper(hmap, room_list, &room, line) == FAILURE)
 			return (FAILURE);
 		ft_bzero(&room, sizeof(room));
 		ft_strdel(line);

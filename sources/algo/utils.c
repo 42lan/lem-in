@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 14:47:17 by abosch            #+#    #+#             */
-/*   Updated: 2020/06/03 03:39:52 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 04:54:17 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ unsigned		get_max_cost(unsigned *ants_by_path, unsigned *paths_len,
 		cost = ants_by_path[i] + paths_len[i] - 1;
 	return (cost);
 }
-
 
 t_byte			is_mixed_path(void)
 {

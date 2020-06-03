@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 22:01:45 by abaisago          #+#    #+#             */
-/*   Updated: 2020/06/03 04:36:24 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 04:53:56 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,8 @@ static int		resolve_trivial(void)
 	return (SUCCESS);
 }
 
-
 static int		resolve_nontrivial_helper(void)
 {
-
 	get_cost();
 	if (g_farm.nb_paths > 1)
 	{
