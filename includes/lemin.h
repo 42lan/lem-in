@@ -66,7 +66,7 @@ struct					s_room
 
 int						lemin(int ac, char **av);
 t_byte					start_links_end(t_farm *f);
-void					send_ants();
+void					send_ants(void);
 t_farm					*farm(void);
 
 /*
