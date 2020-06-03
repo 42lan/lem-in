@@ -62,7 +62,7 @@ static void			send_ants_helper(t_farm *f, t_room *prev, t_room *curr,
 
 static void			send_onemove(t_farm *f)
 {
-	//ft_printf(SGR_BOLD SGR_FG_YELLOW"%-5d"SGR_NORMAL, 1);
+	ft_printf(SGR_BOLD SGR_FG_YELLOW"%-5d"SGR_NORMAL, 1);
 	while (f->ants_end != f->ants_total)
 		move_ant(f, f->end, f->start, 0);
 	ft_printf("\n");
@@ -83,7 +83,7 @@ void				send_ants(t_farm *f)
 		i = -1;
 		k = -1;
 		moves += 1;
-		//ft_printf(SGR_BOLD SGR_FG_YELLOW"%-5d"SGR_NORMAL, moves);
+		ft_printf(SGR_BOLD SGR_FG_YELLOW"%-5d"SGR_NORMAL, moves);
 		while (f->ants_end != f->ants_total && ++i < f->end->lnk.lst->len)
 			if (f->end->lnk.dir[i] == ALLOWED)
 				send_ants_helper(f, f->end, f->rooms + f->end->lnk.arr[i], ++k);
