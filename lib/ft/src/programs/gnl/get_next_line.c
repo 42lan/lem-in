@@ -85,7 +85,6 @@ int				get_next_line(const int fd, char **line)
 	static t_gnl	*files = NULL;
 	t_gnl			*lst;
 	int				ret;
-	char			*tmp;
 
 	ret = 0;
 	if (fd < 0 || !line || BUFF_SIZE <= 0 || read(fd, buf, 0) < 0)
@@ -95,10 +94,8 @@ int				get_next_line(const int fd, char **line)
 	while (!ft_strchr(lst->rest, '\n') && (ret = read(fd, buf, BUFF_SIZE)) > 0)
 	{
 		buf[ret] = '\0';
-		tmp = lst->rest;
-		if (!(lst->rest = ft_strjoin(lst->rest, buf)))
+		if ((lst->rest = ft_strjoin_free(lst->rest, buf, 'l')) == NULL)
 			return (-1);
-		free(tmp);
 	}
 	if (ret < 0 || (ret == 0 && lst->rest[0] == 0))
 	{
