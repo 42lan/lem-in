@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 14:47:17 by abosch            #+#    #+#             */
-/*   Updated: 2020/06/03 06:30:52 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 07:53:49 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,13 @@ void			recount_cost(t_farm *f)
 		}
 }
 
+static unsigned	oriented_link(t_farm *f, t_room *room, unsigned j)
+{
+	if (f->rooms + room->lnk.arr[j] == f->end && room->lnk.dir[j] == BLOCKED)
+		return (SUCCESS);
+	return (FAILURE);
+}
+
 unsigned		get_nb_paths(t_farm *f)
 {
 	unsigned	i;
@@ -51,7 +58,7 @@ unsigned		get_nb_paths(t_farm *f)
 		j = -1;
 		room = f->rooms + f->end->lnk.arr[i];
 		while (++j < room->lnk.lst->len)
-			if (f->rooms + room->lnk.arr[j] == f->end && room->lnk.dir[j] == BLOCKED)
+			if (oriented_link(f, room, j) == SUCCESS)
 				paths++;
 	}
 	return (paths);
@@ -68,35 +75,4 @@ unsigned		get_max_cost(unsigned *ants_by_path, unsigned *paths_len,
 	while (++i < nb_paths)
 		cost = ants_by_path[i] + paths_len[i] - 1;
 	return (cost);
-}
-
-t_byte			is_mixed_path(t_farm *f)
-{
-	unsigned	i;
-	unsigned	j;
-	unsigned	k;
-	t_room		*room;
-	t_room		*next;
-
-	i = -1;
-	while (++i < f->end->lnk.lst->len)
-		if (f->end->lnk.dir[i] == ALLOWED)
-		{
-			room = f->rooms + f->end->lnk.arr[i];
-			while (room != f->start)
-			{
-				j = -1;
-				k = 0;
-				while (++j < room->lnk.lst->len)
-					if (room->lnk.dir[j] == ALLOWED)
-					{
-						k++;
-						next = f->rooms + room->lnk.arr[j];
-					}
-				if (k > 1)
-					return (SUCCESS);
-				room = next;
-			}
-		}
-	return (FAILURE);
 }

@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 22:14:44 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/03 06:45:58 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 07:58:20 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,44 @@ t_byte			overflowed(char *str, long long num)
 		return (SUCCESS);
 	else if (!ft_isdigit(str[0]) || num > 4294967295)
 		return (SUCCESS);
+	return (FAILURE);
+}
+
+static t_byte	is_mixed_path_helper(t_farm *f, t_room *room)
+{
+	unsigned	j;
+	unsigned	k;
+	t_room		*next;
+
+	while (room != f->start)
+	{
+		j = -1;
+		k = 0;
+		while (++j < room->lnk.lst->len)
+			if (room->lnk.dir[j] == ALLOWED)
+			{
+				k++;
+				next = f->rooms + room->lnk.arr[j];
+			}
+		if (k > 1)
+			return (SUCCESS);
+		room = next;
+	}
+	return (FAILURE);
+}
+
+t_byte			is_mixed_path(t_farm *f)
+{
+	unsigned	i;
+	t_room		*room;
+
+	i = -1;
+	while (++i < f->end->lnk.lst->len)
+		if (f->end->lnk.dir[i] == ALLOWED)
+		{
+			room = f->rooms + f->end->lnk.arr[i];
+			if (is_mixed_path_helper(f, room) == SUCCESS)
+				return (SUCCESS);
+		}
 	return (FAILURE);
 }
