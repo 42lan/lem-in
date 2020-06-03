@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 22:01:45 by abaisago          #+#    #+#             */
-/*   Updated: 2020/06/03 03:26:52 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 04:36:24 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,6 @@ static void		update_link(t_room *room, t_room *target, t_byte state)
 
 static int		resolve_trivial(void)
 {
-	unsigned	i;
-
-	i = -1;
 	update_link(START, END, BLOCKED);
 	update_link(END, START, ALLOWED);
 	g_farm.nb_paths = 1;
