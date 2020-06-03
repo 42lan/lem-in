@@ -6,18 +6,18 @@
 #    By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/05/23 15:05:25 by amalsago          #+#    #+#              #
-#    Updated: 2020/06/03 01:52:27 by amalsago         ###   ########.fr        #
+#    Updated: 2020/06/03 08:55:05 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #!/bin/bash
 
-NC='\033[0m'
-GREY='\033[1;30m'
-RED='\033[1;31m'
-YELLOW='\033[1;33m'
-GREEN='\033[1;36m'
-WHITE='\033[1;37m'
+NC='[0m'
+GREY='[1;30m'
+RED='[1;31m'
+YELLOW='[1;33m'
+GREEN='[1;36m'
+WHITE='[1;37m'
 
 function header
 {
@@ -111,7 +111,7 @@ function agmt()
 	for i in "${maps[@]}"; do
 		header
 		mkdir trash/$i
-		printf $RED"GENERATING $i with 1 sec. laps\n\n"$NC
+		printf $RED"GENERATING $i MAP WITH 1 SEC. LAPS\n\n"$NC
 		agmt_helper trash/$i $i
 		echo
 		if [[ $j -lt ${#maps[@]} ]]; then
@@ -121,9 +121,9 @@ function agmt()
 	done
 }
 
-lemin="./lem-in"
-verifier="./verifier"
-generator="./maps/generator_mac"
+lemin=""
+verifier=""
+generator=""
 
 # Hide terminal cursor
 tput civis
