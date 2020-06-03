@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/30 01:16:37 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/03 07:06:03 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 13:18:32 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static void		spot_no_path(t_farm *f)
 	unsigned	i;
 
 	i = -1;
-	f = f;
 	while (++i < f->end->lnk.lst->len)
 		if (f->end->lnk.dir[i] != ALLOWED)
 			(f->rooms + f->end->lnk.arr[i])->cost[CUR] = UINT_MAX;
@@ -39,7 +38,6 @@ void			sort_paths(t_farm *f)
 	unsigned	j;
 
 	i = -1;
-	f = f;
 	spot_no_path(f);
 	while (++i < f->end->lnk.lst->len - 1)
 	{
