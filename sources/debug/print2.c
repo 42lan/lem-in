@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 03:15:37 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/03 05:00:29 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 06:45:33 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void		type_of_dir(t_byte dir)
 		ft_printf("NO ORIENTATION\n");
 }
 
-void			show_orien_name(const char *name)
+void			show_orien_name(t_farm *f, const char *name)
 {
 	unsigned	i;
 	unsigned	j;
@@ -33,50 +33,50 @@ void			show_orien_name(const char *name)
 	i = 0;
 	j = -1;
 	ft_printf("~~~~~~~ Orientation de la piece par nom %s ~~~~~~~\n", name);
-	while (++j < g_farm.size)
+	while (++j < f->size)
 	{
-		room = &g_farm.rooms[i];
+		room = &f->rooms[i];
 		if (ft_strequ(room->name, name))
-			while (++i < LINK_SIZE)
+			while (++i < room->lnk.lst->len)
 			{
-				ft_printf("%s - ", ROOMS[LINK_ARR[i]].name);
-				type_of_dir(LINK_DIR[i]);
+				ft_printf("%s - ", f->rooms[room->lnk.arr[i]].name);
+				type_of_dir(room->lnk.dir[i]);
 			}
 	}
 	ft_printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 }
 
-void			show_orien(t_room *room)
+void			show_orien(t_farm *f, t_room *room)
 {
 	unsigned	i;
 
 	i = -1;
 	ft_printf("~~~~~~~ Orientation de la piece %s ~~~~~~~\n", room->name);
-	while (++i < LINK_SIZE)
+	while (++i < room->lnk.lst->len)
 	{
-		ft_printf("%s - ", ROOMS[LINK_ARR[i]].name);
-		type_of_dir(LINK_DIR[i]);
+		ft_printf("%s - ", f->rooms[room->lnk.arr[i]].name);
+		type_of_dir(room->lnk.dir[i]);
 	}
 	ft_printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 }
 
-void			print_map_cost(void)
+void			print_map_cost(t_farm *f)
 {
 	unsigned	i;
 
 	i = -1;
-	while (++i < g_farm.size)
-		ft_printf("%-7s pre: %3u/%-10u | cost: %3u/%-10u\n", ROOMS[i].name,
-				ROOMS[i].pre[CUR], ROOMS[i].pre[OLD],
-				ROOMS[i].cost[CUR], ROOMS[i].cost[OLD]);
+	while (++i < f->size)
+		ft_printf("%-7s pre: %3u/%-10u | cost: %3u/%-10u\n", f->rooms[i].name,
+				f->rooms[i].pre[CUR], f->rooms[i].pre[OLD],
+				f->rooms[i].cost[CUR], f->rooms[i].cost[OLD]);
 }
 
-void			print_cost(void)
+void			print_cost(t_farm *f)
 {
 	unsigned	i;
 
 	i = -1;
-	while (++i < END->LINK_LEN)
-		ft_printf("{fred}%s cost %d{}\n", (ROOMS + END->link.arr[i])->name,
-			(ROOMS + END->link.arr[i])->cost[CUR]);
+	while (++i < f->end->lnk.lst->len)
+		ft_printf("{fred}%s cost %d{}\n", (f->rooms + f->end->lnk.arr[i])->name,
+			(f->rooms + f->end->lnk.arr[i])->cost[CUR]);
 }

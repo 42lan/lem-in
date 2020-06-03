@@ -6,7 +6,7 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/17 19:17:30 by abosch            #+#    #+#             */
-/*   Updated: 2020/06/03 03:52:46 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 06:47:25 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void			del_link(void *content, size_t size)
 	t_link		*link;
 
 	link = (t_link*)content;
-	ft_list_del(&link->list, &del_link_list);
+	ft_list_del(&link->lst, &del_link_list);
 	ft_memdel((void**)&link->arr);
 	ft_memdel((void**)&link->dir);
 }
@@ -38,7 +38,7 @@ static void		del_room(void *content, size_t size)
 
 	room = (t_room*)content;
 	ft_strdel(&room->name);
-	del_link(&room->link, 0);
+	del_link(&room->lnk, 0);
 }
 
 static void		free_hmap(t_list *hmap)
@@ -51,17 +51,17 @@ static void		free_hmap(t_list *hmap)
 			ft_list_clear(hmap + i, &del_link_list);
 }
 
-void			final_free(t_list *hmap)
+void			final_free(t_farm *f, t_list *hmap)
 {
 	unsigned	i;
 
 	i = 0;
-	while (i < g_farm.size)
+	while (i < f->size)
 	{
-		del_room(g_farm.rooms + i++, sizeof(t_room*));
-		ft_bzero(g_farm.rooms + i, sizeof(t_room*));
+		del_room(f->rooms + i++, sizeof(t_room*));
+		ft_bzero(f->rooms + i, sizeof(t_room*));
 	}
-	free(g_farm.rooms);
-	free(g_farm.ants_by_path);
+	free(f->rooms);
+	free(f->ants_by_path);
 	free_hmap(hmap);
 }

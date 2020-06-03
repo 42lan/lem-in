@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/14 20:15:42 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/03 03:57:55 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 06:40:52 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "lemin.h"
 
-void			orient_path_to(t_room *target, t_byte rev)
+void			orient_path_to(t_farm *f, t_room *target, t_byte rev)
 {
 	unsigned	i;
 	unsigned	j;
@@ -24,21 +24,21 @@ void			orient_path_to(t_room *target, t_byte rev)
 	room = target;
 	while (room->cost[CUR] != 0)
 	{
-		prev = ROOMS + room->pre[CUR];
+		prev = f->rooms + room->pre[CUR];
 		i = 0;
-		while (LINK_ARR[i] != room->pre[CUR])
+		while (room->lnk.arr[i] != room->pre[CUR])
 			++i;
-		if (LINK_DIR[i] & (BLOCKED | ALLOWED))
-			LINK_DIR[i] = DUPLEX;
+		if (room->lnk.dir[i] & (BLOCKED | ALLOWED))
+			room->lnk.dir[i] = DUPLEX;
 		else
-			LINK_DIR[i] = (!rev) ? ALLOWED : BLOCKED;
+			room->lnk.dir[i] = (!rev) ? ALLOWED : BLOCKED;
 		j = 0;
-		while (prev->link.arr[j] != room->index)
+		while (prev->lnk.arr[j] != room->index)
 			++j;
-		if (prev->link.dir[j] & (ALLOWED | BLOCKED))
-			prev->link.dir[j] = DUPLEX;
+		if (prev->lnk.dir[j] & (ALLOWED | BLOCKED))
+			prev->lnk.dir[j] = DUPLEX;
 		else
-			prev->link.dir[j] = (!rev) ? BLOCKED : ALLOWED;
+			prev->lnk.dir[j] = (!rev) ? BLOCKED : ALLOWED;
 		room = prev;
 	}
 }

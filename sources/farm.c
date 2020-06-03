@@ -1,24 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   del.h                                              :+:      :+:    :+:   */
+/*   farm.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
+/*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/04/17 19:35:09 by abosch            #+#    #+#             */
-/*   Updated: 2020/06/03 07:02:09 by amalsago         ###   ########.fr       */
+/*   Created: 2020/06/03 05:30:56 by amalsago          #+#    #+#             */
+/*   Updated: 2020/06/03 05:47:07 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEL_H
-# define DEL_H
+#include "lemin.h"
 
-# include <stddef.h>
-# include "lemin.h"
-# include "libft.h"
+t_farm				*farm(void)
+{
+	static t_farm	farm;
 
-void	del_link_list(void *content, size_t size);
-void	del_link(void *content, size_t size);
-void	final_free(t_farm *f, t_list *hmap);
-
-#endif
+	return (&farm);
+}

@@ -6,13 +6,20 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/03 03:27:51 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/03 03:33:06 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 07:12:11 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "algo.h"
 
-void			remove_deadend_helper(t_byte *con)
+static unsigned	not_exception(t_farm *f, t_room *room)
+{
+	if (room != f->start && room != f->end && !(room->flags & F_DEAD))
+		return (SUCCESS);
+	return (FAILURE);
+}
+
+static void		remove_deadend_helper(t_farm *f, t_byte *con)
 {
 	unsigned	i;
 	unsigned	j;
@@ -20,15 +27,15 @@ void			remove_deadend_helper(t_byte *con)
 	t_room		*room;
 
 	i = -1;
-	while (++i < g_farm.size)
+	while (++i < f->size)
 	{
 		j = -1;
 		k = 0;
-		room = &ROOMS[i];
-		if (room != START && room != END && !(room->flags & F_DEAD))
+		room = &f->rooms[i];
+		if (not_exception(f, room) == SUCCESS)
 		{
-			while (++j < room->LINK_LEN)
-				if (!(ROOMS[LINK_ARR[j]].flags & F_DEAD))
+			while (++j < room->lnk.lst->len)
+				if (!(f->rooms[room->lnk.arr[j]].flags & F_DEAD))
 					k++;
 			if (k < 2)
 			{
@@ -39,7 +46,7 @@ void			remove_deadend_helper(t_byte *con)
 	}
 }
 
-void			remove_deadend(void)
+void			remove_deadend(t_farm *f)
 {
 	t_byte		con;
 
@@ -47,6 +54,6 @@ void			remove_deadend(void)
 	while (con)
 	{
 		con = 0;
-		remove_deadend_helper(&con);
+		remove_deadend_helper(f, &con);
 	}
 }

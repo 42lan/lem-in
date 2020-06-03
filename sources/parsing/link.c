@@ -44,12 +44,12 @@ static void		set_room_links(t_list_link *room_link[2])
 
 	room1 = room_link[0]->content;
 	room2 = room_link[1]->content;
-	if (ft_list_find(room1->link.list, &(room2->index), room_indexcmp)
-		&& ft_list_find(room2->link.list, &(room1->index), room_indexcmp))
+	if (ft_list_find(room1->lnk.lst, &(room2->index), room_indexcmp)
+		&& ft_list_find(room2->lnk.lst, &(room1->index), room_indexcmp))
 		return ;
-	ft_list_push(room1->link.list,
+	ft_list_push(room1->lnk.lst,
 		ft_list_link_new(&room2->index, sizeof(unsigned)));
-	ft_list_push(room2->link.list,
+	ft_list_push(room2->lnk.lst,
 		ft_list_link_new(&room1->index, sizeof(unsigned)));
 }
 

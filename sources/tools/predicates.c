@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 22:14:44 by amalsago          #+#    #+#             */
-/*   Updated: 2020/05/24 23:29:39 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 06:45:58 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 #include "lib.h"
 
-t_byte			start_links_end(void)
+t_byte			start_links_end(t_farm *f)
 {
 	unsigned	i;
 
 	i = -1;
-	while (++i < START->LINK_LEN)
-		if (ROOMS + START->link.arr[i] == END)
+	while (++i < f->start->lnk.lst->len)
+		if (f->rooms + f->start->lnk.arr[i] == f->end)
 			return (SUCCESS);
 	return (FAILURE);
 }

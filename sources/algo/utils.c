@@ -6,13 +6,13 @@
 /*   By: abosch <abosch@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/16 14:47:17 by abosch            #+#    #+#             */
-/*   Updated: 2020/06/03 04:54:17 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 06:30:52 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "algo.h"
 
-void			recount_cost(void)
+void			recount_cost(t_farm *f)
 {
 	unsigned	i;
 	unsigned	j;
@@ -20,24 +20,24 @@ void			recount_cost(void)
 	t_room		*room;
 
 	i = -1;
-	while (++i < START->LINK_LEN)
-		if (START->link.dir[i] == BLOCKED)
+	while (++i < f->start->lnk.lst->len)
+		if (f->start->lnk.dir[i] == BLOCKED)
 		{
 			j = -1;
 			cost = 0;
-			room = ROOMS + START->link.arr[i];
+			room = f->rooms + f->start->lnk.arr[i];
 			room->cost[CUR] = ++cost;
-			while (++j < LINK_SIZE)
-				if (LINK_DIR[j] == BLOCKED)
+			while (++j < room->lnk.lst->len)
+				if (room->lnk.dir[j] == BLOCKED)
 				{
-					room = ROOMS + LINK_ARR[j];
+					room = f->rooms + room->lnk.arr[j];
 					room->cost[CUR] = ++cost;
 					j = -1;
 				}
 		}
 }
 
-unsigned		get_nb_paths(void)
+unsigned		get_nb_paths(t_farm *f)
 {
 	unsigned	i;
 	unsigned	j;
@@ -46,12 +46,12 @@ unsigned		get_nb_paths(void)
 
 	i = -1;
 	paths = 0;
-	while (++i < END->LINK_LEN)
+	while (++i < f->end->lnk.lst->len)
 	{
 		j = -1;
-		room = ROOMS + END->link.arr[i];
-		while (++j < LINK_SIZE)
-			if (ROOMS + LINK_ARR[j] == END && LINK_DIR[j] == BLOCKED)
+		room = f->rooms + f->end->lnk.arr[i];
+		while (++j < room->lnk.lst->len)
+			if (f->rooms + room->lnk.arr[j] == f->end && room->lnk.dir[j] == BLOCKED)
 				paths++;
 	}
 	return (paths);
@@ -70,7 +70,7 @@ unsigned		get_max_cost(unsigned *ants_by_path, unsigned *paths_len,
 	return (cost);
 }
 
-t_byte			is_mixed_path(void)
+t_byte			is_mixed_path(t_farm *f)
 {
 	unsigned	i;
 	unsigned	j;
@@ -79,19 +79,19 @@ t_byte			is_mixed_path(void)
 	t_room		*next;
 
 	i = -1;
-	while (++i < END->LINK_LEN)
-		if (END->link.dir[i] == ALLOWED)
+	while (++i < f->end->lnk.lst->len)
+		if (f->end->lnk.dir[i] == ALLOWED)
 		{
-			room = ROOMS + END->link.arr[i];
-			while (room != START)
+			room = f->rooms + f->end->lnk.arr[i];
+			while (room != f->start)
 			{
 				j = -1;
 				k = 0;
-				while (++j < LINK_SIZE)
-					if (LINK_DIR[j] == ALLOWED)
+				while (++j < room->lnk.lst->len)
+					if (room->lnk.dir[j] == ALLOWED)
 					{
 						k++;
-						next = ROOMS + LINK_ARR[j];
+						next = f->rooms + room->lnk.arr[j];
 					}
 				if (k > 1)
 					return (SUCCESS);

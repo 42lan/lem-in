@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/03 04:46:25 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 07:04:45 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,6 @@
 # define ALLOWED		0x01
 # define BLOCKED		0x02
 
-# define START			g_farm.start
-# define END			g_farm.end
-# define ROOMS			g_farm.rooms
-# define LINK_ARR		room->link.arr
-# define LINK_DIR		room->link.dir
-# define LINK_SIZE		room->link.list->len
-# define LINK_LEN		link.list->len
-
 typedef struct s_farm	t_farm;
 typedef struct s_link	t_link;
 typedef struct s_room	t_room;
@@ -55,7 +47,7 @@ struct					s_farm
 
 struct					s_link
 {
-	t_list				*list;
+	t_list				*lst;
 	unsigned			*arr;
 	t_byte				*dir;
 };
@@ -65,18 +57,17 @@ struct					s_room
 	unsigned			index;
 	char				*name;
 	t_ivec2				coord;
-	t_link				link;
+	t_link				lnk;
 	t_byte				flags;
 	unsigned			cost[2];
 	unsigned			pre[2];
 	unsigned			ant_id;
 };
 
-extern t_farm			g_farm;
-
 int						lemin(int ac, char **av);
-t_byte					start_links_end(void);
+t_byte					start_links_end(t_farm *f);
 void					send_ants();
+t_farm					*farm(void);
 
 /*
 ************

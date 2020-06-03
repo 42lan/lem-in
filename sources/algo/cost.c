@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/04 10:03:09 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/03 03:41:00 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 07:11:48 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void			sort_paths_len(unsigned *paths_len, unsigned nb_paths)
 		}
 }
 
-static unsigned		*get_paths_len(unsigned nb_paths)
+static unsigned		*get_paths_len(t_farm *f, unsigned nb_paths)
 {
 	unsigned		i;
 	unsigned		j;
@@ -61,20 +61,20 @@ static unsigned		*get_paths_len(unsigned nb_paths)
 	k = -1;
 	if (!(paths_len = (unsigned*)ft_memalloc(sizeof(unsigned) * nb_paths)))
 		ft_printerr("lem-in: get_paths_len(malloc): %s\n", strerror(errno));
-	while (++i < END->LINK_LEN)
-		if (END->link.dir[i] == ALLOWED)
+	while (++i < f->end->lnk.lst->len)
+		if (f->end->lnk.dir[i] == ALLOWED)
 		{
 			j = -1;
 			paths_len[++k] = 1;
-			room = ROOMS + END->link.arr[i];
-			while (++j < room->LINK_LEN)
-				if (room->link.dir[j] == ALLOWED)
+			room = f->rooms + f->end->lnk.arr[i];
+			while (++j < room->lnk.lst->len)
+				if (room->lnk.dir[j] == ALLOWED)
 				{
-					room = ROOMS + room->link.arr[j];
+					room = f->rooms + room->lnk.arr[j];
 					paths_len[k] += 1;
 					j = -1;
 				}
-			(ROOMS + END->link.arr[i])->cost[CUR] = paths_len[k];
+			(f->rooms + f->end->lnk.arr[i])->cost[CUR] = paths_len[k];
 		}
 	return (paths_len);
 }
@@ -101,10 +101,10 @@ static void			dispatch_ants(unsigned *ants, unsigned *ants_by_path,
 		}
 		k++;
 	}
-	fill_remain_ants(*ants, g_farm.ants_by_path, nb_paths);
+	fill_remain_ants(*ants, farm()->ants_by_path, nb_paths);
 }
 
-unsigned			get_cost(void)
+unsigned			get_cost(t_farm *f)
 {
 	unsigned		ants;
 	unsigned		cost;
@@ -112,18 +112,18 @@ unsigned			get_cost(void)
 	unsigned		*paths_len;
 
 	cost = 0;
-	nb_paths = get_nb_paths();
-	g_farm.nb_paths = nb_paths;
-	ants = g_farm.ants_total;
-	if (g_farm.ants_by_path != NULL)
-		free(g_farm.ants_by_path);
-	if (!(g_farm.ants_by_path = (unsigned*)ft_memalloc(
+	nb_paths = get_nb_paths(f);
+	f->nb_paths = nb_paths;
+	ants = f->ants_total;
+	if (f->ants_by_path != NULL)
+		free(f->ants_by_path);
+	if (!(f->ants_by_path = (unsigned*)ft_memalloc(
 		sizeof(unsigned) * nb_paths)))
 		ft_printerr("lem-in: get_cost(malloc): %s\n", strerror(errno));
-	paths_len = get_paths_len(nb_paths);
+	paths_len = get_paths_len(f, nb_paths);
 	sort_paths_len(paths_len, nb_paths);
-	dispatch_ants(&ants, g_farm.ants_by_path, paths_len, nb_paths);
-	cost = get_max_cost(g_farm.ants_by_path, paths_len, nb_paths);
+	dispatch_ants(&ants, f->ants_by_path, paths_len, nb_paths);
+	cost = get_max_cost(f->ants_by_path, paths_len, nb_paths);
 	free(paths_len);
 	return (cost);
 }

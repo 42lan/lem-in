@@ -46,13 +46,13 @@ static int		read_room(t_room *room, char *line)
 static int		handle_room(t_list *hmap, t_list *room_list, t_room *room,
 					unsigned index)
 {
-	room->link.list = ft_list_init();
+	room->lnk.lst = ft_list_init();
 	room->index = index;
 	ft_memset(room->pre, -1, sizeof(room->pre));
 	ft_memset(room->cost, -1, sizeof(room->cost));
 	if (hmap_add(hmap, room) == FAILURE)
 	{
-		ft_list_del(&(room->link.list), &del_link_list);
+		ft_list_del(&(room->lnk.lst), &del_link_list);
 		return (FAILURE);
 	}
 	ft_list_push(room_list, ft_list_link_new(room, sizeof(*room)));

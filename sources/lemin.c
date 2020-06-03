@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/10 15:30:46 by abaisago          #+#    #+#             */
-/*   Updated: 2020/06/03 03:54:00 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 07:13:09 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,14 @@
 
 #include <stdlib.h>
 
-t_farm		g_farm;
-
 int			lemin(int ac, char **av)
 {
 	t_list	hmap[HMAP_SIZE];
 
 	hmap_init(hmap);
-	if (parse_input(hmap) == SUCCESS)
-		if (resolve() == SUCCESS)
-			send_ants();
-	final_free(hmap);
+	if (parse_input(farm(), hmap) == SUCCESS)
+		if (resolve(farm()) == SUCCESS)
+			send_ants(farm());
+	final_free(farm(), hmap);
 	return (SUCCESS);
 }
