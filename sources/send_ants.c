@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/28 17:33:06 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/03 10:33:56 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/03 13:22:14 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,6 @@ void				send_ants(t_farm *f)
 		while (f->ants_end != f->ants_total && ++i < f->end->lnk.lst->len)
 			if (f->end->lnk.dir[i] == ALLOWED)
 				send_ants_helper(f, f->end, f->rooms + f->end->lnk.arr[i], ++k);
-		ft_printf("\b \b\n");
+		ft_printf("\n");
 	}
 }
