@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 21:53:28 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/03 05:14:32 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/04 20:21:36 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 void	room_index(t_room *room, size_t size, unsigned pos, unsigned max)
 {
+	(void)size;
+	(void)max;
 	room->index = pos - 1;
 }
 

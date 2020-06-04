@@ -6,7 +6,7 @@
 /*   By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/25 16:10:47 by abaisago          #+#    #+#             */
-/*   Updated: 2020/06/03 06:44:51 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/04 20:21:04 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int				dbg_print_room(void *content, size_t size, unsigned pos,
 	int			ret;
 	t_room		*room;
 
+	(void)size;
 	room = content;
 	ret = ft_printf("=%u: [%-5s %d,%d]", room->index, room->name,
 		room->coord.x, room->coord.y);
