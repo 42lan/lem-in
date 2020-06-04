@@ -6,7 +6,7 @@
 #    By: abaisago <adam_bai@protonmail.com>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/13 11:54:38 by abaisago          #+#    #+#              #
-#    Updated: 2020/06/03 05:32:57 by amalsago         ###   ########.fr        #
+#    Updated: 2020/06/04 20:05:46 by amalsago         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,10 +42,7 @@ LDLIBS         := $(LIB_FT_FLAGS)
 #------------------------------------------------#
 
 CC             := gcc
-CFLAGS         := -Wall -Wextra -Werror          \
-                  -Wno-unused-parameter          \
-			      -Wno-unused-value
-	     		  #-Wno-unused-but-set-variable   \
+CFLAGS         := -Wall -Wextra -Werror
 
 CPPFLAGS       := -Iincludes                     \
                   -Ilib/ft/include
