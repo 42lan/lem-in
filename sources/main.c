@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:44:44 by amalsago          #+#    #+#             */
-/*   Updated: 2020/04/11 16:54:20 by abosch           ###   ########.fr       */
+/*   Updated: 2020/06/04 20:12:03 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,7 @@
 
 int		main(int ac, char **av)
 {
-	return (lemin(ac, av));
+	(void)ac;
+	(void)av;
+	return (lemin());
 }

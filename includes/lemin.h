@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:54:34 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/04 13:38:53 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/06/04 20:12:22 by amalsago         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ struct					s_room
 	unsigned			ant_id;
 };
 
-int						lemin(int ac, char **av);
+int						lemin(void);
 t_byte					start_links_end(t_farm *f);
 void					send_ants(t_farm *f);
 t_farm					*farm(void);
