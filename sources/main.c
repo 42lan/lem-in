@@ -6,15 +6,13 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 09:44:44 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/04 20:12:03 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/07/07 13:00:15 by abosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lemin.h"
 
-int		main(int ac, char **av)
+int		main(void)
 {
-	(void)ac;
-	(void)av;
 	return (lemin());
 }

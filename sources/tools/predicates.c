@@ -6,7 +6,7 @@
 /*   By: amalsago <amalsago@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/14 22:14:44 by amalsago          #+#    #+#             */
-/*   Updated: 2020/06/03 07:58:20 by amalsago         ###   ########.fr       */
+/*   Updated: 2020/07/07 13:03:18 by abosch           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static t_byte	is_mixed_path_helper(t_farm *f, t_room *room)
 	unsigned	k;
 	t_room		*next;
 
+	next = NULL;
 	while (room != f->start)
 	{
 		j = -1;
